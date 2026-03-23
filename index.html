@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Reloj Minero San Juan</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --gold:#9A6818;--copper:#B05030;
+  --bg:#F5F0E8;--bg2:#FDFAF5;--bg3:#F0EAE0;--bg4:#E8E0D0;
+  --border:#DDD0BC;--border2:#C8B898;
+  --text1:#2C1F0A;--text2:#5A4428;--text3:#9A8060;
+  --red:#B03030;--green:#2A7A30;--amber:#B86800;--blue:#2050A0;--slate:#485870;--violet:#6A4A8A;
+  --shadow:0 2px 12px rgba(60,40,10,.08);
+  --radius:10px;
+}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text1);font-family:'DM Sans',sans-serif;font-size:14px;min-height:100vh}
+.header{padding:20px 24px 16px;border-bottom:1px solid var(--border);background:var(--bg2);position:relative}
+.header::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,#C8891E,#B05030,transparent)}
+.h-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(28px,6vw,40px);letter-spacing:5px;color:var(--gold);line-height:1}
+.h-sub{font-size:10px;color:var(--text3);letter-spacing:1.5px;text-transform:uppercase;margin-top:4px}
+.h-stats{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.stat-pill{background:var(--bg3);border:1px solid var(--border);border-radius:20px;padding:4px 12px;font-family:'DM Mono',monospace;font-size:10px;display:flex;gap:6px;align-items:center}
+.stat-num{color:var(--gold);font-weight:500}.stat-lbl{color:var(--text3)}
+.legend{display:flex;gap:10px;flex-wrap:wrap;padding:8px 24px;border-bottom:1px solid var(--border);background:var(--bg2);align-items:center}
+.leg{display:flex;align-items:center;gap:5px;font-size:10px;color:var(--text3);white-space:nowrap}
+.leg-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+.legend-hint{margin-left:auto;font-size:9px;color:var(--text3);text-align:right}
+.filters{display:flex;gap:5px;flex-wrap:wrap;padding:8px 24px;border-bottom:1px solid var(--border);background:var(--bg2);align-items:center}
+.flbl{font-size:10px;color:var(--text3);letter-spacing:2px;text-transform:uppercase;margin-right:2px;white-space:nowrap}
+.fbtn{padding:4px 12px;border-radius:20px;border:1px solid var(--border);background:transparent;color:var(--text3);font-family:'DM Mono',monospace;font-size:10px;cursor:pointer;transition:.15s all;white-space:nowrap;-webkit-tap-highlight-color:transparent}
+.fbtn:hover,.fbtn:active{border-color:var(--border2);color:var(--text2)}
+.fbtn.on{border-color:var(--gold);color:var(--gold);background:rgba(154,104,24,.10)}
+.fcount{margin-left:auto;font-size:10px;color:var(--text3);font-family:'DM Mono',monospace;white-space:nowrap}
+.main{padding:18px 24px 32px}
+.sheet-bar{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:10px;color:var(--text3);display:flex;align-items:center;gap:8px;margin-bottom:18px}
+.live-dot{width:6px;height:6px;background:#2A7A30;border-radius:50%;animation:pulse 2s infinite;flex-shrink:0}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
+.sec-head{font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--text3);margin-bottom:10px;display:flex;align-items:center;gap:8px}
+.sec-head::after{content:'';flex:1;height:1px;background:var(--border)}
+.sec-badge{font-size:9px;padding:2px 8px;border-radius:10px;border:1px solid}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(155px,1fr));gap:10px;margin-bottom:24px}
+.card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);padding:12px 10px 10px;cursor:pointer;transition:.18s all;position:relative;box-shadow:var(--shadow);-webkit-tap-highlight-color:transparent;user-select:none}
+.card:hover{border-color:var(--border2);transform:translateY(-2px);box-shadow:0 6px 20px rgba(0,0,0,.12)}
+.card:active{transform:translateY(0)}
+.card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;border-radius:var(--radius) var(--radius) 0 0}
+.c-cierre::before{background:#D4A0A0}.c-produccion::before{background:#A8C8A0}.c-preproduccion::before{background:#D4B878}.c-exploracion::before{background:#90A8CC}.c-prospecto::before{background:#B0B8CC}.c-latente::before{background:#C0A8D4}
+.card-badge-dormant{position:absolute;top:7px;right:7px;background:#6A4A8A;color:#fff;font-size:8px;padding:2px 5px;border-radius:6px;font-family:'DM Mono',monospace}
+.card-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:9px}
+.card-metal{font-family:'DM Mono',monospace;font-size:8px;letter-spacing:1px;padding:2px 5px;border-radius:6px;border:1px solid var(--border);color:var(--text3);background:var(--bg3)}
+.card-hora-badge{font-family:'Bebas Neue',sans-serif;font-size:13px;letter-spacing:1px}
+.cw{display:flex;justify-content:center;margin-bottom:9px}
+.card-name{font-weight:500;font-size:12px;color:var(--text1);margin-bottom:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.card-empresa{font-size:9px;color:var(--text3);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-bottom:5px;line-height:1.3}
+.card-footer{display:flex;border-top:1px solid var(--border);padding-top:6px}
+.card-depto{font-size:9px;color:var(--text3);font-family:'DM Mono',monospace}
+/* MODAL */
+.overlay{display:none;position:fixed;inset:0;background:rgba(20,18,14,.65);z-index:300;align-items:flex-end;justify-content:center;backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px)}
+.overlay.on{display:flex}
+.modal{background:var(--bg2);border:1px solid var(--border2);border-radius:16px 16px 0 0;width:100%;max-width:520px;max-height:92vh;overflow-y:auto;position:relative;box-shadow:0 -8px 40px rgba(0,0,0,.2);animation:slideUp .22s ease}
+@keyframes slideUp{from{transform:translateY(40px);opacity:0}to{transform:translateY(0);opacity:1}}
+.modal::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;border-radius:16px 16px 0 0;background:linear-gradient(90deg,var(--gold),var(--copper))}
+.modal-drag{width:36px;height:4px;background:var(--border2);border-radius:2px;margin:10px auto 0;cursor:pointer}
+.modal-header{padding:10px 20px 0}
+.modal-close{position:absolute;top:10px;right:12px;background:var(--bg3);border:1px solid var(--border);border-radius:20px;color:var(--text3);font-size:13px;cursor:pointer;width:28px;height:28px;display:flex;align-items:center;justify-content:center;-webkit-tap-highlight-color:transparent}
+.modal-close:hover{border-color:var(--border2);color:var(--text1)}
+.m-name{font-family:'Bebas Neue',sans-serif;font-size:clamp(22px,5vw,28px);letter-spacing:3px;color:var(--gold);line-height:1;margin-bottom:2px}
+.m-empresa{font-size:11px;color:var(--text3);margin-bottom:5px}
+.m-pill{display:inline-block;padding:2px 10px;border-radius:10px;font-size:9px;letter-spacing:1px;text-transform:uppercase;margin-bottom:12px}
+.m-body{padding:0 20px 28px}
+.m-clock-row{display:flex;align-items:center;gap:14px;margin-bottom:14px;padding:12px;background:var(--bg3);border-radius:var(--radius);border:1px solid var(--border)}
+.m-clock-info{flex:1;min-width:0}
+.m-hora-big{font-family:'Bebas Neue',sans-serif;font-size:clamp(32px,7vw,42px);letter-spacing:2px;line-height:1}
+.m-hora-label{font-size:9px;color:var(--text3);letter-spacing:1.5px;text-transform:uppercase;margin-top:2px}
+.m-sub{font-size:10px;color:var(--text3);margin-top:4px}
+.m-recursos{background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:10px 12px;margin-bottom:12px;font-size:11px;color:var(--text2);line-height:1.7}
+.m-recursos strong{color:var(--text1);font-weight:500}
+.m-desc{font-size:12px;color:var(--text2);line-height:1.65;margin-bottom:12px}
+.m-latente-banner{background:rgba(106,74,138,.06);border:1px solid rgba(106,74,138,.20);border-radius:8px;padding:9px 12px;margin-bottom:12px;font-size:11px;color:#6A4A8A;line-height:1.6}
+.factors-title{font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--text3);margin-bottom:8px;display:flex;align-items:center;gap:8px}
+.factors-title::after{content:'';flex:1;height:1px;background:var(--border)}
+.factor-row{margin-bottom:8px}
+.factor-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:3px}
+.factor-name{font-size:11px;color:var(--text2)}
+.factor-score{font-family:'DM Mono',monospace;font-size:10px;font-weight:500}
+.factor-bar-bg{height:5px;background:var(--bg4);border-radius:3px;overflow:hidden}
+.factor-bar-fill{height:100%;border-radius:3px}
+.m-rows{margin-top:12px;border-top:1px solid var(--border);padding-top:10px}
+.m-row{display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid var(--border);font-size:11px;gap:8px}
+.m-row:last-child{border-bottom:none}
+.mk{color:var(--text3);flex-shrink:0}.mv{color:var(--text1);text-align:right;word-break:break-word}
+.footer{border-top:1px solid var(--border);padding:10px 24px;font-size:10px;color:var(--text3);display:flex;justify-content:space-between;flex-wrap:wrap;gap:4px;background:var(--bg2)}
+/* Desktop: modal centered */
+@media(min-width:600px){
+  .overlay{align-items:center}
+  .modal{border-radius:16px;max-height:88vh}
+  .modal-drag{display:none}
+  @keyframes slideUp{from{transform:translateY(20px) scale(.97);opacity:0}to{transform:translateY(0) scale(1);opacity:1}}
+}
+/* Mobile tweaks */
+@media(max-width:480px){
+  .header,.main,.filters,.legend,.footer{padding-left:14px;padding-right:14px}
+  .h-title{letter-spacing:3px}
+  .grid{grid-template-columns:repeat(2,1fr);gap:8px}
+  .legend-hint{display:none}
+  .fbtn{padding:3px 10px;font-size:9px}
+  .sheet-bar{font-size:9px}
+  .stat-pill{font-size:9px;padding:3px 10px}
+}
+@media(max-width:340px){
+  .grid{grid-template-columns:repeat(2,1fr)}
+  .fbtn{padding:3px 7px}
+}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="h-title">RELOJ MINERO SAN JUAN</div>
+  <div class="h-sub">Ciclo de vida · Proyectos metalíferos · Provincia de San Juan, Argentina</div>
+  <div class="h-stats">
+    <div class="stat-pill"><span class="stat-num" id="cnt-total">—</span><span class="stat-lbl">proyectos</span></div>
+    <div class="stat-pill"><span class="stat-num" id="cnt-prod">—</span><span class="stat-lbl">producción</span></div>
+    <div class="stat-pill"><span class="stat-num" id="cnt-dev">—</span><span class="stat-lbl">desarrollo</span></div>
+    <div class="stat-pill"><span class="stat-num" id="cnt-exp">—</span><span class="stat-lbl">exploración</span></div>
+    <div class="stat-pill"><span class="stat-num" id="cnt-lat">—</span><span class="stat-lbl">latentes</span></div>
+  </div>
+</div>
+
+<div class="legend">
+  <div class="leg"><div class="leg-dot" style="background:#C0392B"></div>Cierre</div>
+  <div class="leg"><div class="leg-dot" style="background:#1E7A45"></div>Producción</div>
+  <div class="leg"><div class="leg-dot" style="background:#C07818"></div>Pre-producción</div>
+  <div class="leg"><div class="leg-dot" style="background:#1A5FA0"></div>Exploración</div>
+  <div class="leg"><div class="leg-dot" style="background:#607090"></div>Prospecto</div>
+  <div class="leg"><div class="leg-dot" style="background:#6A4A8A"></div>Latente</div>
+  <div class="legend-hint">12:00 = primera producción · tap para detalles</div>
+</div>
+
+<div class="filters">
+  <span class="flbl">Ver</span>
+  <button class="fbtn on" onclick="setFilter('todos',this)">Todos</button>
+  <button class="fbtn" onclick="setFilter('cierre',this)">Cierre</button>
+  <button class="fbtn" onclick="setFilter('produccion',this)">Producción</button>
+  <button class="fbtn" onclick="setFilter('preproduccion',this)">Pre-prod.</button>
+  <button class="fbtn" onclick="setFilter('exploracion',this)">Exploración</button>
+  <button class="fbtn" onclick="setFilter('prospecto',this)">Prospecto</button>
+  <button class="fbtn" onclick="setFilter('latente',this)">Latentes</button>
+  <span class="fcount" id="fcount"></span>
+</div>
+
+<div class="main">
+  <div class="sheet-bar"><div class="live-dot"></div><span id="sheet-status">Datos verificados — fuentes NI 43-101 / JORC / reportes corporativos · v8 marzo 2026</span></div>
+  <div id="container"></div>
+</div>
+
+<div class="footer">
+  <span>San Juan, Argentina</span>
+  <span id="footer-date"></span>
+</div>
+
+<div class="overlay" id="overlay" onclick="closeModal(event)">
+  <div class="modal" id="modal">
+    <div class="modal-drag" onclick="document.getElementById('overlay').classList.remove('on')"></div>
+    <button class="modal-close" onclick="document.getElementById('overlay').classList.remove('on')">✕</button>
+    <div class="modal-header">
+      <div class="m-name" id="m-name"></div>
+      <div class="m-empresa" id="m-empresa"></div>
+      <div id="m-pill" class="m-pill"></div>
+    </div>
+    <div class="m-body">
+      <div id="m-latente-banner" class="m-latente-banner" style="display:none"></div>
+      <div class="m-clock-row">
+        <canvas id="m-clock" width="90" height="90" style="width:80px;height:80px;flex-shrink:0"></canvas>
+        <div class="m-clock-info">
+          <div class="m-hora-big" id="m-hora"></div>
+          <div class="m-hora-label">posición en el ciclo</div>
+          <div class="m-sub" id="m-sub"></div>
+        </div>
+      </div>
+      <div class="m-recursos" id="m-recursos"></div>
+      <div class="m-desc" id="m-desc"></div>
+      <div class="factors-title">Por qué está en esta hora</div>
+      <div id="m-factors"></div>
+      <div class="m-rows" id="m-rows"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+// ── Para conectar Google Sheets: publicar como CSV y pegar URL aquí ──────────
+const SHEET_CSV_URL = '';
+
+const EC = {
+  cierre:        {label:'Cierre / Marginal',   color:'#B03030'},
+  produccion:    {label:'Producción activa',    color:'#2A7A30'},
+  preproduccion: {label:'Pre-producción',       color:'#B86800'},
+  exploracion:   {label:'Exploración avanzada', color:'#2050A0'},
+  prospecto:     {label:'Prospecto / Temprano', color:'#485870'},
+  latente:       {label:'Latente / Congelado',  color:'#6A4A8A'},
+};
+const ORDER = ['cierre','produccion','preproduccion','exploracion','prospecto','latente'];
+
+const DATA_DEFAULT = [
+  {nombre:'Casposo',empresa:'Austral Gold',metal:'Au/Ag',hora:'23:00',etapa:'cierre',depto:'Calingasta',inversion:'—',fuente:'Austral Gold 2024',
+   recursos:'Reservas propias agotadas en ~3 años. Planta reactivada 2024 como hub de molienda para Hualilán exclusivamente.',
+   descripcion:'Reinició operaciones en 2024 procesando mineral de Hualilán. Futuro como operador propio depende de un nuevo descubrimiento en la propiedad Manantiales.',
+   factores:[{n:'Reservas remanentes propias',v:8,c:'#B03030'},{n:'Infraestructura y planta activa',v:85,c:'#2A7A30'},{n:'Permisos vigentes',v:88,c:'#2A7A30'},{n:'Viabilidad económica propia',v:20,c:'#B03030'},{n:'Rol como hub Hualilán',v:70,c:'#B86800'}]},
+
+  {nombre:'Gualcamayo',empresa:'AISA / Minas Argentinas',metal:'Au',hora:'21:00',etapa:'cierre',depto:'Jáchal',inversion:'—',fuente:'Fuerzaminera mar 2026',
+   recursos:'Recuperación pilas 2024-2025: 42.990 oz Au + 22.659 oz Ag. Distrito: 5 M oz Au / 3,2 M oz P&P (abr 2025). DCP: 3,5 M oz Au en recursos; 2,45 M oz P&P.',
+   descripcion:'La mina de pilas está en su última etapa. Transformación depende del DCP (RIGI aprobado dic 2025, USD 665 M).',
+   factores:[{n:'Reservas en pilas restantes',v:12,c:'#B03030'},{n:'Infraestructura existente',v:82,c:'#2A7A30'},{n:'RIGI DCP aprobado (dic 2025)',v:100,c:'#2A7A30'},{n:'Viabilidad operación actual',v:28,c:'#B86800'},{n:'Potencial distrital (4% explorado)',v:75,c:'#2A7A30'}]},
+
+  {nombre:'Veladero',empresa:'Barrick + Shandong Gold',metal:'Au/Ag',hora:'19:30',etapa:'produccion',depto:'Iglesia',inversion:'USD 400 M RIGI',fuente:'Barrick Q4 2024 · RIGI ago 2025',
+   recursos:'Acumulado 2005-2024: 11,4 M oz Au + 21,4 M oz Ag. Producción 2024: 503.000 oz Au. Fases 8A/8B/8C: +1,6 M oz Au. Vida extendida hasta ~2034. Guía 2025: 240-270 koz Au.',
+   descripcion:'20 años de producción. Con ~11,4 M oz ya minadas sobre ~17-18 M oz originales, la mina está en etapa madura-declinante. El RIGI de USD 400 M agrega vida productiva pero no cambia su categoría.',
+   factores:[{n:'Años en producción (20 años)',v:15,c:'#B03030'},{n:'Reservas remanentes + expansión',v:55,c:'#B86800'},{n:'RIGI fases 8 aprobado',v:100,c:'#2A7A30'},{n:'Infraestructura y acceso',v:95,c:'#2A7A30'},{n:'Vida útil remanente (~2034)',v:45,c:'#B86800'},{n:'Producción 2024 (503 koz Au)',v:72,c:'#2A7A30'}]},
+
+  {nombre:'Hualilán',empresa:'Challenger Gold / Golden Mining',metal:'Au/Ag',hora:'12:15',etapa:'produccion',depto:'Ullum',inversion:'USD 275 M total',fuente:'Challenger Gold · Tiempodesanjuan 2025-26',
+   recursos:'Recursos: 2,83 M oz Au equivalentes en 50 Mt a ~1 g/t AuEq. Vida útil: 22 años. Producción inicial ~1 Mt/año escalando a 3 Mt/año. 250.000 m perforados en 800+ pozos.',
+   descripcion:'Primera mina nueva en San Juan en 17 años. Dpto. Ullum, 120 km de la capital. DIA aprobada oct 2024. Mineral transportado a planta Casposo (Calingasta). Primera producción dic 2025.',
+   factores:[{n:'DIA aprobada (oct 2024)',v:100,c:'#2A7A30'},{n:'Producción iniciada (dic 2025)',v:100,c:'#2A7A30'},{n:'Recursos definidos (2,83 M oz)',v:80,c:'#2A7A30'},{n:'Hub Casposo operativo',v:85,c:'#2A7A30'},{n:'Acceso a baja altitud (todo el año)',v:95,c:'#2A7A30'},{n:'Vida útil definida (22 años)',v:75,c:'#2A7A30'}]},
+
+  {nombre:'Los Azules',empresa:'McEwen Copper',metal:'Cu',hora:'10:30',etapa:'preproduccion',depto:'Calingasta',inversion:'USD 3.170 M CAPEX inicial',fuente:'FS oct 2025 · NI 43-101 sep 2025',
+   recursos:'Reservas P&P: 1.024 Mt a 0,45% Cu → 4,6 Mt Cu (10,2 B lbs). M&I adicional: 0,97 Bt a 0,26% Cu. Inferidos: 4,24 Bt a 0,21% Cu. LOM 21 años. Producción 148.200 t Cu/año (204.800 primeros 5 años). NPV USD 2,9 B, IRR 19,8%.',
+   descripcion:'FS completa oct 2025. EIA aprobado dic 2024. RIGI aprobado sep 2025. Construcción 2026. Primer cobre 2030. Proceso leach+SX/EW, 100% renovable, sin dique de colas.',
+   factores:[{n:'FS completa (oct 2025)',v:100,c:'#2A7A30'},{n:'EIA aprobada (dic 2024)',v:100,c:'#2A7A30'},{n:'RIGI aprobado (sep 2025)',v:100,c:'#2A7A30'},{n:'Financiamiento (IFC + OEMs)',v:78,c:'#2A7A30'},{n:'Energía eléctrica 500 kV',v:35,c:'#B03030'},{n:'Concesión de agua',v:40,c:'#B86800'}]},
+
+  {nombre:'Gualcamayo DCP',empresa:'Minas Argentinas / AISA',metal:'Au',hora:'10:30',etapa:'preproduccion',depto:'Jáchal',inversion:'USD 665 M RIGI aprobado',fuente:'Mineriaydesarrollo · econojournal dic 2025',
+   recursos:'DCP: 3,5 M oz Au NI 43-101+JORC; 2,45 M oz P&P. Distrito: 5 M oz Au (3,2 M oz P&P). Actualización pendiente +20%. Producción DCP: 120.000 oz Au/año × 17+ años.',
+   descripcion:'RIGI aprobado dic 2025. Requiere planta POX (primera en Sudamérica). FS en elaboración. Construcción 2027-2028. Producción 2029.',
+   factores:[{n:'RIGI aprobado (dic 2025)',v:100,c:'#2A7A30'},{n:'Reservas DCP (2,45 M oz P&P)',v:85,c:'#2A7A30'},{n:'Infraestructura heredada',v:88,c:'#2A7A30'},{n:'FS en elaboración',v:50,c:'#B86800'},{n:'EIA específico DCP',v:40,c:'#B86800'},{n:'Tecnología POX (1ª Sudamérica)',v:45,c:'#B86800'}]},
+
+  {nombre:'Vicuña / Josemaría',empresa:'Vicuña Corp. (BHP 50% + Lundin 50%)',metal:'Cu/Au/Ag',hora:'10:00',etapa:'preproduccion',depto:'Iglesia',inversion:'USD 7.000 M fase 1',fuente:'Lundin PEA feb 2026 · NI 43-101 dic 2025',
+   recursos:'M&I: 14 Mt Cu + 36 Moz Au + 729 Moz Ag. Inferidos: 32 Mt Cu + 61 Moz Au + 1.051 Moz Ag. Top 10 mundial. Núcleo Filo del Sol: 606 Mt M&I a 1,14% CuEq. Josemaría: 196 Mt a 0,73% CuEq.',
+   descripcion:'PEA publicada feb 2026 (PDAC). DIA Josemaría aprobada mar 2026 por San Juan. USD 18.000 M LOM total. Descubrimiento greenfield más importante del mundo en 30 años.',
+   factores:[{n:'Recursos (top 10 global)',v:100,c:'#2A7A30'},{n:'DIA Josemaría (mar 2026)',v:100,c:'#2A7A30'},{n:'PEA publicada (feb 2026)',v:100,c:'#2A7A30'},{n:'FS (no comenzada)',v:5,c:'#B03030'},{n:'Energía 500 kV (crítico)',v:18,c:'#B03030'},{n:'Túnel Agua Negra / acceso',v:22,c:'#B03030'},{n:'Licencia social',v:68,c:'#2A7A30'}]},
+
+  {nombre:'El Pachón',empresa:'Glencore',metal:'Cu/Mo/Ag',hora:'08:30',etapa:'preproduccion',depto:'Calingasta',inversion:'USD 9.500 M fase 1',fuente:'Glencore Investor Day dic 2025',
+   recursos:'~6.000 Mt a 0,43% Cu + 2,2 g/t Ag + 130 g/t Mo → ~25,8 Mt Cu fino. Producción fase 1: 280.000 t Cu/año. Expansión: hasta 625.000 t Cu/año. LOM 30+ años.',
+   descripcion:'FS e IIA en elaboración. RIGI solicitado (no aprobado a mar 2026). Construcción prevista 2029. Uno de los depósitos sin desarrollar más grandes del mundo.',
+   factores:[{n:'Recursos (mayor no desarrollado)',v:100,c:'#2A7A30'},{n:'Estudio de factibilidad (FS)',v:55,c:'#B86800'},{n:'IIA / EIA (en elaboración)',v:38,c:'#B86800'},{n:'RIGI solicitado (sin aprobación)',v:42,c:'#B86800'},{n:'Energía eléctrica (crítico)',v:14,c:'#B03030'},{n:'Acceso vial cordillerano',v:28,c:'#B03030'}]},
+
+  {nombre:'Altar',empresa:'Aldebaran 80% / Sibanye 20%',metal:'Cu/Au/Ag',hora:'06:30',etapa:'exploracion',depto:'Calingasta',inversion:'USD 1.590 M CAPEX PEA',fuente:'PEA oct 2025 · MRE nov 2024 NI 43-101',
+   recursos:'MRE nov 2024: M&I 2,40 Bt a 0,42% Cu → 22,01 B lbs Cu + 5,08 Moz Au + 93,76 Moz Ag. Inferidos: 1,22 Bt a 0,37% Cu. PEA oct 2025: 48 años, NPV USD 2 B, IRR 20,5%, 108.579 t Cu/año LOM.',
+   descripcion:'PEA oct 2025 (SRK Consulting). Open pit + block cave. PFS avanzando para 2026. South32 y Nuton (Rio Tinto) como socios estratégicos.',
+   factores:[{n:'PEA publicada (oct 2025)',v:100,c:'#2A7A30'},{n:'Recursos M&I (2024)',v:92,c:'#2A7A30'},{n:'PFS (en 2026)',v:15,c:'#B03030'},{n:'EIA',v:5,c:'#B03030'},{n:'Socios (South32/Nuton)',v:78,c:'#2A7A30'}]},
+
+  {nombre:'Chita Valley',empresa:'Minsud Resources + South32',metal:'Cu/Mo/Zn',hora:'06:00',etapa:'exploracion',depto:'Iglesia',inversion:'—',fuente:'Minsud feb 2025',
+   recursos:'Primer recurso NI 43-101 publicado feb 2025 (Chinchillones). Sistema multi-pórfido: 4+ targets en 19.000 ha. South32 asumió control 2024.',
+   descripcion:'Primer recurso formal 2025. South32 como operador de clase mundial. Potencial distrital muy alto.',
+   factores:[{n:'1er recurso formal (2025)',v:70,c:'#2A7A30'},{n:'Múltiples targets',v:78,c:'#2A7A30'},{n:'South32 operador',v:88,c:'#2A7A30'},{n:'PEA',v:0,c:'#B03030'},{n:'EIA',v:0,c:'#B03030'}]},
+
+  {nombre:'Río Cenicero',empresa:'Aldebaran Resources',metal:'Cu/Mo/Au',hora:'06:00',etapa:'exploracion',depto:'Calingasta',inversion:'—',fuente:'IPEEM San Juan · Aldebaran 2024',
+   recursos:'~13.000 m perforados en 30 pozos. Pórfido Cu-Mo-Au-Ag confirmado. Mismo bloque geológico que Altar. Vecino directo a Los Azules y El Pachón. Sin recurso formal NI 43-101.',
+   descripcion:'Operado por Minera Peregrine Argentina S.A.U., subsidiaria local de Aldebaran Resources — la misma empresa que opera Altar. Aldebaran licitó ante IPEEM para sumar este área vecina a su portafolio del bloque Altar–Río Cenicero.',
+   factores:[{n:'Perforaciones completadas',v:60,c:'#B86800'},{n:'Pórfido confirmado',v:75,c:'#2A7A30'},{n:'Vecindad Los Azules/Pachón',v:70,c:'#2A7A30'},{n:'Recurso formal',v:0,c:'#B03030'}]},
+
+  {nombre:'Taguas',empresa:'Orvana Minerals',metal:'Au/Ag',hora:'05:30',etapa:'exploracion',depto:'Iglesia',inversion:'—',fuente:'Orvana 2021 / IPEEM 2024',
+   recursos:'PEA 2021. Epitermal alta sulfuración. Leyes 3-4 g/t Au. Sin recurso actualizado post-2021.',
+   descripcion:'Valle del Cura, norte de Veladero. Proximidad a infraestructura de Veladero es ventaja.',
+   factores:[{n:'PEA publicado (2021)',v:100,c:'#2A7A30'},{n:'Sistema confirmado',v:72,c:'#2A7A30'},{n:'Recurso actualizado',v:20,c:'#B03030'},{n:'PFS',v:5,c:'#B03030'},{n:'Proximidad infraestructura',v:68,c:'#2A7A30'}]},
+
+  {nombre:'Del Carmen',empresa:'Shandong Gold',metal:'Au/Ag',hora:'05:30',etapa:'exploracion',depto:'Iglesia',inversion:'USD 56 M comprometidos',fuente:'Licitación San Juan 2025',
+   recursos:'Sin recurso formal publicado. Shandong comprometió USD 56 M en 3 años. Licitación récord 2025.',
+   descripcion:'2do productor de Au de China. Exploración intensiva en curso.',
+   factores:[{n:'Operador clase mundial',v:92,c:'#2A7A30'},{n:'Financiamiento comprometido',v:88,c:'#2A7A30'},{n:'Historial geológico',v:55,c:'#B86800'},{n:'Recurso formal',v:5,c:'#B03030'}]},
+
+  {nombre:'Piuquenes',empresa:'Andina Copper',metal:'Cu/Au',hora:'04:30',etapa:'exploracion',depto:'Iglesia',inversion:'C$175 M captados',fuente:'Andina Copper mar 2026',
+   recursos:'801 m @ 0,40% Cu + 0,51 g/t Au. 10.000+ m perforados. Sin recurso formal. Contiguo sur de Altar.',
+   descripcion:'C$175 M recaudados mar 2026. Mismo sistema geológico que Altar.',
+   factores:[{n:'Resultados perforación',v:72,c:'#2A7A30'},{n:'Financiamiento (C$175 M)',v:82,c:'#2A7A30'},{n:'Vecindad Altar',v:65,c:'#2A7A30'},{n:'Recurso formal',v:5,c:'#B03030'}]},
+
+  {nombre:'La Coipita',empresa:'Teck / AbraSilver',metal:'Cu/Au/Mo',hora:'04:30',etapa:'exploracion',depto:'Calingasta',inversion:'USD 20 M earn-in (Teck)',fuente:'AbraSilver / Teck 2025',
+   recursos:'2025: 621 m @ 0,38% Cu incl. 114 m @ 0,70% Cu. Earn-in Teck por 80% en 5 años. 70.000 ha.',
+   descripcion:'Teck (top 5 global cobre). Descubrimiento alta ley temporada 2025.',
+   factores:[{n:'Descubrimiento alta ley',v:80,c:'#2A7A30'},{n:'Teck como operador',v:92,c:'#2A7A30'},{n:'Financiamiento asegurado',v:85,c:'#2A7A30'},{n:'Recurso formal',v:0,c:'#B03030'}]},
+
+  {nombre:'Lunahuasi',empresa:'NGEx Minerals (Grupo Lundin)',metal:'Cu/Au/Ag',hora:'04:00',etapa:'exploracion',depto:'Iglesia',inversion:'C$175 M captados',fuente:'NGEx mar 2026',
+   recursos:'22.000+ m en fase 4. DIA galería aprobada. Leyes extraordinarias. Parte del Distrito Vicuña. Sin recurso NI 43-101.',
+   descripcion:'Descubrimiento 2023 en Distrito Vicuña. Mismo mega-sistema que Filo del Sol y Josemaría.',
+   factores:[{n:'Leyes extraordinarias',v:95,c:'#2A7A30'},{n:'Fase 4 activa',v:85,c:'#2A7A30'},{n:'DIA galería aprobada',v:100,c:'#2A7A30'},{n:'Grupo Lundin',v:88,c:'#2A7A30'},{n:'Recurso formal',v:5,c:'#B03030'}]},
+
+  {nombre:'Don Julio',empresa:'Sable Resources / South32',metal:'Cu/Au/Mo',hora:'04:00',etapa:'exploracion',depto:'Calingasta',inversion:'—',fuente:'Sable / IPEEM 2025',
+   recursos:'Pórfido Cu-Au-Mo confirmado. Fase 2: 5.000-7.000 m. South32 earn-in. Sin recurso formal.',
+   descripcion:'Sistema porfírico con South32. Cinturón Calingasta.',
+   factores:[{n:'Tipo depósito confirmado',v:68,c:'#2A7A30'},{n:'South32 como socio',v:82,c:'#2A7A30'},{n:'Fase 2 activa',v:58,c:'#B86800'},{n:'Recurso formal',v:0,c:'#B03030'}]},
+
+  {nombre:'El Fierro',empresa:'Sable Resources',metal:'Au/Ag',hora:'03:30',etapa:'prospecto',depto:'Calingasta',inversion:'—',fuente:'Sable Resources 2024',
+   recursos:'12.000+ m perforados. Hasta 2.582 g/t AgEq en vetas. Sin recurso formal.',
+   descripcion:'Epitermal alta sulfuración. Leyes puntuales excepcionales, continuidad en definición.',
+   factores:[{n:'Leyes puntuales',v:82,c:'#2A7A30'},{n:'Perforaciones',v:52,c:'#B86800'},{n:'Continuidad sistema',v:28,c:'#B86800'},{n:'Recurso formal',v:0,c:'#B03030'}]},
+
+  {nombre:'Vanesa I y II',empresa:'Fortescue Argentina',metal:'Cu/Mo',hora:'03:30',etapa:'prospecto',depto:'Calingasta',inversion:'—',fuente:'IPEEM / Acero y Roca 2025',
+   recursos:'Dos pórfidos Cu-Mo confirmados. Sin recurso formal NI 43-101.',
+   descripcion:'Fortescue en cinturón porfírico de Calingasta.',
+   factores:[{n:'Tipo depósito identificado',v:58,c:'#B86800'},{n:'Operador con recursos',v:75,c:'#2A7A30'},{n:'Perforaciones',v:30,c:'#B86800'},{n:'Recurso formal',v:0,c:'#B03030'}]},
+
+  {nombre:'Rincones de Araya',empresa:'Fortescue / IPEEM',metal:'Cu/Mo/Au',hora:'03:00',etapa:'prospecto',depto:'Calingasta',inversion:'USD 2 M invertidos',fuente:'IPEEM San Juan · Fortescue 2021',
+   recursos:'12 pozos: 5.622 m. Pórfido Cu-Mo±Au + epithermal HS confirmado. Sin recurso formal. Sin novedades 2022-2025.',
+   descripcion:'Concesión IPEEM, Fortescue desde dic 2018. Mismo cinturón que Pachón, Altar, Los Azules. Ritmo lento; Fortescue redirigió foco a hidrógeno.',
+   factores:[{n:'Sistema pórfido confirmado',v:60,c:'#B86800'},{n:'Cinturón clase mundial',v:72,c:'#2A7A30'},{n:'12 pozos completados',v:38,c:'#B86800'},{n:'Recurso formal',v:0,c:'#B03030'},{n:'Ritmo de avance 2022-2025',v:10,c:'#B03030'}]},
+
+  {nombre:'TMT',empresa:'Belararox',metal:'Cu/Au',hora:'03:00',etapa:'prospecto',depto:'Iglesia',inversion:'—',fuente:'Belararox 2025',
+   recursos:'Mineralización a 1.300 m en Tambo South. Sin recurso formal.',
+   descripcion:'Exploración temprana. Junior australiana.',
+   factores:[{n:'Señales mineralización',v:42,c:'#B86800'},{n:'Perforaciones',v:22,c:'#B86800'},{n:'Recurso formal',v:0,c:'#B03030'}]},
+
+  {nombre:'Jagüelito',empresa:'Shandong Gold',metal:'Au/Ag',hora:'02:30',etapa:'prospecto',depto:'Iglesia',inversion:'—',fuente:'Licitación San Juan 2025',
+   recursos:'Adjudicado en licitación récord 2025. Exploración recién iniciada.',
+   descripcion:'Shandong amplía posición en San Juan.',
+   factores:[{n:'Operador clase mundial',v:90,c:'#2A7A30'},{n:'Exploración iniciada',v:12,c:'#B03030'},{n:'Datos históricos',v:32,c:'#B86800'},{n:'Recurso formal',v:0,c:'#B03030'}]},
+
+  {nombre:'Lama',empresa:'Barrick Mining',metal:'Au/Ag',hora:'07:00',etapa:'latente',depto:'Iglesia',inversion:'USD 8.000 M invertidos',fuente:'Diario Huarpe abr 2024 · Tiempodesanjuan ene 2026',
+   latente_nota:'⏸ RELOJ CONGELADO desde 2020, cuando Chile clausuró el lado Pascua. Barrick nunca abandonó el lado argentino. El ciclo puede reanudarse si el proyecto "El Alto" (Chile, aprobado ene 2026, USD 35 M, 62 sondajes) da resultados favorables.',
+   recursos:'Lado argentino: 3,13 M oz Au + 236,9 M oz Ag certificadas. Pascua-Lama binacional: ~18 M oz Au + 731 M oz Ag. Factibilidad de operación subterránea independiente (block cave 13-30 ktpd) estudiada pero no finalizada.',
+   descripcion:'Barrick aprobó en ene 2026 el proyecto "El Alto" en Chile (exploración en zona vecina). Si resulta favorable, activaría Lama usando la infraestructura argentina (campamento, planta semiconstruida, acceso) ya instalada.',
+   factores:[{n:'Recursos geológicos certificados',v:85,c:'#2A7A30'},{n:'Infraestructura argentina (USD 8B)',v:90,c:'#2A7A30'},{n:'Exploración El Alto activa (Chile)',v:55,c:'#B86800'},{n:'Nueva DIA en Chile (pendiente)',v:12,c:'#B03030'},{n:'Marco regulatorio binacional',v:20,c:'#B03030'},{n:'Factibilidad standalone Argentina',v:35,c:'#B86800'},{n:'Apoyo político provincial',v:70,c:'#2A7A30'}]},
+];
+
+function horaToAngle(h){
+  const [hh,mm]=h.split(':').map(Number);
+  return ((hh+mm/60)/12)*Math.PI*2-Math.PI/2;
+}
+
+function drawClock(canvas,hora,etapa,sz,frozen){
+  const ec=EC[etapa]||EC.prospecto;
+  const dpr=window.devicePixelRatio||1;
+  canvas.width=sz*dpr;canvas.height=sz*dpr;
+  const ctx=canvas.getContext('2d');
+  ctx.scale(dpr,dpr);
+  const cx=sz/2,cy=sz/2,r=sz/2-3;
+  ctx.clearRect(0,0,sz,sz);
+  ctx.beginPath();ctx.arc(cx,cy,r,0,Math.PI*2);ctx.fillStyle='#FDFAF5';ctx.fill();
+  ctx.strokeStyle='#DDD0BC';ctx.lineWidth=1;ctx.stroke();
+  for(let i=0;i<60;i++){
+    const a=(i/60)*Math.PI*2-Math.PI/2,main=i%5===0,o=r-2,inn=main?r-7:r-4;
+    ctx.beginPath();ctx.moveTo(cx+Math.cos(a)*inn,cy+Math.sin(a)*inn);ctx.lineTo(cx+Math.cos(a)*o,cy+Math.sin(a)*o);
+    ctx.strokeStyle=main?'#B8A888':'#E0D8C8';ctx.lineWidth=main?1.2:0.5;ctx.stroke();
+  }
+  const ang=horaToAngle(hora);
+  ctx.beginPath();ctx.arc(cx,cy,r-4,-Math.PI/2,ang);ctx.strokeStyle=ec.color+'20';ctx.lineWidth=r-10;ctx.stroke();
+  ctx.beginPath();ctx.moveTo(cx-Math.cos(ang)*r*0.14,cy-Math.sin(ang)*r*0.14);ctx.lineTo(cx+Math.cos(ang)*r*0.6,cy+Math.sin(ang)*r*0.6);
+  ctx.strokeStyle=frozen?'#A09080':ec.color;ctx.lineWidth=2.5;ctx.lineCap='round';ctx.stroke();
+  ctx.beginPath();ctx.moveTo(cx-Math.cos(-Math.PI/2)*r*0.1,cy-Math.sin(-Math.PI/2)*r*0.1);ctx.lineTo(cx+Math.cos(-Math.PI/2)*r*0.72,cy+Math.sin(-Math.PI/2)*r*0.72);
+  ctx.strokeStyle=frozen?'#C0B0A0':'#C8B090';ctx.lineWidth=1;ctx.lineCap='round';ctx.stroke();
+  ctx.beginPath();ctx.arc(cx,cy,3.5,0,Math.PI*2);ctx.fillStyle=frozen?'#A09080':ec.color;ctx.fill();
+  if(frozen){
+    ctx.fillStyle='rgba(106,74,138,0.10)';ctx.beginPath();ctx.arc(cx,cy,r,0,Math.PI*2);ctx.fill();
+    ctx.fillStyle='#6A4A8A';ctx.font=`bold ${Math.floor(sz*0.22)}px sans-serif`;ctx.textAlign='center';ctx.textBaseline='middle';
+    ctx.fillText('⏸',cx,cy+r*0.45);
+  }
+}
+
+let allData=[],activeFilter='todos';
+
+function render(){
+  const cont=document.getElementById('container');cont.innerHTML='';
+  const filtered=activeFilter==='todos'?allData:allData.filter(p=>p.etapa===activeFilter);
+  document.getElementById('fcount').textContent=filtered.length+' proyecto'+(filtered.length!==1?'s':'');
+  ORDER.forEach(etapa=>{
+    const items=filtered.filter(p=>p.etapa===etapa);if(!items.length)return;
+    const ec=EC[etapa];const sec=document.createElement('div');
+    const head=document.createElement('div');head.className='sec-head';
+    head.innerHTML=`<span style="color:${ec.color};font-weight:500">${ec.label}</span><span class="sec-badge" style="background:${ec.color}15;color:${ec.color};border-color:${ec.color}30">${items.length}</span>`;
+    sec.appendChild(head);
+    const grid=document.createElement('div');grid.className='grid';
+    items.sort((a,b)=>{const toM=s=>{const[h,m]=s.split(':').map(Number);return h*60+m;};return(etapa==='cierre'||etapa==='produccion')?toM(b.hora)-toM(a.hora):toM(a.hora)-toM(b.hora);});
+    items.forEach(p=>{
+      const ec2=EC[p.etapa]||EC.prospecto;const frozen=p.etapa==='latente';
+      const card=document.createElement('div');card.className=`card c-${p.etapa}`;card.onclick=()=>openModal(p);
+      card.innerHTML=`${frozen?'<div class="card-badge-dormant">⏸</div>':''}<div class="card-top"><span class="card-metal">${p.metal}</span><span class="card-hora-badge" style="color:${frozen?'#6A4A8A':ec2.color}">${p.hora}</span></div><div class="cw"><canvas width="76" height="76" style="width:76px;height:76px"></canvas></div><div class="card-name" title="${p.nombre}">${p.nombre}</div><div class="card-empresa">${p.empresa}</div><div class="card-footer"><span class="card-depto">${p.depto}</span></div>`;
+      grid.appendChild(card);
+      requestAnimationFrame(()=>drawClock(card.querySelector('canvas'),p.hora,p.etapa,76,frozen));
+    });
+    sec.appendChild(grid);cont.appendChild(sec);
+  });
+}
+
+function openModal(p){
+  const ec=EC[p.etapa]||EC.prospecto;const frozen=p.etapa==='latente';
+  document.getElementById('m-name').textContent=p.nombre;
+  document.getElementById('m-empresa').textContent=p.empresa;
+  document.getElementById('m-hora').textContent=p.hora;document.getElementById('m-hora').style.color=frozen?'#6A4A8A':ec.color;
+  document.getElementById('m-sub').textContent=p.metal+' · '+p.depto;
+  document.getElementById('m-desc').textContent=p.descripcion||'—';
+  document.getElementById('m-recursos').innerHTML='<strong>Recursos / Reservas:</strong> '+(p.recursos||'Sin datos publicados');
+  const pill=document.getElementById('m-pill');pill.textContent=ec.label;pill.style.background=ec.color+'18';pill.style.color=ec.color;pill.style.border=`1px solid ${ec.color}30`;
+  const banner=document.getElementById('m-latente-banner');
+  if(p.latente_nota){banner.textContent=p.latente_nota;banner.style.display='block';}else{banner.style.display='none';}
+  drawClock(document.getElementById('m-clock'),p.hora,p.etapa,90,frozen);
+  document.getElementById('m-factors').innerHTML=(p.factores||[]).map(f=>`<div class="factor-row"><div class="factor-top"><span class="factor-name">${f.n}</span><span class="factor-score" style="color:${f.c}">${f.v}%</span></div><div class="factor-bar-bg"><div class="factor-bar-fill" style="width:${f.v}%;background:${f.c}"></div></div></div>`).join('');
+  document.getElementById('m-rows').innerHTML=[['Inversión referencial',p.inversion||'—'],['Metal principal',p.metal],['Departamento',p.depto||'—'],['Fuente datos',p.fuente||'—']].map(([k,v])=>`<div class="m-row"><span class="mk">${k}</span><span class="mv">${v}</span></div>`).join('');
+  document.getElementById('overlay').classList.add('on');
+  document.getElementById('modal').scrollTop=0;
+}
+function closeModal(e){if(e.target.id==='overlay')document.getElementById('overlay').classList.remove('on');}
+function setFilter(f,btn){activeFilter=f;document.querySelectorAll('.fbtn').forEach(b=>b.classList.remove('on'));btn.classList.add('on');render();}
+
+async function loadFromSheet(url){
+  try{
+    const res=await fetch(url);const text=await res.text();
+    const rows=text.trim().split('\n');const headers=rows[0].split(',').map(h=>h.trim());
+    const parsed=rows.slice(1).map(row=>{
+      const vals=row.split(',');const obj={};
+      headers.forEach((h,i)=>obj[h]=(vals[i]||'').trim());
+      const factores=[];
+      for(let n=1;n<=6;n++){if(obj[`f${n}_nombre`]&&obj[`f${n}_valor`])factores.push({n:obj[`f${n}_nombre`],v:parseInt(obj[`f${n}_valor`])||0,c:obj[`f${n}_color`]||'#999'});}
+      return{nombre:obj.nombre,empresa:obj.empresa,metal:obj.metal,hora:obj.hora,etapa:obj.etapa,depto:obj.depto,inversion:obj.inversion,descripcion:obj.descripcion,recursos:obj.recursos||'',fuente:obj.fuente||'',factores};
+    }).filter(p=>p.nombre&&p.hora&&p.etapa);
+    return parsed.length>0?parsed:null;
+  }catch(e){return null;}
+}
+
+// Swipe to close modal on mobile
+let touchStartY=0;
+document.getElementById('modal').addEventListener('touchstart',e=>{touchStartY=e.touches[0].clientY;},{passive:true});
+document.getElementById('modal').addEventListener('touchmove',e=>{if(document.getElementById('modal').scrollTop===0&&e.touches[0].clientY-touchStartY>60)document.getElementById('overlay').classList.remove('on');},{passive:true});
+
+async function init(){
+  document.getElementById('footer-date').textContent='v7 · '+new Date().toLocaleDateString('es-AR');
+  let data=null;
+  if(SHEET_CSV_URL){
+    document.getElementById('sheet-status').textContent='Cargando datos desde Google Sheets…';
+    data=await loadFromSheet(SHEET_CSV_URL);
+    if(data)document.getElementById('sheet-status').textContent='Datos actualizados desde Google Sheets · '+new Date().toLocaleString('es-AR');
+  }
+  allData=data||DATA_DEFAULT;
+  if(!data)document.getElementById('sheet-status').textContent='Datos verificados — fuentes NI 43-101 / JORC / reportes corporativos · v8 marzo 2026';
+  document.getElementById('cnt-total').textContent=allData.length;
+  document.getElementById('cnt-prod').textContent=allData.filter(p=>p.etapa==='produccion').length;
+  document.getElementById('cnt-dev').textContent=allData.filter(p=>p.etapa==='preproduccion').length;
+  document.getElementById('cnt-exp').textContent=allData.filter(p=>p.etapa==='exploracion'||p.etapa==='prospecto').length;
+  document.getElementById('cnt-lat').textContent=allData.filter(p=>p.etapa==='latente').length;
+  render();
+}
+init();
+</script>
+</body>
+</html>
