@@ -1,0 +1,11 @@
+# Credenciales y secretos — NUNCA subir a un repo
+config/credentials.json
+.env
+*.token
+
+# Configuración local de Claude Code (por máquina, no versionar)
+.claude/settings.local.json
+
+# Node / build
+node_modules/
+out/
