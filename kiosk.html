@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Reloj Minero San Juan · KIOSKO</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Share+Tech+Mono&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#F2EFE9;--bg2:#FAFAF7;--bg3:#EDEAE3;--bg4:#E4E0D8;
+  --border:#D8D2C8;--border2:#C4BDB0;--border3:#A89E90;
+  --amber:#8A5200;--amber-mid:#B86800;
+  --c-cierre:#C0392B;--c-produccion:#1A7A3A;--c-preproduccion:#1A50A0;
+  --c-expl-av:#7A4A1A;--c-exploracion:#5A2D6E;--c-prospecto:#607090;--c-latente:#404858;
+  --text1:#1A1410;--text2:#4A3C2C;--text3:#7A6A58;--text4:#A89878;
+  --led-bg:#1C1A16;
+}
+html,body{width:100%;height:100%;overflow:hidden;background:#0E0C0A}
+body{font-family:'DM Sans',sans-serif;color:var(--text1)}
+
+/* ── STAGE: lienzo nativo 1080×1920, escalado a la pantalla por JS ── */
+#stage{
+  position:absolute;top:50%;left:50%;
+  width:1080px;height:1920px;
+  transform-origin:center center;
+  background:var(--bg);
+  display:flex;flex-direction:column;
+  overflow:hidden;
+}
+
+/* ── HEADER ── */
+#khead{
+  position:relative;flex-shrink:0;height:160px;
+  padding:26px 48px;background:var(--bg2);
+  border-bottom:2px solid var(--border);
+  display:flex;align-items:center;justify-content:space-between;gap:24px;overflow:hidden;
+}
+#khead::after{content:'';position:absolute;bottom:0;left:0;right:0;height:3px;
+  background:linear-gradient(90deg,transparent,var(--amber-mid),var(--c-cierre),var(--c-preproduccion),transparent)}
+.khead-bg{position:absolute;right:-20px;top:-30px;font-family:'Bebas Neue',sans-serif;
+  font-size:220px;letter-spacing:14px;color:rgba(160,120,60,0.045);pointer-events:none;white-space:nowrap;user-select:none}
+.kh-title{font-family:'Bebas Neue',sans-serif;font-size:72px;letter-spacing:10px;color:var(--amber);line-height:.92}
+.kh-sub{font-family:'Share Tech Mono',monospace;font-size:18px;color:var(--text3);letter-spacing:4px;text-transform:uppercase;margin-top:6px}
+.kh-right{display:flex;flex-direction:column;align-items:flex-end;gap:10px;flex-shrink:0;z-index:2}
+.kh-clock{display:flex;align-items:center;gap:4px}
+.kh-date{font-family:'Share Tech Mono',monospace;font-size:18px;color:var(--text2);letter-spacing:2px;text-transform:uppercase}
+.kh-status{display:flex;align-items:center;gap:10px;background:var(--bg3);border:1px solid var(--border);
+  border-radius:6px;padding:7px 14px;font-family:'Share Tech Mono',monospace;font-size:16px;color:var(--text3);letter-spacing:2px}
+.kh-led{width:11px;height:11px;border-radius:50%;background:var(--c-produccion);
+  box-shadow:0 0 8px var(--c-produccion);animation:blink 2s ease-in-out infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
+
+/* ── CAROUSEL ── */
+#carousel{position:relative;flex:1;overflow:hidden}
+.layer{position:absolute;inset:0;opacity:0;transition:opacity 1s ease-in-out;
+  display:flex;flex-direction:column;padding:40px 48px}
+.layer.show{opacity:1}
+
+/* ── FOOTER ── */
+#kfoot{position:relative;flex-shrink:0;height:60px;padding:0 48px;background:var(--bg2);
+  border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;
+  font-family:'Share Tech Mono',monospace;font-size:16px;color:var(--text3);letter-spacing:1px}
+.kfoot-prog{display:flex;gap:8px;align-items:center}
+.kfoot-dot{width:10px;height:10px;border-radius:50%;background:var(--border2)}
+.kfoot-dot.on{background:var(--amber-mid);box-shadow:0 0 6px var(--amber-mid)}
+
+/* ── LED 7-SEGMENTOS (idéntico al sitio) ── */
+.led-display{background:var(--led-bg);border:1px solid #2A2620;border-radius:8px;padding:9px 13px;
+  display:flex;align-items:center;gap:3px;position:relative;
+  box-shadow:inset 0 2px 6px rgba(0,0,0,0.6),0 2px 8px rgba(0,0,0,0.15)}
+.seg-digit{position:relative;display:grid;
+  grid-template-areas:". top ." "tl . tr" ". mid ." "bl . br" ". bot .";
+  grid-template-columns:3px 10px 3px;grid-template-rows:3px 10px 3px 10px 3px;width:18px;height:28px}
+.seg{border-radius:1px}
+.seg.h{height:3px;width:100%;align-self:center}.seg.v{width:3px;height:100%;justify-self:center}
+.seg-top{grid-area:top}.seg-tl{grid-area:tl}.seg-tr{grid-area:tr}.seg-mid{grid-area:mid}.seg-bl{grid-area:bl}.seg-br{grid-area:br}.seg-bot{grid-area:bot}
+.seg-colon{display:flex;flex-direction:column;justify-content:center;gap:5px;padding:0 2px;margin-bottom:2px}
+.seg-colon-dot{width:3px;height:3px;border-radius:50%}
+
+/* ── ESCENA: TÍTULOS ── */
+.scene-title{font-family:'Bebas Neue',sans-serif;font-size:54px;letter-spacing:8px;color:var(--amber);line-height:1}
+.scene-sub{font-family:'Share Tech Mono',monospace;font-size:18px;color:var(--text3);letter-spacing:3px;text-transform:uppercase;margin-top:6px;margin-bottom:8px}
+
+/* ── ESCENA PROYECTOS ── */
+.stage-group{margin-bottom:18px}
+.stage-head{display:flex;align-items:center;gap:14px;margin-bottom:12px}
+.stage-head .lbl{font-family:'Bebas Neue',sans-serif;font-size:34px;letter-spacing:5px}
+.stage-head .badge{font-family:'Share Tech Mono',monospace;font-size:20px;padding:2px 12px;border-radius:5px;border:2px solid}
+.stage-head .rule{flex:1;height:2px}
+.proj-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.proj-card{background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:16px 18px;
+  display:flex;align-items:center;gap:18px;position:relative;overflow:hidden}
+.proj-card::before{content:'';position:absolute;left:0;top:0;bottom:0;width:6px}
+.proj-card .ledwrap{flex-shrink:0}
+.proj-info{min-width:0;flex:1}
+.proj-name{font-family:'Bebas Neue',sans-serif;font-size:40px;letter-spacing:2px;color:var(--text1);line-height:1;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.proj-empresa{font-family:'Share Tech Mono',monospace;font-size:18px;color:var(--text3);margin-top:4px;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.proj-meta{font-family:'Share Tech Mono',monospace;font-size:16px;color:var(--text4);margin-top:3px}
+.proj-frozen{position:absolute;top:10px;right:12px;font-family:'Share Tech Mono',monospace;font-size:15px;
+  color:var(--c-latente);background:rgba(64,72,88,0.1);border:1px solid rgba(64,72,88,0.3);border-radius:4px;padding:2px 8px}
+
+/* ── ESCENA GRAN RELOJ ── */
+.reloj-stage{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:24px}
+.reloj-wrap{position:relative}
+.gr-badge{position:absolute;transform:translate(-50%,-50%);display:flex;flex-direction:column;align-items:center;gap:4px;pointer-events:none;z-index:10}
+.gr-badge .dot{border-radius:50%;border:2px solid rgba(255,255,255,0.9);box-shadow:0 1px 5px rgba(0,0,0,0.25)}
+.gr-badge .lbl{font-family:'Share Tech Mono',monospace;font-weight:600;background:rgba(245,242,236,0.94);
+  border-radius:4px;padding:2px 7px;white-space:nowrap;letter-spacing:.4px}
+.reloj-legend{display:flex;flex-wrap:wrap;gap:12px 26px;justify-content:center;max-width:900px}
+.reloj-legend .item{display:flex;align-items:center;gap:9px;font-family:'Share Tech Mono',monospace;font-size:22px;color:var(--text2)}
+.reloj-legend .sw{width:30px;height:11px;border-radius:4px;flex-shrink:0}
+
+/* ── ESCENA GANTT ── */
+.gantt-k{flex:1;display:flex;flex-direction:column}
+.gantt-years{position:relative;height:34px;margin-left:300px;margin-bottom:6px}
+.gantt-years span{position:absolute;transform:translateX(-50%);font-family:'Share Tech Mono',monospace;font-size:18px;color:var(--text3)}
+.gantt-years span.now{color:var(--amber);font-weight:700}
+.gantt-rows{flex:1;display:flex;flex-direction:column;justify-content:space-around}
+.grow{display:flex;align-items:center}
+.grow .name{width:300px;flex-shrink:0;padding-right:18px}
+.grow .name .n{font-family:'Bebas Neue',sans-serif;font-size:34px;letter-spacing:2px;color:var(--text1);line-height:.95}
+.grow .name .m{font-family:'Share Tech Mono',monospace;font-size:16px;color:var(--text3)}
+.grow .track{position:relative;flex:1;height:40px;background:var(--bg3);border-radius:6px;border:1px solid var(--border)}
+.gseg{position:absolute;top:6px;height:28px;border-radius:5px}
+.gseg.pred{opacity:.55;border:2px dashed rgba(255,255,255,0.5)}
+.gnow{position:absolute;top:-30px;bottom:0;width:3px;background:var(--amber-mid);z-index:5}
+.gnow::before{content:'HOY 2026';position:absolute;top:-26px;left:50%;transform:translateX(-50%);
+  font-family:'Share Tech Mono',monospace;font-size:18px;font-weight:700;color:var(--amber);white-space:nowrap}
+.gantt-leg{display:flex;flex-wrap:wrap;gap:12px 22px;margin-top:18px;justify-content:center}
+.gantt-leg .it{display:flex;align-items:center;gap:9px;font-family:'Share Tech Mono',monospace;font-size:19px;color:var(--text3)}
+.gantt-leg .bx{width:26px;height:13px;border-radius:3px;flex-shrink:0}
+.gantt-leg .bx.pred{opacity:.55;border:1px dashed rgba(0,0,0,0.35)}
+
+/* ── ESCENA PREDICCIONES ── */
+.pred-stack{flex:1;display:flex;flex-direction:column;gap:22px;margin-top:10px}
+.pred-card{flex:1;background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:26px 30px;
+  position:relative;overflow:hidden;display:flex;flex-direction:column}
+.pred-card .pc-title{font-family:'Bebas Neue',sans-serif;font-size:50px;letter-spacing:4px;line-height:1}
+.pred-card .pc-metal{font-family:'Share Tech Mono',monospace;font-size:18px;color:var(--text3);letter-spacing:2px;margin-top:2px}
+.pred-card .pc-resumen{font-size:22px;color:var(--text2);line-height:1.5;margin:14px 0 16px;
+  padding:12px 16px;background:var(--bg3);border-radius:8px}
+.pred-card .pc-hitos{display:flex;flex-direction:column;gap:8px;overflow:hidden}
+.pred-card .pc-hito{display:flex;gap:16px;align-items:baseline}
+.pred-card .pc-hito .y{font-family:'Share Tech Mono',monospace;font-size:24px;font-weight:700;min-width:64px}
+.pred-card .pc-hito .e{font-size:22px;color:var(--text2);line-height:1.35}
+
+/* ── ERROR ── */
+#kerror{position:absolute;inset:0;display:none;flex-direction:column;align-items:center;justify-content:center;
+  gap:20px;background:var(--bg);text-align:center;padding:60px;z-index:50}
+#kerror.show{display:flex}
+#kerror .t{font-family:'Bebas Neue',sans-serif;font-size:60px;letter-spacing:6px;color:var(--c-cierre)}
+#kerror .d{font-family:'Share Tech Mono',monospace;font-size:22px;color:var(--text3);line-height:1.6}
+</style>
+</head>
+<body>
+
+<div id="stage">
+  <div id="khead">
+    <div class="khead-bg">MINERO</div>
+    <div style="z-index:2">
+      <div class="kh-title">RELOJ MINERO SAN JUAN</div>
+      <div class="kh-sub">// CICLO DE VIDA · PROYECTOS METALÍFEROS · SAN JUAN, ARG</div>
+    </div>
+    <div class="kh-right">
+      <div class="kh-clock" id="kh-clock"></div>
+      <div class="kh-date" id="kh-date"></div>
+      <div class="kh-status"><div class="kh-led"></div><span>SYS ONLINE</span></div>
+    </div>
+  </div>
+
+  <div id="carousel">
+    <div class="layer" id="layerA"></div>
+    <div class="layer" id="layerB"></div>
+    <div id="kerror">
+      <div class="t">CARGANDO DATOS…</div>
+      <div class="d" id="kerror-d">// Esperando data/proyectos.json</div>
+    </div>
+  </div>
+
+  <div id="kfoot">
+    <span id="kfoot-upd">// —</span>
+    <div class="kfoot-prog" id="kfoot-prog"></div>
+    <span>// @SANJUANMINERO</span>
+  </div>
+</div>
+
+<script>
+// ── CONFIG DE DISEÑO (idéntica al sitio) ───────────────────────────────────────
+const EC={
+  cierre:{label:'Cierre',hex:'#C0392B'},
+  produccion:{label:'Producción',hex:'#1A7A3A'},
+  preproduccion:{label:'Pre-producción',hex:'#1A50A0'},
+  exploracion_avanzada:{label:'Exploración avanzada',hex:'#7A4A1A'},
+  exploracion:{label:'Exploración',hex:'#5A2D6E'},
+  prospecto:{label:'Prospecto',hex:'#607090'},
+  latente:{label:'Latente / Congelado',hex:'#404858'},
+};
+const ORDER=['cierre','produccion','preproduccion','exploracion_avanzada','exploracion','prospecto','latente'];
+const LED={cierre:'#FF5040',produccion:'#39E05A',preproduccion:'#4A8FFF',exploracion_avanzada:'#FFAA00',exploracion:'#D070FF',prospecto:'#5ACFFF',latente:'#7090B0'};
+const SEG7={'0':[1,1,1,1,1,1,0],'1':[0,1,1,0,0,0,0],'2':[1,1,0,1,1,0,1],'3':[1,1,1,1,0,0,1],'4':[0,1,1,0,0,1,1],'5':[1,0,1,1,0,1,1],'6':[1,0,1,1,1,1,1],'7':[1,1,1,0,0,0,0],'8':[1,1,1,1,1,1,1],'9':[1,1,1,1,0,1,1]};
+const STAGE_ARCS=[
+  {label:'Prospecto',hex:'#8060A8',from:0,to:4},
+  {label:'Exploración',hex:'#5A2D6E',from:3,to:7},
+  {label:'Expl. avanzada',hex:'#A06030',from:5.5,to:9},
+  {label:'Pre-producción',hex:'#1A50A0',from:7.5,to:12},
+  {label:'Producción',hex:'#1A7A3A',from:12,to:22},
+  {label:'Cierre',hex:'#C0392B',from:20,to:24},
+];
+
+// ── COMPONENTE LED (idéntico al sitio, con escala configurable) ─────────────────
+function buildDigit(ch,color,scale){
+  const s=SEG7[ch]||[0,0,0,0,0,0,0];
+  const names=['seg-top','seg-tr','seg-br','seg-bot','seg-bl','seg-tl','seg-mid'];
+  const isH=[true,false,false,true,false,false,true];
+  const d=document.createElement('div');d.className='seg-digit';
+  const u=3*scale,seg=10*scale;
+  d.style.cssText=`width:${18*scale}px;height:${28*scale}px;grid-template-columns:${u}px ${seg}px ${u}px;grid-template-rows:${u}px ${seg}px ${u}px ${seg}px ${u}px`;
+  names.forEach((name,i)=>{
+    const el=document.createElement('div');
+    el.className=`seg ${isH[i]?'h':'v'} ${name}`;
+    el.style.background=s[i]?color:'#2A2620';
+    if(s[i])el.style.boxShadow=`0 0 ${5*scale}px ${color}AA,0 0 ${10*scale}px ${color}55`;
+    else el.style.opacity='0.09';
+    d.appendChild(el);
+  });
+  return d;
+}
+function buildColon(color,scale){
+  const c=document.createElement('div');c.className='seg-colon';
+  c.style.cssText=`gap:${5*scale}px;padding:0 ${2*scale}px`;
+  for(let i=0;i<2;i++){const dot=document.createElement('div');dot.className='seg-colon-dot';
+    dot.style.cssText=`width:${3*scale}px;height:${3*scale}px;background:${color};box-shadow:0 0 ${5*scale}px ${color}`;c.appendChild(dot);}
+  return c;
+}
+function buildLED(hora,color,scale){
+  scale=scale||1;
+  const wrap=document.createElement('div');wrap.className='led-display';
+  wrap.style.padding=`${9*scale}px ${13*scale}px`;
+  const parts=String(hora).split(':');
+  parts.forEach((p,idx)=>{
+    if(idx>0)wrap.appendChild(buildColon(color,scale));
+    [...p].forEach(ch=>wrap.appendChild(buildDigit(ch,color,scale)));
+  });
+  return wrap;
+}
+
+function el(tag,cls,css){const e=document.createElement(tag);if(cls)e.className=cls;if(css)e.style.cssText=css;return e;}
+function toMin(h){const[hh,mm]=String(h).split(':').map(Number);return hh*60+mm;}
+
+// ── DATOS (fuente única + último-bueno en memoria) ──────────────────────────────
+let APP={proyectos:[],logos:{},gantt:[],predicciones:[],meta:{}};
+let lastFetchOk=null,everLoaded=false;
+async function loadData(){
+  try{
+    const res=await fetch('data/proyectos.json',{cache:'no-store'});
+    if(!res.ok)throw new Error('HTTP '+res.status);
+    const d=await res.json();
+    if(!Array.isArray(d.proyectos)||!d.proyectos.length)throw new Error('JSON sin proyectos');
+    APP={proyectos:d.proyectos,logos:d.logos||{},gantt:d.gantt||[],predicciones:d.predicciones||[],meta:d.meta||{}};
+    lastFetchOk=new Date();everLoaded=true;
+    updateFooter();
+    return true;
+  }catch(e){console.error('No se pudo cargar data/proyectos.json:',e);return false;}
+}
+
+// ── ESCENA 1 · PROYECTOS (2 sub-pantallas) ──────────────────────────────────────
+const PROJ_PAGES=[
+  ['produccion','preproduccion','exploracion_avanzada'],
+  ['exploracion','prospecto','latente'],
+];
+function renderProyectos(layer,frame){
+  layer.innerHTML='';
+  const stages=PROJ_PAGES[frame]||PROJ_PAGES[0];
+  layer.appendChild(el('div','scene-title')).textContent='PROYECTOS';
+  const sub=el('div','scene-sub');
+  sub.textContent='// ESTADO DEL CICLO · '+(frame+1)+'/'+PROJ_PAGES.length+' · '+APP.proyectos.length+' PROYECTOS';
+  layer.appendChild(sub);
+
+  stages.forEach(stage=>{
+    const items=APP.proyectos.filter(p=>p.etapa===stage).sort((a,b)=>toMin(a.hora)-toMin(b.hora));
+    if(!items.length)return;
+    const ec=EC[stage];
+    const g=el('div','stage-group');
+    const head=el('div','stage-head');
+    const lbl=el('div','lbl');lbl.style.color=ec.hex;lbl.textContent=ec.label.toUpperCase();
+    const badge=el('div','badge');badge.style.cssText=`color:${ec.hex};border-color:${ec.hex}55;background:${ec.hex}12`;badge.textContent=items.length;
+    const rule=el('div','rule');rule.style.background=`linear-gradient(90deg,${ec.hex}55,transparent)`;
+    head.appendChild(lbl);head.appendChild(badge);head.appendChild(rule);
+    g.appendChild(head);
+    const grid=el('div','proj-grid');
+    items.forEach(p=>{
+      const ledColor=LED[p.etapa]||'#FFAA00';
+      const card=el('div','proj-card');
+      card.style.setProperty('--x','0');
+      const bar=card.appendChild(el('div'));bar.style.cssText='content:"";position:absolute;left:0;top:0;bottom:0;width:6px;background:'+ec.hex;
+      if(p.frozen){const fr=el('div','proj-frozen');fr.textContent='⏸ FROZEN';card.appendChild(fr);}
+      const lw=el('div','ledwrap');lw.appendChild(buildLED(p.hora,ledColor,1.15));card.appendChild(lw);
+      const info=el('div','proj-info');
+      const nm=el('div','proj-name');nm.textContent=p.nombre;
+      const emp=el('div','proj-empresa');emp.textContent=p.empresa;
+      const meta=el('div','proj-meta');meta.textContent=(p.depto||'')+' · '+(p.metal||'');
+      info.appendChild(nm);info.appendChild(emp);info.appendChild(meta);
+      card.appendChild(info);
+      grid.appendChild(card);
+    });
+    g.appendChild(grid);
+    layer.appendChild(g);
+  });
+}
+
+// ── ESCENA 2 · GRAN RELOJ (canvas gigante, alterna mitad por vuelta) ────────────
+function renderGranReloj(layer,half){
+  layer.innerHTML='';
+  layer.appendChild(el('div','scene-title')).textContent='GRAN RELOJ MINERO';
+  const sub=el('div','scene-sub');
+  sub.textContent=half===0?'// 00:00 → 12:00 · PRE-PRODUCCIÓN':'// 12:00 → 24:00 · POST-PRODUCCIÓN';
+  layer.appendChild(sub);
+
+  const st=el('div','reloj-stage');
+  const SZ=820;
+  const wrap=el('div','reloj-wrap');wrap.style.cssText=`width:${SZ}px;height:${SZ}px`;
+  const canvas=el('canvas');canvas.width=SZ*2;canvas.height=SZ*2;canvas.style.cssText=`width:${SZ}px;height:${SZ}px;display:block`;
+  wrap.appendChild(canvas);
+  st.appendChild(wrap);
+  const legend=el('div','reloj-legend');
+  st.appendChild(legend);
+  layer.appendChild(st);
+
+  drawInfographic(canvas,wrap,legend,half,SZ);
+}
+function drawInfographic(canvas,wrap,legend,half,sz){
+  const ctx=canvas.getContext('2d');ctx.scale(2,2);
+  const hS=half,hE=hS+12,cx=sz/2,cy=sz/2,R=sz/2-26;
+  ctx.beginPath();ctx.arc(cx,cy,R,0,Math.PI*2);ctx.fillStyle='#F5F2EC';ctx.fill();
+  ctx.strokeStyle='#C8BEA8';ctx.lineWidth=3;ctx.stroke();
+  for(let i=0;i<60;i++){
+    const a=(i/60)*Math.PI*2-Math.PI/2,main=i%5===0;
+    ctx.beginPath();
+    ctx.moveTo(cx+Math.cos(a)*(R-(main?22:9)),cy+Math.sin(a)*(R-(main?22:9)));
+    ctx.lineTo(cx+Math.cos(a)*(R-2),cy+Math.sin(a)*(R-2));
+    ctx.strokeStyle=main?'#9A8870':'#DDD8CE';ctx.lineWidth=main?2:1;ctx.stroke();
+  }
+  const toAng=h=>((h-hS)/12)*Math.PI*2-Math.PI/2;
+  const arcMid=R-58,arcW=46;
+  STAGE_ARCS.forEach(s=>{
+    const vf=Math.max(s.from,hS),vt=Math.min(s.to,hE);if(vf>=vt)return;
+    ctx.beginPath();ctx.arc(cx,cy,arcMid,toAng(vf),toAng(vt));ctx.strokeStyle=s.hex+'CC';ctx.lineWidth=arcW;ctx.stroke();
+  });
+  ctx.beginPath();ctx.arc(cx,cy,arcMid-arcW/2-6,0,Math.PI*2);ctx.strokeStyle='rgba(180,168,148,0.35)';ctx.lineWidth=1.5;ctx.stroke();
+  const hours=Array.from({length:12},(_,i)=>hS+i);
+  ctx.textAlign='center';ctx.textBaseline='middle';ctx.fillStyle='#5A5040';
+  ctx.font=`bold ${Math.round(sz*0.034)}px 'Share Tech Mono',monospace`;
+  hours.forEach((hh,i)=>{const ang=(i/12)*Math.PI*2-Math.PI/2,rr=R-12;
+    ctx.fillText(String(hh).padStart(2,'0'),cx+Math.cos(ang)*rr,cy+Math.sin(ang)*rr);});
+  ctx.font=`bold ${Math.round(sz*0.085)}px 'Bebas Neue',sans-serif`;ctx.fillStyle='#B86800';
+  ctx.fillText(hE===12?'00 → 12':'12 → 24',cx,cy-18);
+  ctx.font=`${Math.round(sz*0.028)}px 'Share Tech Mono',monospace`;ctx.fillStyle='#9A8870';
+  ctx.fillText(hE===12?'PRE-PRODUCCIÓN':'POST-PRODUCCIÓN',cx,cy+18);
+  const visible=APP.proyectos.filter(p=>{const h=toMin(p.hora)/60;return h>=hS&&h<hE;});
+  ctx.font=`${Math.round(sz*0.024)}px 'Share Tech Mono',monospace`;ctx.fillStyle='#B89060';
+  ctx.fillText(visible.length+' PROYECTOS',cx,cy+46);
+
+  // badges
+  const dotR=arcMid-arcW/2-34,BUCKET=0.3,buckets={};
+  visible.forEach(p=>{const b=Math.round((toMin(p.hora)/60)/BUCKET)*BUCKET;(buckets[b]=buckets[b]||[]).push(p);});
+  visible.forEach(p=>{
+    const h=toMin(p.hora)/60,b=Math.round(h/BUCKET)*BUCKET,grp=buckets[b],idx=grp.indexOf(p),count=grp.length;
+    const finalR=dotR+(idx-(count-1)/2)*38;
+    const ang=((h-hS)/12)*Math.PI*2-Math.PI/2;
+    const x=cx+Math.cos(ang)*finalR,y=cy+Math.sin(ang)*finalR;
+    const ec=EC[p.etapa]||EC.prospecto,color=p.frozen?'#888':ec.hex;
+    const badge=el('div','gr-badge');badge.style.left=(x/sz*100)+'%';badge.style.top=(y/sz*100)+'%';
+    const dot=el('div','dot');dot.style.cssText=`width:16px;height:16px;background:${color}`;
+    const lbl=el('div','lbl');lbl.style.cssText=`font-size:18px;color:${color};border:1px solid ${color}55`;
+    const short=p.nombre.length>13?p.nombre.split(/[\/ ]/)[0]:p.nombre;
+    lbl.textContent=short+(p.frozen?' ⏸':'');
+    badge.appendChild(dot);badge.appendChild(lbl);wrap.appendChild(badge);
+  });
+  STAGE_ARCS.forEach(s=>{const vf=Math.max(s.from,hS),vt=Math.min(s.to,hE);if(vf>=vt)return;
+    const it=el('div','item');const sw=el('div','sw');sw.style.background=s.hex;it.appendChild(sw);
+    it.appendChild(document.createTextNode(s.label));legend.appendChild(it);});
+}
+
+// ── ESCENA 3 · COMPARACIÓN (Gantt vertical) ─────────────────────────────────────
+const GANTT_LEGEND=[{c:'#EF9F27',l:'Exploración'},{c:'#D85A30',l:'Expl. avanzada'},{c:'#185FA5',l:'Factibilidad/EIA'},{c:'#534AB7',l:'Construcción'},{c:'#1E7A45',l:'Producción'},{c:'#5DCAA5',l:'Expansión'},{c:'#C0392B',l:'Cierre/Susp.'},{c:'#BF5AF2',l:'Reactivación'},{c:'#888',l:'Congelado'}];
+function renderGantt(layer){
+  layer.innerHTML='';
+  layer.appendChild(el('div','scene-title')).textContent='COMPARACIÓN DE CICLOS';
+  layer.appendChild(el('div','scene-sub')).textContent='// LÍNEA DE TIEMPO REAL · BARRAS SÓLIDAS = HECHOS · PUNTEADAS = PROYECCIÓN';
+  const yS=1993,yE=2042,span=yE-yS;
+  const box=el('div','gantt-k');
+  const years=el('div','gantt-years');
+  for(let y=yS;y<=yE;y++){if((y-yS)%7!==0&&y!==yE)continue;const s=el('span',y===2028?'':'');s.style.left=((y-yS)/span*100)+'%';if(y>=2026&&y<2030)s.className='now';s.textContent=y;years.appendChild(s);}
+  box.appendChild(years);
+  const rows=el('div','gantt-rows');
+  (APP.gantt||[]).forEach(proj=>{
+    const row=el('div','grow');
+    const name=el('div','name');name.style.borderLeft=`4px solid ${proj.color}`;name.style.paddingLeft='14px';
+    const n=el('div','n');n.textContent=proj.nombre;const m=el('div','m');m.textContent=proj.metal;
+    name.appendChild(n);name.appendChild(m);row.appendChild(name);
+    const track=el('div','track');
+    const nl=el('div','gnow');nl.style.left=((2026-yS)/span*100)+'%';track.appendChild(nl);
+    (proj.segmentos||[]).forEach(seg=>{
+      const b=el('div','gseg'+(seg.pred?' pred':''));
+      b.style.left=((seg.desde-yS)/span*100)+'%';
+      b.style.width=((seg.hasta-seg.desde)/span*100)+'%';
+      b.style.background=seg.c;track.appendChild(b);
+    });
+    row.appendChild(track);rows.appendChild(row);
+  });
+  box.appendChild(rows);
+  const leg=el('div','gantt-leg');
+  GANTT_LEGEND.forEach(it=>{const d=el('div','it');const bx=el('div','bx');bx.style.background=it.c;d.appendChild(bx);d.appendChild(document.createTextNode(it.l));leg.appendChild(d);});
+  const pr=el('div','it');const pbx=el('div','bx pred');pbx.style.background='#888';pr.appendChild(pbx);pr.appendChild(document.createTextNode('Proyectado'));leg.appendChild(pr);
+  box.appendChild(leg);
+  layer.appendChild(box);
+}
+
+// ── ESCENA 4 · PREDICCIONES (2 por sub-pantalla) ────────────────────────────────
+function predFrames(){return Math.max(1,Math.ceil((APP.predicciones||[]).length/2));}
+function renderPred(layer,frame){
+  layer.innerHTML='';
+  const total=predFrames();
+  layer.appendChild(el('div','scene-title')).textContent='PREDICCIONES 2026—2035';
+  layer.appendChild(el('div','scene-sub')).textContent='// HITOS PROYECTADOS · '+(frame+1)+'/'+total;
+  const stack=el('div','pred-stack');
+  const slice=(APP.predicciones||[]).slice(frame*2,frame*2+2);
+  slice.forEach(proj=>{
+    const card=el('div','pred-card');card.style.borderTop=`4px solid ${proj.color}`;
+    const t=el('div','pc-title');t.style.color=proj.color;t.textContent=proj.nombre;
+    const mt=el('div','pc-metal');mt.textContent='// '+proj.metal;
+    const rs=el('div','pc-resumen');rs.style.borderLeft=`3px solid ${proj.color}`;rs.textContent=proj.resumen;
+    card.appendChild(t);card.appendChild(mt);card.appendChild(rs);
+    const hb=el('div','pc-hitos');
+    (proj.hitos||[]).forEach(h=>{
+      const dot=h.t==='logrado'?'#1A7A3A':h.t==='negativo'?'#C0392B':h.t==='proximo'?proj.color:'#A89878';
+      const row=el('div','pc-hito');if(h.t==='proyectado')row.style.opacity='0.7';
+      const y=el('div','y');y.style.color=dot;y.textContent=h.a;
+      const e=el('div','e');e.textContent=h.e;
+      row.appendChild(y);row.appendChild(e);hb.appendChild(row);
+    });
+    card.appendChild(hb);
+    stack.appendChild(card);
+  });
+  layer.appendChild(stack);
+}
+
+// ── CARRUSEL (scheduler con crossfade) ──────────────────────────────────────────
+const SCENE_MS=28000,CROSSFADE_MS=1000;
+const SCENES=[
+  {name:'PROYECTOS',  frames:()=>PROJ_PAGES.length, render:(l,f,loop)=>renderProyectos(l,f)},
+  {name:'GRAN RELOJ', frames:()=>1,                 render:(l,f,loop)=>renderGranReloj(l,loop%2===0?0:12)},
+  {name:'COMPARACIÓN',frames:()=>1,                 render:(l,f,loop)=>renderGantt(l)},
+  {name:'PREDICCIONES',frames:()=>predFrames(),     render:(l,f,loop)=>renderPred(l,f)},
+];
+let layers,active=0,sceneIdx=0,frameIdx=0,loopCount=0,carTimer=null;
+function buildProgress(){
+  const p=document.getElementById('kfoot-prog');p.innerHTML='';
+  SCENES.forEach(()=>p.appendChild(el('div','kfoot-dot')));
+}
+function markProgress(){
+  const dots=document.querySelectorAll('#kfoot-prog .kfoot-dot');
+  dots.forEach((d,i)=>d.classList.toggle('on',i===sceneIdx));
+}
+function showStep(){
+  const scene=SCENES[sceneIdx];
+  const incoming=layers[active^1],outgoing=layers[active];
+  try{scene.render(incoming,frameIdx,loopCount);}catch(e){console.error('render '+scene.name,e);}
+  incoming.classList.add('show');outgoing.classList.remove('show');
+  active^=1;
+  markProgress();
+  const dur=Math.max(6000,SCENE_MS/scene.frames());
+  carTimer=setTimeout(advance,dur);
+}
+function advance(){
+  const scene=SCENES[sceneIdx];
+  frameIdx++;
+  if(frameIdx>=scene.frames()){
+    frameIdx=0;sceneIdx++;
+    if(sceneIdx>=SCENES.length){sceneIdx=0;loopCount++;}
+  }
+  showStep();
+}
+
+// ── RELOJ EN VIVO + FOOTER ──────────────────────────────────────────────────────
+function pad(n){return String(n).padStart(2,'0');}
+function startClock(){
+  const cont=document.getElementById('kh-clock');
+  const dateEl=document.getElementById('kh-date');
+  function tick(){
+    const d=new Date();
+    cont.innerHTML='';
+    cont.appendChild(buildLED(pad(d.getHours())+':'+pad(d.getMinutes())+':'+pad(d.getSeconds()),'#FFAA00',1.25));
+    dateEl.textContent=d.toLocaleDateString('es-AR',{weekday:'long',day:'numeric',month:'long',year:'numeric'}).toUpperCase();
+  }
+  tick();setInterval(tick,1000);
+}
+function updateFooter(){
+  const upd=document.getElementById('kfoot-upd');
+  const vintage=APP.meta&&APP.meta.actualizado?APP.meta.actualizado:'—';
+  const t=lastFetchOk?pad(lastFetchOk.getHours())+':'+pad(lastFetchOk.getMinutes()):'—';
+  upd.textContent='// DATOS '+vintage+' · ACTUALIZADO '+t;
+}
+
+// ── ESCALADO DEL LIENZO A LA PANTALLA ───────────────────────────────────────────
+function fitStage(){
+  const s=Math.min(window.innerWidth/1080,window.innerHeight/1920);
+  document.getElementById('stage').style.transform=`translate(-50%,-50%) scale(${s})`;
+}
+
+// ── ERROR / FIRST-LOAD ──────────────────────────────────────────────────────────
+function showError(msg){
+  const e=document.getElementById('kerror');e.classList.add('show');
+  document.getElementById('kerror-d').textContent=msg||'// Reintentando…';
+}
+function hideError(){document.getElementById('kerror').classList.remove('show');}
+
+// ── BOOT ────────────────────────────────────────────────────────────────────────
+async function boot(){
+  layers=[document.getElementById('layerA'),document.getElementById('layerB')];
+  fitStage();window.addEventListener('resize',fitStage);
+  buildProgress();startClock();
+  // esperar fuentes (con fallback) antes del primer render
+  try{await Promise.race([document.fonts.ready,new Promise(r=>setTimeout(r,3000))]);}catch(e){}
+  // primera carga: reintentar hasta tener datos buenos
+  let ok=await loadData();
+  while(!ok){showError('// No se pudo cargar data/proyectos.json — reintentando en 10s (servir por HTTP)');await new Promise(r=>setTimeout(r,10000));ok=await loadData();}
+  hideError();
+  showStep();
+  // refresco periódico de datos (mantiene el último bueno si falla)
+  setInterval(loadData,30*60*1000);
+  // recarga completa cada 6h (refresca datos, evita fugas de memoria)
+  setTimeout(()=>location.reload(),6*60*60*1000);
+}
+boot();
+</script>
+</body>
+</html>
