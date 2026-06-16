@@ -391,133 +391,9 @@ const SEG7={'0':[1,1,1,1,1,1,0],'1':[0,1,1,0,0,0,0],'2':[1,1,0,1,1,0,1],'3':[1,1
 function buildDigit(ch,color,size){const s=SEG7[ch]||[0,0,0,0,0,0,0];const names=['seg-top','seg-tr','seg-br','seg-bot','seg-bl','seg-tl','seg-mid'];const isH=[true,false,false,true,false,false,true];const d=document.createElement('div');d.className='seg-digit';if(size==='lg')d.style.cssText='width:28px;height:44px;grid-template-columns:4px 16px 4px;grid-template-rows:4px 16px 4px 16px 4px';names.forEach((name,i)=>{const el=document.createElement('div');el.className=`seg ${isH[i]?'h':'v'} ${name} ${s[i]?'on':'off'}`;el.style.background=s[i]?color:'#2A2620';if(s[i])el.style.boxShadow=`0 0 5px ${color}AA,0 0 10px ${color}55`;d.appendChild(el);});return d;}
 function buildColon(color,size){const c=document.createElement('div');c.className='seg-colon';if(size==='lg')c.style.cssText='gap:8px;padding:0 3px';for(let i=0;i<2;i++){const dot=document.createElement('div');dot.className='seg-colon-dot';dot.style.background=color;dot.style.boxShadow=`0 0 5px ${color}`;if(size==='lg'){dot.style.width='4px';dot.style.height='4px';}c.appendChild(dot);}return c;}
 function buildLED(hora,color,size){const wrap=document.createElement('div');wrap.className='led-display';const[hh,mm]=hora.split(':');[...hh].forEach(ch=>wrap.appendChild(buildDigit(ch,color,size)));wrap.appendChild(buildColon(color,size));[...mm].forEach(ch=>wrap.appendChild(buildDigit(ch,color,size)));return wrap;}
-const LOGOS={
-  'Gualcamayo':'https://logo.clearbit.com/minasargentinas.com',
-  'Veladero':'https://logo.clearbit.com/barrick.com',
-  'Hualilán':'https://logo.clearbit.com/challengergold.com',
-  'Casposo':'https://logo.clearbit.com/australgold.com',
-  'Los Azules':'https://logo.clearbit.com/mcewenmining.com',
-  'Gualcamayo DCP':'https://logo.clearbit.com/minasargentinas.com',
-  'Vicuña / Josemaría':'https://logo.clearbit.com/lundinmining.com',
-  'El Pachón':'https://logo.clearbit.com/glencore.com',
-  'Altar':'https://logo.clearbit.com/aldebaranresources.com',
-  'Taguas':'https://logo.clearbit.com/orvana.com',
-  'Del Carmen':'https://logo.clearbit.com/shandonggold.com.cn',
-  'Chita Valley':'https://logo.clearbit.com/south32.net',
-  'La Coipita':'https://logo.clearbit.com/teck.com',
-  'Piuquenes':'https://logo.clearbit.com/andinacopper.com',
-  'Lunahuasi':'https://logo.clearbit.com/ngexminerals.com',
-  'Don Julio':'https://logo.clearbit.com/sableresources.ca',
-  'El Fierro':'https://logo.clearbit.com/sableresources.ca',
-  'Vanesa I y II':'https://logo.clearbit.com/fortescue.com',
-  'TMT':'https://logo.clearbit.com/belararox.com.au',
-  'Rincones de Araya':'https://logo.clearbit.com/fortescue.com',
-  'Jagüelito':'https://logo.clearbit.com/shandonggold.com.cn',
-  'Lama (Pascua-Lama ARG)':'https://logo.clearbit.com/barrick.com',
-};
+let LOGOS={};
 
-const DATA=[
-  {nombre:'Gualcamayo',etapa:'produccion',hora:'21:30',empresa:'Minas Argentinas (AISA)',metal:'Au/Ag',depto:'Jáchal',frozen:false,
-   desc:'Producción final activa: recuperación secundaria de pilas de lixiviación (2009–2026). El DCP (US$665M, RIGI dic 2025) es la apuesta de continuidad: 3 Moz Au subterráneas, construcción 2027, producción 2029.',
-   recursos:'2,9 Moz Au P&P (2021). Óxidos agotados. DCP: ~3 Moz Au estimados, 17 años adicionales proyectados.',
-   historial:[{n:'Exploración inicial (MASA)',a:'1994–2000',dur:6,c:'#EF9F27',hi:'00:00',hf:'02:19',hs:'2h 19m'},{n:'Exploración avanzada / PEA',a:'2000–2005',dur:5,c:'#D85A30',hi:'02:19',hf:'04:09',hs:'1h 50m'},{n:'PFS → Factibilidad → EIA',a:'2005–2007',dur:2,c:'#185FA5',hi:'04:09',hf:'04:54',hs:'0h 45m'},{n:'Construcción',a:'2007–2009',dur:2,c:'#534AB7',hi:'04:54',hf:'12:00',hs:'7h 06m'},{n:'Producción comercial',a:'2009–2026',dur:17,c:'#1E7A45',hi:'12:00',hf:'21:30',hs:'9h 30m'}],
-   nota_hist:'11 años pre-producción (00:00→12:00). 17 años producción activa (2009–2026). 1 año ≈ 0,57 hs.',
-   factores:[{l:'EIA + permisos vigentes',v:100},{l:'Infraestructura de acceso',v:90},{l:'Precio oro (>US$3.000)',v:98},{l:'Reservas remanentes (DCP)',v:30},{l:'Financiamiento DCP (RIGI)',v:55}]},
-  {nombre:'Veladero',etapa:'produccion',hora:'18:45',empresa:'Barrick / Shandong Gold (50/50)',metal:'Au/Ag',depto:'Iglesia',frozen:false,
-   desc:'20 años de producción. Récord 2024: 504.000 oz Au. Fase 8A en construcción Q1 2026. RIGI US$400M para +1,6 Moz adicionales. Vida extendida hasta 2035.',
-   recursos:'11,4 Moz Au históricas. ~8,2 Moz Au recuperados al 2017. Filo Federico activo.',
-   historial:[{n:'Exploración inicial (AGC/MAGSA)',a:'1994–1999',dur:5,c:'#EF9F27',hi:'00:00',hf:'01:43',hs:'1h 43m'},{n:'Exploración avanzada',a:'1999–2002',dur:3,c:'#D85A30',hi:'01:43',hf:'02:46',hs:'1h 03m'},{n:'Factibilidad + EIA',a:'2002–2004',dur:2,c:'#185FA5',hi:'02:46',hf:'03:26',hs:'0h 40m'},{n:'Construcción',a:'2004–2005',dur:1,c:'#534AB7',hi:'03:26',hf:'12:00',hs:'8h 34m'},{n:'Producción comercial',a:'2005–2024',dur:19,c:'#1E7A45',hi:'12:00',hf:'18:31',hs:'6h 31m'},{n:'Lixiv. residual + expansión RIGI',a:'2024–2035',dur:11,c:'#5DCAA5',hi:'18:31',hf:'22:00',hs:'3h 29m'}],
-   nota_hist:'Construcción récord: 1 año = 8h 34m en el reloj (03:26→12:00). 1 año producción ≈ 0,69 hs.',
-   factores:[{l:'EIA + permisos vigentes',v:100},{l:'Infraestructura consolidada',v:95},{l:'Precio del oro',v:98},{l:'Reservas + RIGI',v:55},{l:'Financiamiento operacional',v:100}]},
-  {nombre:'Hualilán',etapa:'produccion',hora:'12:15',empresa:'Challenger Gold / Golden Mining',metal:'Au/Ag/Zn',depto:'Ullum',frozen:false,
-   desc:'Primera nueva mina de Au en San Juan en 17 años. Producción desde dic. 2025 vía toll milling en planta Casposo. PFS planta propia en curso Q1 2026.',
-   recursos:'2,8 Moz AuEq MRE (JORC 2023). Toll milling: 465.000 t a 6,2 g/t Au, 76,6 koz Au payable en 30 meses.',
-   historial:[{n:'Exploración / Recursos (Challenger)',a:'2019–2023',dur:4,c:'#EF9F27',hi:'00:00',hf:'06:24',hs:'6h 24m'},{n:'Scoping Study + PFS',a:'2023–2025',dur:2,c:'#185FA5',hi:'06:24',hf:'12:00',hs:'5h 36m'},{n:'Toll milling (Casposo)',a:'2025–2028',dur:3,c:'#1E7A45',hi:'12:00',hf:'15:50',hs:'3h 50m'},{n:'Planta propia (proyectada)',a:'2028–2034',dur:6,c:'#97C459',hi:'15:50',hf:'24:00',hs:'8h 10m'}],
-   nota_hist:'Ciclo ultrarrápido: solo 6 años pre-producción vs 11 de Veladero/Gualcamayo. 1 año ≈ 1,6 hs.',
-   factores:[{l:'EIA + permisos aprobados',v:90},{l:'Financiamiento asegurado',v:85},{l:'Planta Casposo disponible',v:100},{l:'Recursos / ley del mineral',v:80},{l:'Precio Au (US$3.300+)',v:98}]},
-  {nombre:'Casposo',etapa:'produccion',hora:'21:15',empresa:'Austral Gold (Grupo Elsztain)',metal:'Au/Ag',depto:'Calingasta',frozen:false,
-   desc:'Reactivada Q3 2025 tras 6 años de C&M. Guía 2026: 30.000-35.000 oz AuEq. Procesa mineral propio y ore de Hualilán.',
-   recursos:'Guía 2026: 30.000–35.000 oz AuEq anuales.',
-   historial:[{n:'Exploración (Intrepid Mines)',a:'1998–2009',dur:11,c:'#EF9F27',hi:'00:00',hf:'07:30',hs:'7h 30m'},{n:'Construcción (Troy Resources)',a:'2009–2011',dur:2,c:'#534AB7',hi:'07:30',hf:'12:00',hs:'4h 30m'},{n:'Producción (Troy)',a:'2011–2019',dur:8,c:'#1E7A45',hi:'12:00',hf:'15:30',hs:'3h 30m'},{n:'C&M / Exploración (Austral)',a:'2019–2025',dur:6,c:'#8B5E3C',hi:'15:30',hf:'19:30',hs:'4h 00m'},{n:'Reactivación / 2ª producción',a:'2025–2030',dur:5,c:'#5DCAA5',hi:'19:30',hf:'24:00',hs:'4h 30m'}],
-   nota_hist:'Reloj pausado 6 años (2019–2025). Dos períodos de producción distintos.',
-   factores:[{l:'EIA + permisos vigentes',v:100},{l:'Planta propia disponible',v:95},{l:'Financiamiento operacional',v:80},{l:'Recursos remanentes',v:55},{l:'Precio Au',v:98}]},
-  {nombre:'Los Azules',etapa:'preproduccion',hora:'10:30',empresa:'McEwen Copper',metal:'Cu',depto:'Calingasta',frozen:false,
-   desc:'FS completa oct 2025 (US$3.170M). EIA dic 2024. RIGI sep 2025. FID fin 2026. Construcción 2027–2028. Primera producción 2030.',
-   recursos:'12,5 Mt Cu Ind.+Inf. 322 Mlb Cu/año. Vida útil 27 años.',
-   factores:[{l:'FS completa (oct 2025)',v:100},{l:'EIA aprobada (dic 2024)',v:100},{l:'RIGI aprobado (sep 2025)',v:100},{l:'Financiamiento confirmado',v:75},{l:'Energía 500 kV (pendiente)',v:30}]},
-  {nombre:'Gualcamayo DCP',etapa:'preproduccion',hora:'08:30',empresa:'Minas Argentinas (AISA)',metal:'Au',depto:'Jáchal',frozen:false,
-   desc:'RIGI aprobado dic 2025 (US$665M). FS en curso 2026. EIA 2026-27. Construcción 2027-28. Producción 2029. Primera planta POX de Sudamérica.',
-   recursos:'~3 Moz Au estimadas. Depósito sulfuros profundos. 17 años proyectados.',
-   factores:[{l:'RIGI aprobado (dic 2025)',v:100},{l:'Infraestructura existente',v:85},{l:'PFS en curso',v:60},{l:'EIA en proceso',v:45},{l:'Precio Au favorable',v:98}]},
-  {nombre:'Vicuña / Josemaría',etapa:'preproduccion',hora:'09:30',empresa:'Lundin Mining / BHP / NGEx',metal:'Cu/Au/Ag',depto:'Iglesia',frozen:false,
-   desc:'PEA integrada feb 2026 (US$18.000M). FID fin 2026. EIA Josemaría aprobada mar 2026. Producción 2030.',
-   recursos:'14 Mt Cu + 36 Moz Au + 729 Moz Ag (M&I oct 2025). Top 5 mundial.',
-   factores:[{l:'Estudio factibilidad integrado',v:65},{l:'DIA Josemaría aprobada',v:90},{l:'Financiamiento (BHP+Lundin)',v:80},{l:'Energía 500 kV',v:25},{l:'Acceso Agua Negra',v:30}]},
-  {nombre:'El Pachón',etapa:'preproduccion',hora:'08:00',empresa:'Glencore',metal:'Cu/Mo',depto:'Calingasta',frozen:false,
-   desc:'FS presentada. RIGI aprobación prevista H1 2026. Construcción 2029. Primera producción 2034.',
-   recursos:'1.790 Mt a 0,51% Cu + Mo. >9 Mt Cu eq. LOM >30 años.',
-   factores:[{l:'Factibilidad completada',v:100},{l:'EIA en proceso',v:60},{l:'RIGI solicitado',v:70},{l:'Energía 500 kV',v:20},{l:'Acceso Agua Negra',v:25}]},
-  {nombre:'Altar',etapa:'exploracion_avanzada',hora:'07:30',empresa:'Aldebaran / Sibanye-Stillwater',metal:'Cu/Au/Mo',depto:'Calingasta',frozen:false,
-   desc:'PEA oct 2025: CAPEX US$1.590M, 48 años, NPV US$2B, IRR 20,5%. PFS en curso 2026.',
-   recursos:'7,7 Mt Cu + 6,4 Moz Au Ind. (2022).',
-   factores:[{l:'PEA completada (oct 2025)',v:100},{l:'Recursos M&I definidos',v:85},{l:'Socios (South32/Nuton)',v:78},{l:'EIA iniciado',v:5},{l:'Infraestructura',v:20}]},
-  {nombre:'Taguas',etapa:'exploracion_avanzada',hora:'05:30',empresa:'Orvana Minerals',metal:'Au/Ag',depto:'Iglesia',frozen:false,
-   desc:'PEA 2021. Perforación activa, leyes 3-4 g/t Au. Camino a prefactibilidad.',
-   recursos:'PEA: ~500 koz AuEq. Perforación en curso.',
-   factores:[{l:'PEA completada',v:100},{l:'Permisos activos',v:85},{l:'Recursos definidos',v:55},{l:'PFS iniciado',v:30},{l:'EIA',v:5}]},
-  {nombre:'Del Carmen',etapa:'exploracion_avanzada',hora:'05:30',empresa:'Shandong Gold',metal:'Au/Ag',depto:'Iglesia',frozen:false,
-   desc:'Licitación récord 2025: US$56M comprometidos. Historial de Barrick.',
-   recursos:'Recurso a definir. Potencial Au/Ag epitermal.',
-   factores:[{l:'Permisos asignados',v:100},{l:'Financiamiento Shandong',v:90},{l:'Historial geológico',v:75},{l:'Recurso formal',v:10},{l:'EIA',v:0}]},
-  {nombre:'Chita Valley',etapa:'exploracion_avanzada',hora:'06:30',empresa:'Minsud Resources / South32',metal:'Cu/Mo/Au',depto:'Iglesia',frozen:false,
-   desc:'Primer recurso feb. 2025. Corredor 60 km, múltiples pórfidos. South32 como socio.',
-   recursos:'Primer recurso formal feb. 2025. Sistema pórfido confirmado.',
-   factores:[{l:'Primer recurso (2025)',v:60},{l:'Permisos',v:90},{l:'Respaldo South32',v:80},{l:'Estudios técnicos',v:30},{l:'EIA',v:0}]},
-  {nombre:'La Coipita',etapa:'exploracion_avanzada',hora:'06:00',empresa:'Teck Resources / AbraSilver',metal:'Cu/Mo',depto:'Iglesia',frozen:false,
-   desc:'2025: 621 m @ 0,38% Cu incl. 114 m @ 0,70% Cu. Earn-in Teck 80% en 5 años.',
-   recursos:'70.000 ha. Alta ley temporada 2025.',
-   factores:[{l:'Descubrimiento alta ley (2025)',v:80},{l:'Teck como operador',v:92},{l:'Financiamiento asegurado',v:85},{l:'Recurso formal',v:0},{l:'EIA',v:0}]},
-    {nombre:'Piuquenes',etapa:'exploracion',hora:'04:30',empresa:'Andina Copper',metal:'Cu/Au',depto:'Calingasta',frozen:false,
-   desc:'801m @ 0,40% Cu + 0,51 g/t Au. C$175M recaudados mar 2026.',
-   recursos:'Sistema pórfido Cu-Au en definición.',
-   factores:[{l:'Permisos',v:85},{l:'Financiamiento C$175M',v:80},{l:'Resultados drilling',v:60},{l:'Recurso formal',v:10},{l:'EIA',v:0}]},
-  {nombre:'Lunahuasi',etapa:'exploracion',hora:'04:00',empresa:'NGEx Minerals / Grupo Lundin',metal:'Cu/Au/Ag',depto:'Iglesia',frozen:false,
-   desc:'Descubrimiento 2023. Fase 4 con >22.000 m. DIA galería aprobada. Distrito Vicuña.',
-   recursos:'Sin recurso formal. Leyes muy altas.',
-   factores:[{l:'DIA galería aprobada',v:75},{l:'Financiamiento (Lundin)',v:90},{l:'Resultados drilling',v:70},{l:'Recurso formal',v:5},{l:'RIGI en proceso',v:40}]},
-  {nombre:'Don Julio',etapa:'exploracion',hora:'04:00',empresa:'Sable Resources / South32',metal:'Cu/Au/Mo',depto:'Iglesia',frozen:false,
-   desc:'Pórfido Cu-Au-Mo confirmado. Segunda fase 5.000-7.000 m.',
-   recursos:'Sin recurso formal.',
-   factores:[{l:'Permisos activos',v:85},{l:'Respaldo South32',v:80},{l:'Resultados fase 1',v:50},{l:'Recurso formal',v:5},{l:'EIA',v:0}]},
-  {nombre:'El Fierro',etapa:'exploracion',hora:'03:30',empresa:'Sable Resources',metal:'Au/Ag',depto:'Iglesia',frozen:false,
-   desc:'12.000 m acumulados. Hasta 2.582 g/t AgEq en vetas.',
-   recursos:'Leyes muy altas en vetas. Sistema epitermal.',
-   factores:[{l:'Permisos activos',v:80},{l:'Historial geológico',v:70},{l:'Resultados drilling',v:45},{l:'Recurso formal',v:5},{l:'EIA',v:0}]},
-  {nombre:'Vanesa I y II',etapa:'exploracion',hora:'03:30',empresa:'Fortescue Argentina',metal:'Cu/Mo',depto:'Calingasta',frozen:false,
-   desc:'Dos pórfidos Cu-Mo en Calingasta. Exploración sistemática.',
-   recursos:'Dos cuerpos identificados. Sin recurso formal.',
-   factores:[{l:'Permisos activos',v:85},{l:'Respaldo Fortescue',v:85},{l:'Recursos definidos',v:10},{l:'EIA',v:0}]},
-  {nombre:'TMT',etapa:'exploracion',hora:'03:00',empresa:'Belararox',metal:'Cu/Au',depto:'Iglesia',frozen:false,
-   desc:'Tambo South a 1.300 m. Plan 2025: 6.000 m en Malambo y Tambo.',
-   recursos:'Exploración temprana. Sin recurso formal.',
-   factores:[{l:'Permisos activos',v:75},{l:'Señales geológicas',v:40},{l:'Recursos definidos',v:5},{l:'EIA',v:0}]},
-        {nombre:'Rincones de Araya',etapa:'prospecto',hora:'03:00',empresa:'Fortescue / IPEEM',metal:'Cu/Au',depto:'Iglesia',frozen:false,
-   desc:'JV Fortescue + IPEEM. Anomalías geoquímicas identificadas.',
-   recursos:'Anomalías geoquímicas. Sin recurso estimado.',
-   factores:[{l:'Permisos de prospección',v:90},{l:'Respaldo Fortescue',v:85},{l:'Datos geológicos',v:25}]},
-  {nombre:'Jagüelito',etapa:'prospecto',hora:'02:30',empresa:'Shandong Gold',metal:'Au/Ag',depto:'Iglesia',frozen:false,
-   desc:'Adjudicado licitación récord 2025. Primera campaña en curso.',
-   recursos:'Sin recurso. Primera campaña.',
-   factores:[{l:'Permisos asignados (2025)',v:100},{l:'Financiamiento Shandong',v:90},{l:'Datos geológicos',v:10}]},
-  {nombre:'La Ortiga',etapa:'prospecto',hora:'02:00',empresa:'IPEEM / a licitar',metal:'Au/Ag',depto:'Iglesia',frozen:false,
-   desc:'Valle del Cura. Prospecto epitermal Au/Ag disponible para licitación.',
-   recursos:'Historial geológico favorable. Sin recurso estimado.',
-   factores:[{l:'Historial geológico',v:40},{l:'Permisos provinciales',v:60},{l:'Operador asignado',v:0}]},
-  {nombre:'Lama (Pascua-Lama ARG)',etapa:'latente',hora:'07:00',empresa:'Barrick Mining',metal:'Au/Ag/Cu',depto:'Iglesia',frozen:true,
-   desc:'Suspendido desde 2020. "El Alto" aprobado ene 2026 en Chile (US$35M, 62 sondajes) podría reactivarlo. Uno de los depósitos no desarrollados más grandes del mundo.',
-   recursos:'21,3 Moz Au. Lado argentino: 3,13 M oz Au + 236,9 M oz Ag.',
-   factores:[{l:'Factibilidad histórica',v:100},{l:'Permisos ARG (parciales)',v:50},{l:'Exploración El Alto activa',v:55},{l:'Decisión estratégica Barrick',v:20},{l:'Resolución ambiental Chile',v:5}]},
-];
+let DATA=[];
 
 function toMin(h){const[hh,mm]=h.split(':').map(Number);return hh*60+mm;}
 
@@ -784,90 +660,9 @@ function _drawInfographic(){
 }
 
 // ── GANTT ─────────────────────────────────────────────────────────────────────
-const GANTT_PROJECTS=[
-  {nombre:'Lama (Pascua-Lama)',metal:'Au/Ag/Cu',color:'#404858',segmentos:[
-    {e:'Exploración',desde:1994,hasta:2002,c:'#EF9F27'},
-    {e:'Pre-factibilidad',desde:2002,hasta:2006,c:'#D85A30'},
-    {e:'Factibilidad+EIA',desde:2006,hasta:2009,c:'#185FA5'},
-    {e:'Construcción',desde:2009,hasta:2013,c:'#534AB7'},
-    {e:'Suspensión/Litigios',desde:2013,hasta:2020,c:'#C0392B'},
-    {e:'Congelado',desde:2020,hasta:2026,c:'#888'},
-    {e:'Reactivación? (El Alto)',desde:2026,hasta:2029,c:'#BF5AF2',pred:true},
-    {e:'Producción proyectada',desde:2029,hasta:2040,c:'#1A7A3A',pred:true},
-  ]},
-  {nombre:'Gualcamayo',metal:'Au',color:'#C0392B',segmentos:[
-    {e:'Exploración inicial',desde:1994,hasta:2000,c:'#EF9F27'},
-    {e:'Exploración avanzada',desde:2000,hasta:2005,c:'#D85A30'},
-    {e:'Factibilidad+EIA',desde:2005,hasta:2007,c:'#185FA5'},
-    {e:'Construcción',desde:2007,hasta:2009,c:'#534AB7'},
-    {e:'Producción comercial',desde:2009,hasta:2026,c:'#1E7A45'},
-    {e:'Fin producción óxidos',desde:2026,hasta:2027,c:'#C0392B'},
-    {e:'DCP - Construcción POX',desde:2027,hasta:2029,c:'#1A50A0',pred:true},
-    {e:'DCP - Producción (17 años)',desde:2029,hasta:2046,c:'#1E7A45',pred:true},
-  ]},
-  {nombre:'Veladero',metal:'Au/Ag',color:'#1A7A3A',segmentos:[
-    {e:'Exploración',desde:1994,hasta:1999,c:'#EF9F27'},
-    {e:'Expl. avanzada',desde:1999,hasta:2002,c:'#D85A30'},
-    {e:'Factibilidad+EIA',desde:2002,hasta:2004,c:'#185FA5'},
-    {e:'Construcción',desde:2004,hasta:2005,c:'#534AB7'},
-    {e:'Producción (20 años)',desde:2005,hasta:2026,c:'#1E7A45'},
-    {e:'Fases 8 + RIGI US$400M',desde:2026,hasta:2035,c:'#5DCAA5',pred:true},
-    {e:'Cierre/lixiv. residual',desde:2035,hasta:2040,c:'#C0392B',pred:true},
-  ]},
-  {nombre:'Hualilán',metal:'Au/Ag/Zn',color:'#1A7A3A',segmentos:[
-    {e:'Exploración (Challenger)',desde:2019,hasta:2023,c:'#EF9F27'},
-    {e:'PFS + EIA',desde:2023,hasta:2025,c:'#185FA5'},
-    {e:'Toll milling (Casposo)',desde:2025,hasta:2028,c:'#1E7A45'},
-    {e:'Planta propia San Juan',desde:2028,hasta:2034,c:'#32A860',pred:true},
-    {e:'Madurez / expansión',desde:2034,hasta:2041,c:'#97C459',pred:true},
-  ]},
-  {nombre:'Los Azules',metal:'Cu',color:'#1A50A0',segmentos:[
-    {e:'Exploración',desde:2008,hasta:2018,c:'#EF9F27'},
-    {e:'PEA + PFS',desde:2018,hasta:2022,c:'#D85A30'},
-    {e:'FS + EIA + RIGI',desde:2022,hasta:2026,c:'#185FA5'},
-    {e:'Construcción',desde:2026,hasta:2030,c:'#534AB7',pred:true},
-    {e:'Producción (27 años)',desde:2030,hasta:2057,c:'#1E7A45',pred:true},
-  ]},
-  {nombre:'Vicuña / Josemaría',metal:'Cu/Au/Ag',color:'#B86800',segmentos:[
-    {e:'Exploración',desde:2010,hasta:2019,c:'#EF9F27'},
-    {e:'PEA + estudios',desde:2019,hasta:2026,c:'#D85A30'},
-    {e:'FS + FID + ingeniería',desde:2026,hasta:2028,c:'#185FA5',pred:true},
-    {e:'Construcción',desde:2028,hasta:2031,c:'#534AB7',pred:true},
-    {e:'Producción (25+ años)',desde:2031,hasta:2056,c:'#1E7A45',pred:true},
-  ]},
-  {nombre:'Casposo',metal:'Au/Ag',color:'#1A7A3A',segmentos:[
-    {e:'Exploración (Intrepid)',desde:1998,hasta:2009,c:'#EF9F27'},
-    {e:'Construcción (Troy)',desde:2009,hasta:2011,c:'#534AB7'},
-    {e:'Producción 1ª fase',desde:2011,hasta:2019,c:'#1E7A45'},
-    {e:'C&M / cuidado (Austral)',desde:2019,hasta:2025,c:'#8B5E3C'},
-    {e:'Reactivación 2ª fase',desde:2025,hasta:2030,c:'#5DCAA5'},
-    {e:'Cierre proyectado',desde:2030,hasta:2034,c:'#C0392B',pred:true},
-  ]},
-];
+let GANTT_PROJECTS=[];
 
-const PRED_DATA=[
-  {nombre:'Hualilán',color:'#1A7A3A',metal:'Au/Ag/Zn',
-   resumen:'Ciclo más rápido de la historia sanjuanina: solo 6 años pre-producción. El 97% del MRE aún no está comprometido. La planta propia definirá si este proyecto es transitorio o una mina de larga vida.',
-   hitos:[{a:2025,e:'🟢 Primera producción (dic 2025)',t:'logrado'},{a:2026,e:'🟢 PFS planta propia (Q1 2026)',t:'logrado'},{a:2026,e:'📋 EIA planta propia presentado',t:'proximo'},{a:2028,e:'🏗️ Construcción planta propia',t:'proyectado'},{a:2030,e:'⚙️ Planta propia en operación plena',t:'proyectado'},{a:2034,e:'📈 Expansión a 3 Mt/año',t:'proyectado'}]},
-  {nombre:'Gualcamayo → DCP',color:'#1A50A0',metal:'Au',
-   resumen:'El RIGI transforma el cierre inminente en +17 años de vida productiva. La primera planta POX de Sudamérica es el desafío tecnológico clave. Sin el DCP, la mina cierra definitivamente en 2026–2027.',
-   hitos:[{a:2025,e:'🟢 RIGI aprobado (dic 2025, US$665M)',t:'logrado'},{a:2026,e:'📋 Factibilidad técnico-económica final',t:'proximo'},{a:2026,e:'📄 EIA específico DCP presentado',t:'proximo'},{a:2027,e:'🏗️ Inicio construcción planta POX',t:'proyectado'},{a:2029,e:'⚙️ Producción DCP (120.000 oz Au/año)',t:'proyectado'},{a:2046,e:'🔚 Fin vida útil proyectada DCP',t:'proyectado'}]},
-  {nombre:'Casposo',color:'#1A7A3A',metal:'Au/Ag',
-   resumen:'Unico caso en San Juan: mina pausada 6 años (C&M 2019-2025) y reactivada en 2025. Dos fases de produccion separadas. Su rol como planta de toll milling para Hualilan extiende su vida util.',
-   hitos:[{a:1998,e:'🔬 Inicio exploración (Intrepid Mines)',t:'logrado'},{a:2009,e:'🟢 Inicio construcción (Troy Resources)',t:'logrado'},{a:2011,e:'🟢 Primera producción (1ª fase)',t:'logrado'},{a:2019,e:'🔴 Suspensión → modo C&M (Austral Gold)',t:'negativo'},{a:2025,e:'🟢 Reactivación Q3 2025 (2ª fase)',t:'logrado'},{a:2026,e:'⚙️ Guía producción: 30.000–35.000 oz AuEq',t:'proximo'},{a:2028,e:'📋 Fin contrato toll milling Hualilán',t:'proyectado'},{a:2030,e:'🔚 Cierre proyectado (reservas propias agotadas)',t:'proyectado'}]},
-  {nombre:'Veladero',color:'#1A7A3A',metal:'Au/Ag',
-   resumen:'El RIGI de US$400M es la diferencia entre cierre en 2026 y producción hasta 2035. Las fases 8 agregan +1,6 Moz Au sobre reservas conocidas. El mayor productor de oro de Argentina sigue siendo Veladero.',
-   hitos:[{a:2024,e:'🟢 Producción récord 503.000 oz Au',t:'logrado'},{a:2025,e:'🟢 Fase 8A en construcción (Q1 2025)',t:'logrado'},{a:2025,e:'🟢 RIGI US$400M presentado',t:'logrado'},{a:2026,e:'⚙️ Fase 8B/8C inicia obras',t:'proximo'},{a:2028,e:'📈 Peak producción fases 8',t:'proyectado'},{a:2035,e:'🔚 Fin vida útil proyectada',t:'proyectado'}]},
-  {nombre:'Los Azules',color:'#1A50A0',metal:'Cu',
-   resumen:'El proyecto de cobre más avanzado de Argentina. Todos los hitos regulatorios cumplidos. El FID de fin 2026 será el momento definitorio. Con producción desde 2030, será la mina de cobre más grande de San Juan.',
-   hitos:[{a:2024,e:'🟢 EIA aprobada (dic 2024)',t:'logrado'},{a:2025,e:'🟢 RIGI aprobado (sep 2025)',t:'logrado'},{a:2025,e:'🟢 FS completa (oct 2025)',t:'logrado'},{a:2026,e:'🏗️ Obras tempranas + FID previsto',t:'proximo'},{a:2028,e:'🏗️ Construcción plena',t:'proyectado'},{a:2030,e:'⚙️ Primera producción Cu',t:'proyectado'},{a:2035,e:'📈 Producción plateau 322 Mlb Cu/año',t:'proyectado'}]},
-  {nombre:'Vicuña / Josemaría',color:'#B86800',metal:'Cu/Au/Ag',
-   resumen:'Inversión de US$18.000M total. La combinación BHP + Lundin garantiza el músculo financiero. Es el proyecto más importante para el futuro minero de San Juan: producción proyectada hasta 2056.',
-   hitos:[{a:2026,e:'🟢 DIA Josemaría aprobada (mar 2026)',t:'logrado'},{a:2026,e:'🟢 PEA integrada publicada (feb 2026)',t:'logrado'},{a:2026,e:'📋 FID previsto fin 2026',t:'proximo'},{a:2027,e:'📋 FS definitiva + inicio ingeniería',t:'proyectado'},{a:2028,e:'🏗️ Inicio construcción (etapa 1)',t:'proyectado'},{a:2031,e:'⚙️ Primera producción',t:'proyectado'},{a:2045,e:'📈 Producción plena + expansión fase 2',t:'proyectado'}]},
-  {nombre:'Lama (Pascua-Lama ARG)',color:'#BF5AF2',metal:'Au/Ag/Cu',
-   resumen:'⏸ El reloj está congelado desde 2020. El proyecto El Alto en Chile es la llave: 62 sondajes en 2026 determinarán si Barrick tiene continuidad de mineralización suficiente para reactivar el lado argentino de forma independiente.',
-   hitos:[{a:2020,e:'🔴 Clausura lado chileno (Pascua)',t:'negativo'},{a:2026,e:'🟡 Proyecto El Alto aprobado (ene 2026)',t:'proximo'},{a:2026,e:'🔬 62 sondajes El Alto en curso',t:'proximo'},{a:2027,e:'❓ Resultados El Alto → decisión Barrick',t:'proyectado'},{a:2029,e:'❓ Nueva DIA Argentina (si procede)',t:'proyectado'},{a:2032,e:'❓ Posible construcción Lama standalone',t:'proyectado'},{a:2035,e:'❓ Posible inicio producción Argentina',t:'proyectado'}]},
-];
+let PRED_DATA=[];
 
 let ganttRendered=false,predRendered=false;
 function renderGantt(){
@@ -988,7 +783,23 @@ function init(){
   const cl=document.getElementById('cnt-lat');if(cl)cl.textContent=allData.filter(p=>p.etapa==='latente').length;
   render();
 }
-init();
+async function boot(){
+  const sb=document.getElementById('sheet-status');
+  try{
+    const res=await fetch('data/proyectos.json',{cache:'no-store'});
+    if(!res.ok)throw new Error('HTTP '+res.status);
+    const d=await res.json();
+    DATA=Array.isArray(d.proyectos)?d.proyectos:[];
+    LOGOS=d.logos&&typeof d.logos==='object'?d.logos:{};
+    GANTT_PROJECTS=Array.isArray(d.gantt)?d.gantt:[];
+    PRED_DATA=Array.isArray(d.predicciones)?d.predicciones:[];
+  }catch(e){
+    console.error('No se pudo cargar data/proyectos.json:',e);
+    if(sb)sb.textContent='// ERROR: no se pudo cargar data/proyectos.json — el sitio debe servirse por HTTP (no file://)';
+  }
+  init();
+}
+boot();
 </script>
 </body>
 </html>

@@ -5,6 +5,7 @@ config/credentials.json
 
 # Configuración local de Claude Code (por máquina, no versionar)
 .claude/settings.local.json
+.claude/launch.json
 
 # Node / build
 node_modules/
