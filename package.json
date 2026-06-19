@@ -1,0 +1,10 @@
+{
+  "name": "reloj-minero",
+  "version": "10.0.0",
+  "description": "Reloj Minero San Juan — sitio interactivo + kiosko de cartelería, alimentados por una fuente de datos única (data/proyectos.json).",
+  "private": true,
+  "scripts": {
+    "validate": "node scripts/validate.js",
+    "serve": "node scripts/serve.js"
+  }
+}

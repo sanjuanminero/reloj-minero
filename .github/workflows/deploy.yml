@@ -1,0 +1,47 @@
+name: Validar y publicar (GitHub Pages)
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+# Permisos necesarios para publicar en GitHub Pages
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Un solo deploy a la vez; cancela el anterior si hay uno en curso
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  # 1) VALIDACIÓN — si falla, el check queda en rojo y NO se publica
+  validar:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Validar JS (index.html + kiosk.html) y data/proyectos.json
+        run: node scripts/validate.js
+
+  # 2) DEPLOY — solo corre si "validar" pasó
+  deploy:
+    needs: validar
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/configure-pages@v5
+      - name: Subir el sitio (raíz del repo) como artefacto de Pages
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: '.'
+      - name: Publicar en GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
