@@ -64,7 +64,8 @@ body{background:var(--bg);color:var(--text1);font-family:'DM Sans',sans-serif;fo
 
 /* ── GRID ── */
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(158px,1fr));gap:10px;margin-bottom:24px}
-.card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);padding:12px 10px 10px;cursor:pointer;transition:.18s all;position:relative;box-shadow:var(--shadow);-webkit-tap-highlight-color:transparent;user-select:none}
+.grid>.card{min-width:0}
+.card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);padding:12px 10px 10px;min-width:0;overflow:hidden;cursor:pointer;transition:.18s all;position:relative;box-shadow:var(--shadow);-webkit-tap-highlight-color:transparent;user-select:none}
 .card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;border-radius:var(--radius) var(--radius) 0 0}
 .c-cierre::before{background:var(--c-cierre)}.c-produccion::before{background:var(--c-produccion)}
 .c-preproduccion::before{background:var(--c-preproduccion)}.c-exploracion_avanzada::before{background:var(--c-expl-av)}
@@ -72,7 +73,7 @@ body{background:var(--bg);color:var(--text1);font-family:'DM Sans',sans-serif;fo
 .card:hover{border-color:var(--border2);transform:translateY(-2px);box-shadow:0 6px 20px rgba(0,0,0,0.12)}
 .card:active{transform:translateY(0)}
 .card-badge-dormant{position:absolute;top:8px;right:7px;background:rgba(64,72,88,0.1);border:1px solid rgba(64,72,88,0.3);color:var(--c-latente);font-size:8px;padding:2px 5px;border-radius:3px;font-family:'Share Tech Mono',monospace;letter-spacing:1px}
-.card-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
+.card-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;min-width:0}
 .card-metal{font-family:'Share Tech Mono',monospace;font-size:8px;letter-spacing:1.5px;padding:2px 6px;border-radius:3px;border:1px solid var(--border);color:var(--text3);background:var(--bg3)}
 
 /* ── LED DISPLAY ── */
@@ -87,10 +88,10 @@ body{background:var(--bg);color:var(--text1);font-family:'DM Sans',sans-serif;fo
 .seg-colon{display:flex;flex-direction:column;justify-content:center;gap:5px;padding:0 2px;margin-bottom:2px}
 .seg-colon-dot{width:3px;height:3px;border-radius:50%}
 
-.card-name{font-weight:500;font-size:12px;color:var(--text1);margin-bottom:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.card-empresa{font-size:9px;color:var(--text3);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-bottom:5px;line-height:1.3;font-family:'Share Tech Mono',monospace}
+.card-name{font-weight:500;font-size:12px;color:var(--text1);margin-bottom:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%;min-width:0}
+.card-empresa{font-size:9px;color:var(--text3);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%;min-width:0;margin-bottom:5px;line-height:1.3;font-family:'Share Tech Mono',monospace}
 .card-footer{display:flex;border-top:1px solid var(--border);padding-top:6px}
-.card-depto{font-size:9px;color:var(--text3);font-family:'Share Tech Mono',monospace}
+.card-depto{font-size:9px;color:var(--text3);font-family:'Share Tech Mono',monospace;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0}
 
 /* ── MODAL ── */
 .overlay{display:none;position:fixed;inset:0;background:rgba(20,16,10,.6);z-index:300;align-items:flex-end;justify-content:center;backdrop-filter:blur(5px);-webkit-backdrop-filter:blur(5px)}
@@ -211,12 +212,12 @@ body{background:var(--bg);color:var(--text1);font-family:'DM Sans',sans-serif;fo
 }
 @media(max-width:480px){
   .header,.main,.filters,.legend,.footer{padding-left:14px;padding-right:14px}
-  .grid{grid-template-columns:repeat(2,1fr);gap:8px}
+  .grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
   .legend-hint{display:none}
   .fbtn{padding:3px 9px}
   .htable{font-size:9px}
 }
-@media(max-width:340px){.grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:340px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 
 /* ── SECTION NAV ── */
 .sec-nav{display:flex;gap:0;padding:0 24px;background:var(--bg2);border-bottom:2px solid var(--border);overflow-x:auto;-webkit-overflow-scrolling:touch}
