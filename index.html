@@ -320,7 +320,7 @@ body{background:var(--bg);color:var(--text1);font-family:'DM Sans',sans-serif;fo
     <button class="fbtn" onclick="setFilter('latente',this)">LATENTE</button>
     <span class="fcount" id="fcount"></span>
   </div>
-  <div class="sheet-bar"><div class="live-dot"></div><span id="sheet-status">// DATOS VERIFICADOS — NI 43-101 / JORC / REPORTES CORPORATIVOS · V10 MAR 2026</span></div>
+  <div class="sheet-bar"><div class="live-dot"></div><span id="sheet-status">// DATOS VERIFICADOS — NI 43-101 / JORC / REPORTES CORPORATIVOS · V11 AGO 2026</span></div>
   <div id="container"></div>
 </div>
 
@@ -662,7 +662,7 @@ function _drawInfographic(){
 // ── GANTT ─────────────────────────────────────────────────────────────────────
 let GANTT_PROJECTS=[];
 
-let PRED_DATA=[];
+let PRED_DATA=[];let META={};
 
 let ganttRendered=false,predRendered=false;
 function renderGantt(){
@@ -675,7 +675,7 @@ function _buildGantt(){
   const yearStart=1993,yearEnd=2042,span=yearEnd-yearStart;
 
   const note=document.createElement('div');note.className='gantt-note';
-  note.textContent='// Barras sólidas = hechos verificados. Barras con borde punteado = proyecciones basadas en datos públicos, cronogramas corporativos y tendencias. Fuentes: NI 43-101, JORC, reportes corporativos, RIGI mar 2026.';
+  note.textContent='// Barras sólidas = hechos verificados. Barras con borde punteado = proyecciones basadas en datos públicos, cronogramas corporativos y tendencias. Fuentes: NI 43-101, JORC, reportes corporativos y resoluciones RIGI. Actualizado a agosto 2026.';
   cont.appendChild(note);
 
   const wrap=document.createElement('div');wrap.className='gantt-container';
@@ -772,9 +772,16 @@ document.getElementById('modal').addEventListener('touchstart',e=>{touchStartY=e
 document.getElementById('modal').addEventListener('touchmove',e=>{if(document.getElementById('modal').scrollTop===0&&e.touches[0].clientY-touchStartY>60)document.getElementById('overlay').classList.remove('on');},{passive:true});
 
 // ── INIT ──────────────────────────────────────────────────────────────────────
+const MESES_ABR=['ENE','FEB','MAR','ABR','MAY','JUN','JUL','AGO','SEP','OCT','NOV','DIC'];
+function metaFecha(){
+  const s=String(META.actualizado||'');
+  const m=s.match(/^(\d{4})-(\d{2})/);
+  if(m)return MESES_ABR[parseInt(m[2],10)-1]+' '+m[1];
+  return new Date().toLocaleDateString('es-AR',{month:'long',year:'numeric'}).toUpperCase();
+}
 function init(){
   const fd=document.getElementById('footer-date');
-  if(fd)fd.textContent='// V10 · '+new Date().toLocaleDateString('es-AR',{month:'long',year:'numeric'}).toUpperCase();
+  if(fd)fd.textContent='// '+String((META.version||'v11')).toUpperCase()+' · '+metaFecha();
   allData=DATA;
   const ct=document.getElementById('cnt-total');if(ct)ct.textContent=allData.length;
   const cp=document.getElementById('cnt-prod');if(cp)cp.textContent=allData.filter(p=>p.etapa==='produccion').length;
@@ -793,6 +800,8 @@ async function boot(){
     LOGOS=d.logos&&typeof d.logos==='object'?d.logos:{};
     GANTT_PROJECTS=Array.isArray(d.gantt)?d.gantt:[];
     PRED_DATA=Array.isArray(d.predicciones)?d.predicciones:[];
+    META=d.meta&&typeof d.meta==='object'?d.meta:{};
+    if(sb)sb.textContent='// DATOS VERIFICADOS — NI 43-101 / JORC / REPORTES CORPORATIVOS · '+String(META.version||'v11').toUpperCase()+' '+metaFecha();
   }catch(e){
     console.error('No se pudo cargar data/proyectos.json:',e);
     if(sb)sb.textContent='// ERROR: no se pudo cargar data/proyectos.json — el sitio debe servirse por HTTP (no file://)';
