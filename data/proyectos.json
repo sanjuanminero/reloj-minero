@@ -1,8 +1,8 @@
 {
   "meta": {
-    "version": "v10",
-    "fuente": "index.html v10 — datos verificados NI 43-101 / JORC / reportes corporativos",
-    "actualizado": "2026-03",
+    "version": "v11",
+    "fuente": "Datos verificados NI 43-101 / JORC / reportes corporativos, resoluciones oficiales y prensa especializada hasta el 30/08/2026",
+    "actualizado": "2026-08",
     "nota": "Fuente única de datos. La consumen el sitio (index.html), el kiosko (kiosk.html) y los generadores de Instagram (ig/)."
   },
   "proyectos": [
@@ -14,8 +14,8 @@
       "metal": "Au/Ag",
       "depto": "Jáchal",
       "frozen": false,
-      "desc": "Producción final activa: recuperación secundaria de pilas de lixiviación (2009–2026). El DCP (US$665M, RIGI dic 2025) es la apuesta de continuidad: 3 Moz Au subterráneas, construcción 2027, producción 2029.",
-      "recursos": "2,9 Moz Au P&P (2021). Óxidos agotados. DCP: ~3 Moz Au estimados, 17 años adicionales proyectados.",
+      "desc": "Óxidos en recuperación final (2009–2026). El giro es el DCP: RIGI oficializado en enero de 2026 (Res. 6/2026, US$519,6M computables sobre US$665M totales) y obras de infraestructura en marcha desde agosto de 2026. AISA presentó además un segundo RIGI, el \"Programa G50\" por US$1.500M sobre 38.000 ha, para convertir la mina en distrito minero.",
+      "recursos": "7,1 Moz AuEq de recursos, 4,9 Moz en reservas. Óxidos agotados. DCP: ~3 Moz Au subterráneas y 30+ años de vida útil proyectada.",
       "historial": [
         {
           "n": "Exploración inicial (MASA)",
@@ -71,7 +71,7 @@
         },
         {
           "l": "Infraestructura de acceso",
-          "v": 90
+          "v": 92
         },
         {
           "l": "Precio oro (>US$3.000)",
@@ -79,11 +79,11 @@
         },
         {
           "l": "Reservas remanentes (DCP)",
-          "v": 30
+          "v": 55
         },
         {
           "l": "Financiamiento DCP (RIGI)",
-          "v": 55
+          "v": 85
         }
       ]
     },
@@ -95,8 +95,8 @@
       "metal": "Au/Ag",
       "depto": "Iglesia",
       "frozen": false,
-      "desc": "20 años de producción. Récord 2024: 504.000 oz Au. Fase 8A en construcción Q1 2026. RIGI US$400M para +1,6 Moz adicionales. Vida extendida hasta 2035.",
-      "recursos": "11,4 Moz Au históricas. ~8,2 Moz Au recuperados al 2017. Filo Federico activo.",
+      "desc": "20 años de producción. RIGI oficializado en abril de 2026 por US$380,1M para las fases 8 y 9 del valle de lixiviación: +1,63 Moz Au y vida útil hasta ~2035. La obra de la Fase 8 se licitó en julio de 2026 y arranca en octubre con unos 800 trabajadores. Q1 2026: +15% de oro contra el trimestre anterior.",
+      "recursos": "11,4 Moz Au históricas. Fases 8 y 9: 1.626.034 oz Au incrementales más plata, exportadas como doré. Inversión aprobada US$380.116.079.",
       "historial": [
         {
           "n": "Exploración inicial (AGC/MAGSA)",
@@ -160,33 +160,33 @@
           "v": 100
         },
         {
-          "l": "Infraestructura consolidada",
-          "v": 95
+          "l": "RIGI fases 8 y 9 (abr 2026)",
+          "v": 100
         },
         {
-          "l": "Precio del oro",
-          "v": 98
+          "l": "Reservas incrementales",
+          "v": 80
         },
         {
-          "l": "Reservas + RIGI",
+          "l": "Exploración extensión vida útil",
           "v": 55
         },
         {
-          "l": "Financiamiento operacional",
-          "v": 100
+          "l": "Precio oro",
+          "v": 98
         }
       ]
     },
     {
       "nombre": "Hualilán",
       "etapa": "produccion",
-      "hora": "12:15",
+      "hora": "12:00",
       "empresa": "Challenger Gold / Golden Mining",
       "metal": "Au/Ag/Zn",
       "depto": "Ullum",
       "frozen": false,
-      "desc": "Primera nueva mina de Au en San Juan en 17 años. Producción desde dic. 2025 vía toll milling en planta Casposo. PFS planta propia en curso Q1 2026.",
-      "recursos": "2,8 Moz AuEq MRE (JORC 2023). Toll milling: 465.000 t a 6,2 g/t Au, 76,6 koz Au payable en 30 meses.",
+      "desc": "Primera colada de oro el 2 de junio de 2026: 200 kg de doré con 500 oz Au y 6.000 oz Ag, procesados por toll milling en Casposo. En agosto de 2026 Challenger cortó ese acuerdo y anunció planta propia en Ullum: el procesamiento queda en pausa, se acopia mineral y el reinicio se proyecta para principios de 2029. PFS \"Master Hualilán\" (mayo 2026): CAPEX inicial US$266,9M, 135.000 oz AuEq/año, 14 años de vida. En agosto levantó A$85M y renovó el directorio, con Peter Marrone como presidente.",
+      "recursos": "2,8 Moz AuEq MRE (JORC). PFS: 1,84 Moz AuEq en la vida de mina, reservas probadas 62,86 Mt, NPV post-impuestos US$1.100M a US$3.500/oz. Exportaciones proyectadas US$2.700M.",
       "historial": [
         {
           "n": "Exploración / Recursos (Challenger)",
@@ -198,53 +198,53 @@
           "hs": "6h 24m"
         },
         {
-          "n": "Scoping Study + PFS",
+          "n": "Scoping, PFS y permisos",
           "a": "2023–2025",
           "dur": 2,
           "c": "#185FA5",
           "hi": "06:24",
-          "hf": "12:00",
-          "hs": "5h 36m"
+          "hf": "10:30",
+          "hs": "4h 06m"
         },
         {
-          "n": "Toll milling (Casposo)",
-          "a": "2025–2028",
-          "dur": 3,
+          "n": "Puesta en marcha + toll milling",
+          "a": "2025–2026",
+          "dur": 1,
           "c": "#1E7A45",
-          "hi": "12:00",
-          "hf": "15:50",
-          "hs": "3h 50m"
+          "hi": "10:30",
+          "hf": "12:00",
+          "hs": "1h 30m"
         },
         {
-          "n": "Planta propia (proyectada)",
-          "a": "2028–2034",
-          "dur": 6,
-          "c": "#97C459",
-          "hi": "15:50",
-          "hf": "24:00",
-          "hs": "8h 10m"
+          "n": "Pausa + construcción planta propia",
+          "a": "2026–2029",
+          "dur": 3,
+          "c": "#8B5E3C",
+          "hi": "12:00",
+          "hf": "12:00",
+          "hs": "⏸ reloj detenido"
         }
       ],
-      "nota_hist": "Ciclo ultrarrápido: solo 6 años pre-producción vs 11 de Veladero/Gualcamayo. 1 año ≈ 1,6 hs.",
+      "nota_hist": "Ciclo ultrarrápido: 6 años de pre-producción. La primera colada de junio de 2026 dejó el reloj clavado en las 12:00: el procesamiento se interrumpió y sólo vuelve a correr cuando arranque la planta propia de Ullum, proyectada para 2029.",
       "factores": [
         {
-          "l": "EIA + permisos aprobados",
+          "l": "EIA + permisos mina",
           "v": 90
         },
         {
-          "l": "Financiamiento asegurado",
-          "v": 85
-        },
-        {
-          "l": "Planta Casposo disponible",
+          "l": "Primera colada lograda (jun 2026)",
           "v": 100
         },
         {
-          "l": "Recursos / ley del mineral",
-          "v": 80
+          "l": "Financiamiento (A$85M, ago 2026)",
+          "v": 85
         },
         {
-          "l": "Precio Au (US$3.300+)",
+          "l": "Planta propia Ullum (a construir)",
+          "v": 20
+        },
+        {
+          "l": "Precio Au (US$3.500+)",
           "v": 98
         }
       ]
@@ -257,8 +257,8 @@
       "metal": "Au/Ag",
       "depto": "Calingasta",
       "frozen": false,
-      "desc": "Reactivada Q3 2025 tras 6 años de C&M. Guía 2026: 30.000-35.000 oz AuEq. Procesa mineral propio y ore de Hualilán.",
-      "recursos": "Guía 2026: 30.000–35.000 oz AuEq anuales.",
+      "desc": "Reapertura formal en mayo de 2026 tras más de US$15M en exploración y reacondicionamiento de planta: ~120.000 oz AuEq proyectadas, 6 a 7 años de vida y más de 300 empleos, 99% sanjuaninos. En agosto perdió a Hualilán como cliente ancla del toll milling y reorientó su estrategia a hub regional de procesamiento, apoyado en reservas propias hasta 2032 y una campaña de 8.500 m.",
+      "recursos": "Reservas propias para ~6 años de producción hasta 2032. Exportaciones estimadas US$60M en 2026. Capacidad de molienda ociosa de 150.000 t/año tras la salida de Hualilán.",
       "historial": [
         {
           "n": "Exploración (Intrepid Mines)",
@@ -309,24 +309,24 @@
       "nota_hist": "Reloj pausado 6 años (2019–2025). Dos períodos de producción distintos.",
       "factores": [
         {
-          "l": "EIA + permisos vigentes",
+          "l": "Planta operativa",
           "v": 100
         },
         {
-          "l": "Planta propia disponible",
-          "v": 95
+          "l": "Reservas propias hasta 2032",
+          "v": 70
         },
         {
-          "l": "Financiamiento operacional",
-          "v": 80
+          "l": "Mineral de terceros (hub)",
+          "v": 35
         },
         {
-          "l": "Recursos remanentes",
-          "v": 55
+          "l": "Empleo y licencia social",
+          "v": 90
         },
         {
-          "l": "Precio Au",
-          "v": 98
+          "l": "Precio Au/Ag",
+          "v": 96
         }
       ]
     },
@@ -338,15 +338,15 @@
       "metal": "Cu",
       "depto": "Calingasta",
       "frozen": false,
-      "desc": "FS completa oct 2025 (US$3.170M). EIA dic 2024. RIGI sep 2025. FID fin 2026. Construcción 2027–2028. Primera producción 2030.",
-      "recursos": "12,5 Mt Cu Ind.+Inf. 322 Mlb Cu/año. Vida útil 27 años.",
+      "desc": "FS de octubre de 2025 (CAPEX US$3.170M), DIA de diciembre de 2024 y RIGI de septiembre de 2025 por US$2.700M. El 27 de agosto de 2026 cerró un préstamo senior garantizado de US$240M a 4 años y 12% anual (Sprott US$112M, Rob McEwen US$85M, otros US$43M) para ingeniería y obras tempranas. Société Générale asesora el project finance. La FID se corrió a mediados de 2027 y la primera producción a 2030. Presentó en agosto el informe ambiental de su línea eléctrica de 122 km y 220 kV hasta Calingasta (US$300M); la concesión de agua sigue pendiente.",
+      "recursos": "Reservas P&P 1.023 Mt a 0,453% Cu (10.200 Mlb). Recursos M&I 965,5 Mt a 0,255% Cu. 204.800 t Cu/año los primeros 5 años, 21 años de vida útil extensibles a 30.",
       "factores": [
         {
           "l": "FS completa (oct 2025)",
           "v": 100
         },
         {
-          "l": "EIA aprobada (dic 2024)",
+          "l": "DIA mina aprobada (dic 2024)",
           "v": 100
         },
         {
@@ -354,78 +354,78 @@
           "v": 100
         },
         {
-          "l": "Financiamiento confirmado",
-          "v": 75
+          "l": "Financiamiento (US$240M + project finance)",
+          "v": 70
         },
         {
-          "l": "Energía 500 kV (pendiente)",
-          "v": 30
+          "l": "Energía y agua (permisos en trámite)",
+          "v": 40
         }
       ]
     },
     {
       "nombre": "Gualcamayo DCP",
       "etapa": "preproduccion",
-      "hora": "08:30",
+      "hora": "09:00",
       "empresa": "Minas Argentinas (AISA)",
       "metal": "Au",
       "depto": "Jáchal",
       "frozen": false,
-      "desc": "RIGI aprobado dic 2025 (US$665M). FS en curso 2026. EIA 2026-27. Construcción 2027-28. Producción 2029. Primera planta POX de Sudamérica.",
-      "recursos": "~3 Moz Au estimadas. Depósito sulfuros profundos. 17 años proyectados.",
+      "desc": "RIGI oficializado en enero de 2026 (Res. 6/2026): US$519,6M de activos computables sobre una inversión total de US$665M, con plazo de ejecución al 31/12/2028. En agosto de 2026 arrancaron obras de infraestructura por más de US$15M y nueve meses de plazo —movimiento de suelos, geomembrana, ampliación de campamento y de la planta de reactivos— con unos 230 empleos nuevos. Construcción principal en 2027 y primera producción en 2029. Sería la séptima planta POX de oro del mundo.",
+      "recursos": "~3 Moz Au en carbonatos profundos. 17 años adicionales de vida útil. Exportaciones estimadas US$26.500M entre 2030 y 2055.",
       "factores": [
         {
-          "l": "RIGI aprobado (dic 2025)",
+          "l": "RIGI oficializado (ene 2026)",
           "v": 100
         },
         {
-          "l": "Infraestructura existente",
-          "v": 85
+          "l": "Obras de infraestructura iniciadas",
+          "v": 70
         },
         {
-          "l": "PFS en curso",
-          "v": 60
+          "l": "Ingeniería y factibilidad final",
+          "v": 75
         },
         {
-          "l": "EIA en proceso",
+          "l": "Planta POX (tecnología)",
           "v": 45
         },
         {
-          "l": "Precio Au favorable",
-          "v": 98
+          "l": "Financiamiento total",
+          "v": 70
         }
       ]
     },
     {
       "nombre": "Vicuña / Josemaría",
       "etapa": "preproduccion",
-      "hora": "09:30",
-      "empresa": "Lundin Mining / BHP / NGEx",
+      "hora": "10:45",
+      "empresa": "Vicuña Corp (Lundin Mining / BHP 50-50)",
       "metal": "Cu/Au/Ag",
       "depto": "Iglesia",
       "frozen": false,
-      "desc": "PEA integrada feb 2026 (US$18.000M). FID fin 2026. EIA Josemaría aprobada mar 2026. Producción 2030.",
-      "recursos": "14 Mt Cu + 36 Moz Au + 729 Moz Ag (M&I oct 2025). Top 5 mundial.",
+      "desc": "Technical Report integrado presentado en marzo de 2026: 70+ años de vida, 400.000 t Cu, 700.000 oz Au y 22 Moz Ag por año en los primeros 25, NPV post-impuestos US$9.500M. DIA actualizada en marzo (vida útil a ~25 años, 175.000 t/día). RIGI aprobado en junio y formalizado el 30 de julio por US$9.737M, con categoría PEELP y estabilidad fiscal por 40 años. El 29 de julio el ENReGE habilitó la línea de 500 kV Rodeo–Chaparro (167 km, US$800M, 100% privada) más 93 km en 220 kV hasta la mina. Movimiento de suelos ya iniciado: 1,1 Mt en el segundo trimestre. FID prevista para fin de 2026.",
+      "recursos": "22,3 Mt Cu + 37,2 Moz Au + 763 Moz Ag en la vida de mina (Josemaría + Filo del Sol). Etapa 1: US$7.100M de capital, primera producción 2030.",
       "factores": [
         {
-          "l": "Estudio factibilidad integrado",
-          "v": 65
+          "l": "Technical Report integrado (mar 2026)",
+          "v": 100
         },
         {
-          "l": "DIA Josemaría aprobada",
-          "v": 90
+          "l": "DIA actualizada 25 años (mar 2026)",
+          "v": 100
         },
         {
-          "l": "Financiamiento (BHP+Lundin)",
-          "v": 80
+          "l": "RIGI PEELP aprobado (jul 2026)",
+          "v": 100
         },
         {
-          "l": "Energía 500 kV",
-          "v": 25
+          "l": "Línea 500 kV habilitada (jul 2026)",
+          "v": 75
         },
         {
-          "l": "Acceso Agua Negra",
-          "v": 30
+          "l": "FID + financiamiento",
+          "v": 55
         }
       ]
     },
@@ -437,61 +437,61 @@
       "metal": "Cu/Mo",
       "depto": "Calingasta",
       "frozen": false,
-      "desc": "FS presentada. RIGI aprobación prevista H1 2026. Construcción 2029. Primera producción 2034.",
-      "recursos": "1.790 Mt a 0,51% Cu + Mo. >9 Mt Cu eq. LOM >30 años.",
+      "desc": "Recursos casi duplicados en mayo de 2026: 6.630 Mt contra 3.380 Mt en 2022, con 2.330 Mt medidas e indicadas a 0,49% Cu. La campaña 2025-26 sumó 21.246 m en 53 pozos e incluyó el primer sondaje direccionado de la minería argentina; se inauguraron dos puentes por US$15M. La factibilidad todavía no está completa y el RIGI por US$11.600M sigue en evaluación. Glencore ordenó su cola argentina: primero Alumbrera, después Agua Rica y recién entonces El Pachón. Construcción 2029, primera producción 2034.",
+      "recursos": "6.630 Mt de recurso total; 2.330 Mt M&I a 0,49% Cu. Potencial de más de 500.000 t de cobre fino por año.",
       "factores": [
         {
-          "l": "Factibilidad completada",
+          "l": "Recursos actualizados (may 2026)",
           "v": 100
         },
         {
-          "l": "EIA en proceso",
+          "l": "Factibilidad en curso",
+          "v": 55
+        },
+        {
+          "l": "RIGI en evaluación",
           "v": 60
         },
         {
-          "l": "RIGI solicitado",
-          "v": 70
-        },
-        {
-          "l": "Energía 500 kV",
-          "v": 20
-        },
-        {
-          "l": "Acceso Agua Negra",
+          "l": "Energía e infraestructura",
           "v": 25
+        },
+        {
+          "l": "Prioridad en cartera Glencore",
+          "v": 30
         }
       ]
     },
     {
       "nombre": "Altar",
       "etapa": "exploracion_avanzada",
-      "hora": "07:30",
-      "empresa": "Aldebaran / Sibanye-Stillwater",
+      "hora": "07:45",
+      "empresa": "Aldebaran (80%) / Sibanye-Stillwater (20%)",
       "metal": "Cu/Au/Mo",
       "depto": "Calingasta",
       "frozen": false,
-      "desc": "PEA oct 2025: CAPEX US$1.590M, 48 años, NPV US$2B, IRR 20,5%. PFS en curso 2026.",
-      "recursos": "7,7 Mt Cu + 6,4 Moz Au Ind. (2022).",
+      "desc": "PEA de octubre de 2025: CAPEX US$1.590M, 48 años de vida, NPV US$2.000M y TIR 20,5%. En febrero de 2026 cerró un bought deal de C$40,25M para financiar la prefactibilidad. La campaña 2025-26 corrió con seis equipos y dejó resultados excepcionales: 936 m a 0,66% CuEq (con 194 m a 0,99%) y 1.339 m a 0,45% CuEq (con 500 m a 0,71%). Más de 40.000 m acumulados desde 2024 alimentan la actualización de recursos prevista para el tercer trimestre de 2026; la PFS se corrió a 2027 por ampliación de alcance. Nuton (Rio Tinto) mantiene su opción de US$250M por el 20%. Presentación al RIGI apuntada a fin de 2026 con CAPEX de US$1.600M.",
+      "recursos": "7,7 Mt Cu + 6,4 Moz Au indicados (2022), en revisión. Open pit inicial y luego block caving subterráneo.",
       "factores": [
         {
           "l": "PEA completada (oct 2025)",
           "v": 100
         },
         {
-          "l": "Recursos M&I definidos",
-          "v": 85
+          "l": "Actualización de recursos (Q3 2026)",
+          "v": 70
         },
         {
-          "l": "Socios (South32/Nuton)",
-          "v": 78
+          "l": "Socios (Sibanye 20% / opción Nuton)",
+          "v": 80
         },
         {
-          "l": "EIA iniciado",
-          "v": 5
+          "l": "PFS (reprogramada a 2027)",
+          "v": 35
         },
         {
-          "l": "Infraestructura",
-          "v": 20
+          "l": "EIA e infraestructura",
+          "v": 15
         }
       ]
     },
@@ -503,28 +503,28 @@
       "metal": "Au/Ag",
       "depto": "Iglesia",
       "frozen": false,
-      "desc": "PEA 2021. Perforación activa, leyes 3-4 g/t Au. Camino a prefactibilidad.",
+      "desc": "Cambio de modelo geológico: el sistema se reinterpretó como hidrotermal ligado a pórfido, y ya no como el recurso oxidado somero de 2021. La campaña 2026 sumó 2.173,7 m en dos pozos; TADD-278 alcanzó 1.331,7 m con 205 m a 0,25 g/t Au y 0,12% Cu, y TADD-279 cortó 1,25 m a 9,19 g/t Au y 5,55% Cu. El pozo quedó entubado para seguir profundizando. Próxima campaña entre octubre de 2026 y abril de 2027.",
       "recursos": "PEA: ~500 koz AuEq. Perforación en curso.",
       "factores": [
         {
-          "l": "PEA completada",
-          "v": 100
+          "l": "Modelo de pórfido profundo",
+          "v": 60
         },
         {
-          "l": "Permisos activos",
-          "v": 85
-        },
-        {
-          "l": "Recursos definidos",
+          "l": "Resultados 2026",
           "v": 55
         },
         {
-          "l": "PFS iniciado",
-          "v": 30
+          "l": "Financiamiento (Orvana)",
+          "v": 60
         },
         {
-          "l": "EIA",
-          "v": 5
+          "l": "Recurso formal",
+          "v": 15
+        },
+        {
+          "l": "EIA e infraestructura",
+          "v": 15
         }
       ]
     },
@@ -536,7 +536,7 @@
       "metal": "Au/Ag",
       "depto": "Iglesia",
       "frozen": false,
-      "desc": "Licitación récord 2025: US$56M comprometidos. Historial de Barrick.",
+      "desc": "Área adjudicada en octubre de 2025 por el IPEEM a una UTE liderada por Shandong Gold junto con Jagüelito, con una oferta de inversión de US$50-56M, récord para una licitación provincial. Sin novedades públicas de campaña, permisos ni resultados entre marzo y agosto de 2026.",
       "recursos": "Recurso a definir. Potencial Au/Ag epitermal.",
       "factores": [
         {
@@ -564,123 +564,90 @@
     {
       "nombre": "Chita Valley",
       "etapa": "exploracion_avanzada",
-      "hora": "06:30",
+      "hora": "06:45",
       "empresa": "Minsud Resources / South32",
       "metal": "Cu/Mo/Au",
       "depto": "Iglesia",
       "frozen": false,
-      "desc": "Primer recurso feb. 2025. Corredor 60 km, múltiples pórfidos. South32 como socio.",
-      "recursos": "Primer recurso formal feb. 2025. Sistema pórfido confirmado.",
+      "desc": "Nuevo recurso combinado de Chinchillones y Chita South en febrero de 2026: 1.033 kt CuEq indicados y 3.333 kt CuEq inferidos, con Chinchillones creciendo 7-8% sobre la estimación de enero de 2025. En agosto de 2026 arrancó un programa de 10.500 m de diamantina repartido entre Chinchillones, Chita South, Placetas y Pinto, financiado íntegramente por South32 bajo el período de suspensión contractual.",
+      "recursos": "240 Mt a 0,43% CuEq indicados + 955 Mt a 0,35% CuEq inferidos. Cu-Mo-Ag-Au-Zn.",
       "factores": [
         {
-          "l": "Primer recurso (2025)",
-          "v": 60
+          "l": "Recurso actualizado (feb 2026)",
+          "v": 85
         },
         {
-          "l": "Permisos",
+          "l": "Socio financiador (South32)",
           "v": 90
         },
         {
-          "l": "Respaldo South32",
-          "v": 80
+          "l": "Campaña 10.500 m en curso",
+          "v": 70
         },
         {
-          "l": "Estudios técnicos",
-          "v": 30
+          "l": "Estudio económico",
+          "v": 10
         },
         {
-          "l": "EIA",
-          "v": 0
+          "l": "EIA e infraestructura",
+          "v": 20
         }
       ]
     },
     {
       "nombre": "La Coipita",
       "etapa": "exploracion_avanzada",
-      "hora": "06:00",
+      "hora": "06:15",
       "empresa": "Teck Resources / AbraSilver",
       "metal": "Cu/Mo",
-      "depto": "Iglesia",
-      "frozen": false,
-      "desc": "2025: 621 m @ 0,38% Cu incl. 114 m @ 0,70% Cu. Earn-in Teck 80% en 5 años.",
-      "recursos": "70.000 ha. Alta ley temporada 2025.",
-      "factores": [
-        {
-          "l": "Descubrimiento alta ley (2025)",
-          "v": 80
-        },
-        {
-          "l": "Teck como operador",
-          "v": 92
-        },
-        {
-          "l": "Financiamiento asegurado",
-          "v": 85
-        },
-        {
-          "l": "Recurso formal",
-          "v": 0
-        },
-        {
-          "l": "EIA",
-          "v": 0
-        }
-      ]
-    },
-    {
-      "nombre": "Piuquenes",
-      "etapa": "exploracion",
-      "hora": "04:30",
-      "empresa": "Andina Copper",
-      "metal": "Cu/Au",
       "depto": "Calingasta",
       "frozen": false,
-      "desc": "801m @ 0,40% Cu + 0,51 g/t Au. C$175M recaudados mar 2026.",
-      "recursos": "Sistema pórfido Cu-Au en definición.",
+      "desc": "La campaña 2026 (5.248 m en 7 pozos, operada y financiada por Teck) devolvió el mejor pozo del proyecto: 747,5 m a 0,69% Cu, 0,06 g/t Au y 142 ppm Mo. Además apareció un nuevo descubrimiento, Yaretas Sur, con 42 m a 1,03% Cu, 0,63 g/t Au y 41 g/t Ag. Se sumó el primer relevamiento magnetotelúrico del proyecto, que sugiere extensiones hacia el sur. Teck ya gastó unos US$23M sobre un compromiso de US$20M y va camino a quedarse con el 80%.",
+      "recursos": "Sin recurso formal. Más de 70.000 ha en la faja metalogenética miocena.",
       "factores": [
         {
-          "l": "Permisos",
+          "l": "Resultados 2026 (747,5 m a 0,69% Cu)",
           "v": 85
         },
         {
-          "l": "Financiamiento C$175M",
-          "v": 80
+          "l": "Socio operador (Teck)",
+          "v": 90
         },
         {
-          "l": "Resultados drilling",
-          "v": 60
+          "l": "Nuevo descubrimiento Yaretas Sur",
+          "v": 70
         },
         {
           "l": "Recurso formal",
           "v": 10
         },
         {
-          "l": "EIA",
-          "v": 0
+          "l": "EIA e infraestructura",
+          "v": 20
         }
       ]
     },
     {
-      "nombre": "Lunahuasi",
+      "nombre": "Piuquenes",
       "etapa": "exploracion",
-      "hora": "04:00",
-      "empresa": "NGEx Minerals / Grupo Lundin",
-      "metal": "Cu/Au/Ag",
-      "depto": "Iglesia",
+      "hora": "04:45",
+      "empresa": "Andina Copper (ex Pampa Metals)",
+      "metal": "Cu/Au",
+      "depto": "Calingasta",
       "frozen": false,
-      "desc": "Descubrimiento 2023. Fase 4 con >22.000 m. DIA galería aprobada. Distrito Vicuña.",
-      "recursos": "Sin recurso formal. Leyes muy altas.",
+      "desc": "En marzo de 2026 cerró financiamientos por US$27,5M para exploración. PIU09 confirmó un pórfido Cu-Au-Ag de gran extensión vertical con 126 m a 0,46% Cu, 0,53 g/t Au y 2,14 g/t Ag. En julio se confirmó un tercer centro mineralizado, Piuquenes Norte: PIU13 con 468 m a 0,50% Cu, 0,30 g/t Au y 3,04 g/t Ag, incluyendo 164 m a 0,70% Cu. El sistema sigue abierto en profundidad.",
+      "recursos": "Sin recurso formal. Tres centros mineralizados identificados; 504 m de extensión vertical en Piuquenes Norte.",
       "factores": [
         {
-          "l": "DIA galería aprobada",
-          "v": 75
+          "l": "Descubrimiento confirmado (jul 2026)",
+          "v": 80
         },
         {
-          "l": "Financiamiento (Lundin)",
-          "v": 90
+          "l": "Financiamiento (US$27,5M)",
+          "v": 85
         },
         {
-          "l": "Resultados drilling",
+          "l": "Continuidad del sistema",
           "v": 70
         },
         {
@@ -688,8 +655,41 @@
           "v": 5
         },
         {
-          "l": "RIGI en proceso",
-          "v": 40
+          "l": "EIA e infraestructura",
+          "v": 15
+        }
+      ]
+    },
+    {
+      "nombre": "Lunahuasi",
+      "etapa": "exploracion",
+      "hora": "04:30",
+      "empresa": "NGEx Minerals / Grupo Lundin",
+      "metal": "Cu/Au/Ag",
+      "depto": "Iglesia",
+      "frozen": false,
+      "desc": "Fase 4 completada en abril de 2026: 27.318 m en 32 pozos, con interceptos de clase mundial. DPDH064 cortó 1.540,10 m a 1,17% CuEq incluyendo 15,65 m a 30,13% CuEq; DPDH054 dio 94 m a 8,99% CuEq y DPDH070 devolvió 17,30 m a 207,79 g/t Au. Se confirmaron dos zonas de alta ley antes desconocidas. Hay aprobación ambiental para una galería de exploración subterránea, con desarrollo apuntado al último trimestre de 2026, y una Fase 5 en preparación. Todavía sin recurso formal declarado.",
+      "recursos": "Sin recurso formal. Capital de trabajo de CAD 463,3M al 30/06/2026.",
+      "factores": [
+        {
+          "l": "DIA galería aprobada",
+          "v": 80
+        },
+        {
+          "l": "Financiamiento (Lundin)",
+          "v": 92
+        },
+        {
+          "l": "Resultados Fase 4 (27.318 m)",
+          "v": 90
+        },
+        {
+          "l": "Recurso formal",
+          "v": 10
+        },
+        {
+          "l": "Permisos de desarrollo subterráneo",
+          "v": 45
         }
       ]
     },
@@ -701,7 +701,7 @@
       "metal": "Cu/Au/Mo",
       "depto": "Iglesia",
       "frozen": false,
-      "desc": "Pórfido Cu-Au-Mo confirmado. Segunda fase 5.000-7.000 m.",
+      "desc": "Cuatro targets de pórfido activos en la Cordillera Frontal. Sin comunicados ni resultados nuevos entre marzo y agosto de 2026: Sable volcó su campaña 2026 al proyecto vecino Zorro, 21 km al este.",
       "recursos": "Sin recurso formal.",
       "factores": [
         {
@@ -727,35 +727,68 @@
       ]
     },
     {
+      "nombre": "Zorro",
+      "etapa": "exploracion",
+      "hora": "02:45",
+      "empresa": "Sable Resources",
+      "metal": "Cu/Au",
+      "depto": "Iglesia",
+      "frozen": false,
+      "desc": "Nuevo proyecto de la Cordillera Frontal, inmediatamente al norte de Chita Valley. Durante 2026 pasó de 5.236 a unas 8.460 ha sumando un pedimento nuevo y la opción sobre la propiedad El Acero. Tiene una anomalía magnética de 7 × 4 km, tres estilos de mineralización identificados, muestreo de hasta 1,36% Cu y una anomalía de cargabilidad de 2,6 km. La perforación inaugural arrancó el 5 de agosto de 2026.",
+      "recursos": "Sin recurso formal. ~8.460 ha. Sable declara más de C$13,5M en caja y créditos.",
+      "factores": [
+        {
+          "l": "Perforación inaugural iniciada",
+          "v": 45
+        },
+        {
+          "l": "Financiamiento (C$13,5M)",
+          "v": 65
+        },
+        {
+          "l": "Anomalías geofísicas definidas",
+          "v": 60
+        },
+        {
+          "l": "Recurso formal",
+          "v": 0
+        },
+        {
+          "l": "EIA e infraestructura",
+          "v": 10
+        }
+      ]
+    },
+    {
       "nombre": "El Fierro",
       "etapa": "exploracion",
-      "hora": "03:30",
-      "empresa": "Sable Resources",
+      "hora": "03:45",
+      "empresa": "Sable Resources / Moxico Resources",
       "metal": "Au/Ag",
       "depto": "Iglesia",
       "frozen": false,
-      "desc": "12.000 m acumulados. Hasta 2.582 g/t AgEq en vetas.",
+      "desc": "El programa de noviembre de 2025 a enero de 2026 (3.466 m en 11 pozos, financiado íntegramente por Moxico Resources bajo earn-in) extendió el pórfido Cu-Au-Mo \"Pyros\". FZ-DH-25-92 cortó 189,1 m a 0,50% CuEq incluyendo 8 m a 3,06% CuEq. Las próximas perforaciones apuntan a expandir las zonas de alta ley y a targets sin testear hacia el sur.",
       "recursos": "Leyes muy altas en vetas. Sistema epitermal.",
       "factores": [
         {
-          "l": "Permisos activos",
-          "v": 80
-        },
-        {
-          "l": "Historial geológico",
+          "l": "Resultados Pyros (abr 2026)",
           "v": 70
         },
         {
-          "l": "Resultados drilling",
-          "v": 45
+          "l": "Socio financiador (Moxico)",
+          "v": 80
+        },
+        {
+          "l": "Continuidad del sistema",
+          "v": 60
         },
         {
           "l": "Recurso formal",
           "v": 5
         },
         {
-          "l": "EIA",
-          "v": 0
+          "l": "EIA e infraestructura",
+          "v": 12
         }
       ]
     },
@@ -767,7 +800,7 @@
       "metal": "Cu/Mo",
       "depto": "Calingasta",
       "frozen": false,
-      "desc": "Dos pórfidos Cu-Mo en Calingasta. Exploración sistemática.",
+      "desc": "Área en cartera de Fortescue Argentina junto al IPEEM. Sin comunicados ni novedades verificables entre marzo y agosto de 2026.",
       "recursos": "Dos cuerpos identificados. Sin recurso formal.",
       "factores": [
         {
@@ -792,11 +825,11 @@
       "nombre": "TMT",
       "etapa": "exploracion",
       "hora": "03:00",
-      "empresa": "Belararox",
+      "empresa": "Vantage Metals (ex Belararox)",
       "metal": "Cu/Au",
       "depto": "Iglesia",
       "frozen": false,
-      "desc": "Tambo South a 1.300 m. Plan 2025: 6.000 m en Malambo y Tambo.",
+      "desc": "En julio de 2026 Belararox pasó a llamarse Vantage Metals (ASX: VAN). Hubo perforación diamantina en Toro Central en abril, más geofísica en Tambo South y exploración temprana en la nueva pertenencia El Faro, pero la compañía informó explícitamente que no obtuvo resultados significativos nuevos en TMT y desplazó su foco al proyecto Kalahari Copper en Botsuana. Anticipa una temporada 2026-27 de alto impacto en Argentina.",
       "recursos": "Exploración temprana. Sin recurso formal.",
       "factores": [
         {
@@ -821,24 +854,32 @@
       "nombre": "Rincones de Araya",
       "etapa": "prospecto",
       "hora": "03:00",
-      "empresa": "Fortescue / IPEEM",
+      "empresa": "IPEEM (licitación 2026)",
       "metal": "Cu/Au",
       "depto": "Iglesia",
       "frozen": false,
-      "desc": "JV Fortescue + IPEEM. Anomalías geoquímicas identificadas.",
+      "desc": "El área volvió a concurso público del IPEEM en febrero de 2026, dentro del paquete de 9 áreas y 23 derechos mineros de Iglesia y Calingasta. Las ofertas se abrieron el 23 de junio: Rincones de Araya recibió una única propuesta, de Compañía Minera Aguilar San Juan. Al 30 de agosto de 2026 la adjudicación seguía sin resolverse.",
       "recursos": "Anomalías geoquímicas. Sin recurso estimado.",
       "factores": [
         {
-          "l": "Permisos de prospección",
-          "v": 90
+          "l": "Licitación IPEEM en curso",
+          "v": 60
         },
         {
-          "l": "Respaldo Fortescue",
-          "v": 85
+          "l": "Oferente identificado",
+          "v": 55
         },
         {
-          "l": "Datos geológicos",
-          "v": 25
+          "l": "Contrato adjudicado",
+          "v": 0
+        },
+        {
+          "l": "Trabajos de campo",
+          "v": 10
+        },
+        {
+          "l": "Recurso formal",
+          "v": 0
         }
       ]
     },
@@ -850,7 +891,7 @@
       "metal": "Au/Ag",
       "depto": "Iglesia",
       "frozen": false,
-      "desc": "Adjudicado licitación récord 2025. Primera campaña en curso.",
+      "desc": "Adjudicada en octubre de 2025 por el IPEEM a la UTE liderada por Shandong Gold junto con Del Carmen, con una oferta de US$50-56M en inversión. Sin novedades públicas de campaña ni permisos entre marzo y agosto de 2026.",
       "recursos": "Sin recurso. Primera campaña.",
       "factores": [
         {
@@ -875,7 +916,7 @@
       "metal": "Au/Ag",
       "depto": "Iglesia",
       "frozen": false,
-      "desc": "Valle del Cura. Prospecto epitermal Au/Ag disponible para licitación.",
+      "desc": "Sigue en cartera del IPEEM a la espera de licitación: no fue incluida en el llamado a concurso público de febrero de 2026, que abarcó otras nueve áreas de Iglesia y Calingasta.",
       "recursos": "Historial geológico favorable. Sin recurso estimado.",
       "factores": [
         {
@@ -900,28 +941,28 @@
       "metal": "Au/Ag/Cu",
       "depto": "Iglesia",
       "frozen": true,
-      "desc": "Suspendido desde 2020. \"El Alto\" aprobado ene 2026 en Chile (US$35M, 62 sondajes) podría reactivarlo. Uno de los depósitos no desarrollados más grandes del mundo.",
+      "desc": "El reloj sigue congelado. La única llave de reactivación es El Alto, del lado chileno: su declaración ambiental fue aprobada por unanimidad en enero de 2026 (62 sondajes, unos US$35M), pero el 20 de julio el Primer Tribunal Ambiental de Chile admitió a trámite una reclamación de la comunidad diaguita Alta Cordillera y debe definir si suspende la autorización. Barrick no mencionó Lama en sus resultados del segundo trimestre de 2026.",
       "recursos": "21,3 Moz Au. Lado argentino: 3,13 M oz Au + 236,9 M oz Ag.",
       "factores": [
         {
-          "l": "Factibilidad histórica",
-          "v": 100
-        },
-        {
-          "l": "Permisos ARG (parciales)",
-          "v": 50
-        },
-        {
-          "l": "Exploración El Alto activa",
-          "v": 55
-        },
-        {
-          "l": "Decisión estratégica Barrick",
+          "l": "DIA argentina vigente",
           "v": 20
         },
         {
-          "l": "Resolución ambiental Chile",
-          "v": 5
+          "l": "El Alto (Chile) habilitado",
+          "v": 35
+        },
+        {
+          "l": "Litigio ambiental en curso",
+          "v": 25
+        },
+        {
+          "l": "Decisión corporativa Barrick",
+          "v": 15
+        },
+        {
+          "l": "Infraestructura construida",
+          "v": 70
         }
       ]
     }
@@ -948,7 +989,8 @@
     "TMT": "https://logo.clearbit.com/belararox.com.au",
     "Rincones de Araya": "https://logo.clearbit.com/fortescue.com",
     "Jagüelito": "https://logo.clearbit.com/shandonggold.com.cn",
-    "Lama (Pascua-Lama ARG)": "https://logo.clearbit.com/barrick.com"
+    "Lama (Pascua-Lama ARG)": "https://logo.clearbit.com/barrick.com",
+    "Zorro": "https://logo.clearbit.com/sableresources.com"
   },
   "gantt": [
     {
@@ -1101,7 +1143,7 @@
           "c": "#1E7A45"
         },
         {
-          "e": "Fases 8 + RIGI US$400M",
+          "e": "Fases 8 y 9 + RIGI US$380M",
           "desde": 2026,
           "hasta": 2035,
           "c": "#5DCAA5",
@@ -1136,20 +1178,27 @@
         {
           "e": "Toll milling (Casposo)",
           "desde": 2025,
-          "hasta": 2028,
+          "hasta": 2026,
           "c": "#1E7A45"
         },
         {
-          "e": "Planta propia San Juan",
-          "desde": 2028,
-          "hasta": 2034,
-          "c": "#32A860",
+          "e": "Pausa + planta propia Ullum",
+          "desde": 2026,
+          "hasta": 2029,
+          "c": "#8B5E3C",
+          "pred": true
+        },
+        {
+          "e": "Producción planta propia (14 años)",
+          "desde": 2029,
+          "hasta": 2043,
+          "c": "#1E7A45",
           "pred": true
         },
         {
           "e": "Madurez / expansión",
-          "desde": 2034,
-          "hasta": 2041,
+          "desde": 2043,
+          "hasta": 2048,
           "c": "#97C459",
           "pred": true
         }
@@ -1173,20 +1222,20 @@
           "c": "#D85A30"
         },
         {
-          "e": "FS + EIA + RIGI",
+          "e": "FS + EIA + RIGI + financiamiento",
           "desde": 2022,
-          "hasta": 2026,
+          "hasta": 2027,
           "c": "#185FA5"
         },
         {
-          "e": "Construcción",
-          "desde": 2026,
+          "e": "Construcción (FID mediados 2027)",
+          "desde": 2027,
           "hasta": 2030,
           "c": "#534AB7",
           "pred": true
         },
         {
-          "e": "Producción (27 años)",
+          "e": "Producción (21-30 años)",
           "desde": 2030,
           "hasta": 2057,
           "c": "#1E7A45",
@@ -1212,22 +1261,21 @@
           "c": "#D85A30"
         },
         {
-          "e": "FS + FID + ingeniería",
+          "e": "RIGI + 500 kV + obras tempranas",
           "desde": 2026,
-          "hasta": 2028,
-          "c": "#185FA5",
-          "pred": true
+          "hasta": 2027,
+          "c": "#185FA5"
         },
         {
-          "e": "Construcción",
-          "desde": 2028,
-          "hasta": 2031,
+          "e": "Construcción etapa 1",
+          "desde": 2027,
+          "hasta": 2030,
           "c": "#534AB7",
           "pred": true
         },
         {
-          "e": "Producción (25+ años)",
-          "desde": 2031,
+          "e": "Producción (70+ años)",
+          "desde": 2030,
           "hasta": 2056,
           "c": "#1E7A45",
           "pred": true
@@ -1266,13 +1314,13 @@
         {
           "e": "Reactivación 2ª fase",
           "desde": 2025,
-          "hasta": 2030,
+          "hasta": 2032,
           "c": "#5DCAA5"
         },
         {
           "e": "Cierre proyectado",
-          "desde": 2030,
-          "hasta": 2034,
+          "desde": 2032,
+          "hasta": 2036,
           "c": "#C0392B",
           "pred": true
         }
@@ -1284,36 +1332,46 @@
       "nombre": "Hualilán",
       "color": "#1A7A3A",
       "metal": "Au/Ag/Zn",
-      "resumen": "Ciclo más rápido de la historia sanjuanina: solo 6 años pre-producción. El 97% del MRE aún no está comprometido. La planta propia definirá si este proyecto es transitorio o una mina de larga vida.",
+      "resumen": "El ciclo más rápido de la historia sanjuanina: seis años de pre-producción y primera colada en junio de 2026. Pero el reloj se detuvo enseguida: al cortar el toll milling con Casposo, la producción queda en pausa hasta que arranque la planta propia de Ullum en 2029.",
       "hitos": [
         {
-          "a": 2025,
-          "e": "🟢 Primera producción (dic 2025)",
+          "a": 2026,
+          "e": "🟢 Primera colada de oro (jun 2026)",
           "t": "logrado"
         },
         {
           "a": 2026,
-          "e": "🟢 PFS planta propia (Q1 2026)",
+          "e": "🟢 PFS Master Hualilán (may 2026)",
           "t": "logrado"
         },
         {
           "a": 2026,
-          "e": "📋 EIA planta propia presentado",
+          "e": "🔴 Fin del toll milling con Casposo (ago 2026)",
+          "t": "negativo"
+        },
+        {
+          "a": 2026,
+          "e": "🟢 Colocación de A$85M + nuevo directorio",
+          "t": "logrado"
+        },
+        {
+          "a": 2027,
+          "e": "📋 Factibilidad final + RIGI + construction-ready",
           "t": "proximo"
         },
         {
           "a": 2028,
-          "e": "🏗️ Construcción planta propia",
+          "e": "🏗️ Construcción planta propia en Ullum",
           "t": "proyectado"
         },
         {
-          "a": 2030,
-          "e": "⚙️ Planta propia en operación plena",
+          "a": 2029,
+          "e": "⚙️ Reinicio de producción (135.000 oz AuEq/año)",
           "t": "proyectado"
         },
         {
-          "a": 2034,
-          "e": "📈 Expansión a 3 Mt/año",
+          "a": 2043,
+          "e": "🔚 Fin de la vida de mina del PFS (14 años)",
           "t": "proyectado"
         }
       ]
@@ -1322,21 +1380,26 @@
       "nombre": "Gualcamayo → DCP",
       "color": "#1A50A0",
       "metal": "Au",
-      "resumen": "El RIGI transforma el cierre inminente en +17 años de vida productiva. La primera planta POX de Sudamérica es el desafío tecnológico clave. Sin el DCP, la mina cierra definitivamente en 2026–2027.",
+      "resumen": "El RIGI convirtió un cierre inminente en más de 17 años de vida productiva, y el segundo RIGI (Programa G50, US$1.500M sobre 38.000 ha) quiere convertir la mina en distrito. Las obras de infraestructura ya arrancaron; la planta POX sigue siendo el desafío tecnológico.",
       "hitos": [
         {
           "a": 2025,
-          "e": "🟢 RIGI aprobado (dic 2025, US$665M)",
+          "e": "🟢 RIGI aprobado por el Comité (dic 2025)",
           "t": "logrado"
         },
         {
           "a": 2026,
-          "e": "📋 Factibilidad técnico-económica final",
-          "t": "proximo"
+          "e": "🟢 RIGI oficializado — Res. 6/2026 (ene 2026)",
+          "t": "logrado"
         },
         {
           "a": 2026,
-          "e": "📄 EIA específico DCP presentado",
+          "e": "🟢 Obras de infraestructura US$15M (ago 2026)",
+          "t": "logrado"
+        },
+        {
+          "a": 2026,
+          "e": "📋 Segundo RIGI \"Programa G50\" en análisis",
           "t": "proximo"
         },
         {
@@ -1346,7 +1409,7 @@
         },
         {
           "a": 2029,
-          "e": "⚙️ Producción DCP (120.000 oz Au/año)",
+          "e": "⚙️ Producción DCP",
           "t": "proyectado"
         },
         {
@@ -1408,31 +1471,36 @@
       "nombre": "Veladero",
       "color": "#1A7A3A",
       "metal": "Au/Ag",
-      "resumen": "El RIGI de US$400M es la diferencia entre cierre en 2026 y producción hasta 2035. Las fases 8 agregan +1,6 Moz Au sobre reservas conocidas. El mayor productor de oro de Argentina sigue siendo Veladero.",
+      "resumen": "El RIGI de US$380M es la diferencia entre cerrar en 2026 y producir hasta 2035. Las fases 8 y 9 del valle de lixiviación agregan 1,63 Moz de oro sobre las reservas conocidas. Veladero sigue siendo el mayor productor de oro de Argentina.",
       "hitos": [
         {
           "a": 2024,
-          "e": "🟢 Producción récord 503.000 oz Au",
-          "t": "logrado"
-        },
-        {
-          "a": 2025,
-          "e": "🟢 Fase 8A en construcción (Q1 2025)",
-          "t": "logrado"
-        },
-        {
-          "a": 2025,
-          "e": "🟢 RIGI US$400M presentado",
+          "e": "🟢 Producción récord 504.000 oz Au",
           "t": "logrado"
         },
         {
           "a": 2026,
-          "e": "⚙️ Fase 8B/8C inicia obras",
+          "e": "🟢 RIGI oficializado US$380,1M (abr 2026)",
+          "t": "logrado"
+        },
+        {
+          "a": 2026,
+          "e": "🟢 Q1 2026: +15% de oro vs. trimestre previo",
+          "t": "logrado"
+        },
+        {
+          "a": 2026,
+          "e": "🏗️ Inicio obra Fase 8 (oct 2026, ~800 trabajadores)",
           "t": "proximo"
         },
         {
+          "a": 2027,
+          "e": "⚙️ Fin de obra Fase 8 (may 2027)",
+          "t": "proyectado"
+        },
+        {
           "a": 2028,
-          "e": "📈 Peak producción fases 8",
+          "e": "📈 Pico de producción de las fases 8 y 9",
           "t": "proyectado"
         },
         {
@@ -1446,41 +1514,46 @@
       "nombre": "Los Azules",
       "color": "#1A50A0",
       "metal": "Cu",
-      "resumen": "El proyecto de cobre más avanzado de Argentina. Todos los hitos regulatorios cumplidos. El FID de fin 2026 será el momento definitorio. Con producción desde 2030, será la mina de cobre más grande de San Juan.",
+      "resumen": "El proyecto de cobre más avanzado de Argentina en permisos, pero el reloj del calendario se corrió: la FID pasó de fin de 2026 a mediados de 2027 y la primera producción a 2030. El préstamo de US$240M de agosto compra el tiempo de ingeniería y obras tempranas hasta que cierre el project finance.",
       "hitos": [
         {
           "a": 2024,
-          "e": "🟢 EIA aprobada (dic 2024)",
+          "e": "🟢 DIA aprobada (dic 2024)",
           "t": "logrado"
         },
         {
           "a": 2025,
-          "e": "🟢 RIGI aprobado (sep 2025)",
-          "t": "logrado"
-        },
-        {
-          "a": 2025,
-          "e": "🟢 FS completa (oct 2025)",
+          "e": "🟢 RIGI aprobado (sep 2025) + FS (oct 2025)",
           "t": "logrado"
         },
         {
           "a": 2026,
-          "e": "🏗️ Obras tempranas + FID previsto",
+          "e": "🟢 Société Générale asesor de project finance (may 2026)",
+          "t": "logrado"
+        },
+        {
+          "a": 2026,
+          "e": "🟢 Préstamo senior de US$240M (ago 2026)",
+          "t": "logrado"
+        },
+        {
+          "a": 2026,
+          "e": "📋 IIA línea eléctrica 220 kV — DIA esperada fin 2026",
           "t": "proximo"
         },
         {
-          "a": 2028,
-          "e": "🏗️ Construcción plena",
+          "a": 2027,
+          "e": "📋 FID + cierre del financiamiento (mediados 2027)",
+          "t": "proyectado"
+        },
+        {
+          "a": 2027,
+          "e": "🏗️ Inicio de construcción",
           "t": "proyectado"
         },
         {
           "a": 2030,
-          "e": "⚙️ Primera producción Cu",
-          "t": "proyectado"
-        },
-        {
-          "a": 2035,
-          "e": "📈 Producción plateau 322 Mlb Cu/año",
+          "e": "⚙️ Primera producción de cátodos",
           "t": "proyectado"
         }
       ]
@@ -1489,41 +1562,51 @@
       "nombre": "Vicuña / Josemaría",
       "color": "#B86800",
       "metal": "Cu/Au/Ag",
-      "resumen": "Inversión de US$18.000M total. La combinación BHP + Lundin garantiza el músculo financiero. Es el proyecto más importante para el futuro minero de San Juan: producción proyectada hasta 2056.",
+      "resumen": "El proyecto más grande de la historia minera argentina destrabó en 2026 sus dos cuellos de botella: la energía y el marco fiscal. Con la línea de 500 kV habilitada, el RIGI aprobado por US$9.737M y el movimiento de suelos en marcha, sólo falta la decisión final de inversión.",
       "hitos": [
         {
           "a": 2026,
-          "e": "🟢 DIA Josemaría aprobada (mar 2026)",
+          "e": "🟢 Technical Report integrado (mar 2026)",
           "t": "logrado"
         },
         {
           "a": 2026,
-          "e": "🟢 PEA integrada publicada (feb 2026)",
+          "e": "🟢 DIA actualizada — vida útil a 25 años (mar 2026)",
           "t": "logrado"
         },
         {
           "a": 2026,
-          "e": "📋 FID previsto fin 2026",
+          "e": "🟢 RIGI PEELP US$9.737M (jun–jul 2026)",
+          "t": "logrado"
+        },
+        {
+          "a": 2026,
+          "e": "🟢 ENReGE habilita la línea de 500 kV (jul 2026)",
+          "t": "logrado"
+        },
+        {
+          "a": 2026,
+          "e": "🟢 Obras tempranas: 1,1 Mt movidas en Q2",
+          "t": "logrado"
+        },
+        {
+          "a": 2026,
+          "e": "📋 FID prevista para fin de 2026",
           "t": "proximo"
         },
         {
           "a": 2027,
-          "e": "📋 FS definitiva + inicio ingeniería",
+          "e": "🏗️ Inicio de construcción etapa 1 (US$7.100M)",
           "t": "proyectado"
         },
         {
-          "a": 2028,
-          "e": "🏗️ Inicio construcción (etapa 1)",
-          "t": "proyectado"
-        },
-        {
-          "a": 2031,
+          "a": 2030,
           "e": "⚙️ Primera producción",
           "t": "proyectado"
         },
         {
-          "a": 2045,
-          "e": "📈 Producción plena + expansión fase 2",
+          "a": 2055,
+          "e": "📈 Etapas siguientes: Filo del Sol",
           "t": "proyectado"
         }
       ]
@@ -1532,7 +1615,7 @@
       "nombre": "Lama (Pascua-Lama ARG)",
       "color": "#BF5AF2",
       "metal": "Au/Ag/Cu",
-      "resumen": "⏸ El reloj está congelado desde 2020. El proyecto El Alto en Chile es la llave: 62 sondajes en 2026 determinarán si Barrick tiene continuidad de mineralización suficiente para reactivar el lado argentino de forma independiente.",
+      "resumen": "⏸ El reloj está congelado desde 2020. El proyecto El Alto en Chile era la llave —62 sondajes aprobados en enero de 2026—, pero en julio el Primer Tribunal Ambiental chileno admitió a trámite una reclamación de la comunidad diaguita Alta Cordillera y el descongelamiento volvió a los tribunales.",
       "hitos": [
         {
           "a": 2020,
@@ -1541,17 +1624,17 @@
         },
         {
           "a": 2026,
-          "e": "🟡 Proyecto El Alto aprobado (ene 2026)",
-          "t": "proximo"
+          "e": "🟢 El Alto aprobado en Chile (ene 2026)",
+          "t": "logrado"
         },
         {
           "a": 2026,
-          "e": "🔬 62 sondajes El Alto en curso",
-          "t": "proximo"
+          "e": "🔴 Reclamación judicial admitida a trámite (jul 2026)",
+          "t": "negativo"
         },
         {
           "a": 2027,
-          "e": "❓ Resultados El Alto → decisión Barrick",
+          "e": "❓ Fallo del tribunal → sondajes El Alto",
           "t": "proyectado"
         },
         {
@@ -1566,7 +1649,50 @@
         },
         {
           "a": 2035,
-          "e": "❓ Posible inicio producción Argentina",
+          "e": "❓ Posible inicio de producción en Argentina",
+          "t": "proyectado"
+        }
+      ]
+    },
+    {
+      "nombre": "Altar",
+      "color": "#7A4A1A",
+      "metal": "Cu/Au/Mo",
+      "resumen": "El pórfido de cobre más grande de San Juan que todavía no tiene dueño definido. La PEA de 2025 le dio 48 años de vida y US$2.000M de NPV; ahora todo depende de la actualización de recursos y de si Nuton (Rio Tinto) pone los US$190M que dispara la prefactibilidad.",
+      "hitos": [
+        {
+          "a": 2025,
+          "e": "🟢 PEA: 48 años, NPV US$2.000M, TIR 20,5%",
+          "t": "logrado"
+        },
+        {
+          "a": 2026,
+          "e": "🟢 Bought deal C$40M para financiar la PFS (feb 2026)",
+          "t": "logrado"
+        },
+        {
+          "a": 2026,
+          "e": "🟢 Campaña con 6 equipos: 936 m a 0,66% CuEq",
+          "t": "logrado"
+        },
+        {
+          "a": 2026,
+          "e": "📋 Actualización de recursos (Q3 2026)",
+          "t": "proximo"
+        },
+        {
+          "a": 2027,
+          "e": "📋 PFS + pago de Nuton (US$190M)",
+          "t": "proyectado"
+        },
+        {
+          "a": 2027,
+          "e": "📋 Presentación al RIGI (US$1.600M)",
+          "t": "proyectado"
+        },
+        {
+          "a": 2032,
+          "e": "🏗️ Construcción estimada",
           "t": "proyectado"
         }
       ]
