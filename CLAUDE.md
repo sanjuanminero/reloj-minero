@@ -1,5 +1,5 @@
 # RELOJ MINERO SAN JUAN — CONTEXTO COMPLETO PARA CLAUDE CODE
-**Cuenta:** @sanjuanminero · **Versión actual:** v11 · **Última actualización del contexto:** agosto 2026
+**Cuenta:** @sanjuanminero · **Versión actual:** v12 · **Última actualización del contexto:** agosto 2026
 **Objetivo de esta sesión de Code:** automatizar (a) la publicación del sitio y (b) la generación de contenido para Instagram.
 
 > Este documento resume TODO lo trabajado en las sesiones previas (concepto, datos, diseño, generador de Instagram, publicación). Pegalo como `CONTEXTO.md` o `CLAUDE.md` en la raíz del repo para que Claude Code tenga el panorama completo desde el primer prompt.
@@ -168,11 +168,11 @@ Componente JS que renderiza la hora como dígitos segmentados (relojes digitales
 ```
 ⬡ PROYECTOS    → Grid de tarjetas filtrable por etapa (LED + nombre + empresa + depto)
 ◷ GRAN RELOJ   → Canvas infográfico: dos mitades (00→12 / 12→24), arcos por etapa + badges de proyectos
-◈ COMPARACIÓN  → Gantt horizontal de ciclos de vida (1993–2042), barras sólidas=hechos / punteadas=proyección
+◈ COMPARACIÓN  → Comparador de líneas de tiempo con dos vistas (ver §13)
 ◎ PREDICCIONES → Cards con hitos proyectados 2026–2035 por proyecto
 ```
 
-Funciones JS principales: `showTab()`, `render()` (grid), `openModal()`, `setFilter()`, `drawGranRelojes()`/`_drawInfographic()` (canvas), `_buildGantt()`, `_buildPred()`.
+Funciones JS principales: `showTab()`, `render()` (grid), `openModal()`, `setFilter()`, `drawGranRelojes()`/`_drawInfographic()` (canvas), `_buildGantt()`/`_gxChart()`, `_buildPred()`.
 
 **Punto abierto declarado:** mejorar el impacto visual del Gran Reloj (canvas) — es el principal pendiente de diseño.
 
@@ -309,3 +309,56 @@ Sin cambio de hora (sólo texto): Gualcamayo 21:30, Veladero 18:45, Casposo 21:1
 - Departamento de **Rincones de Araya**: la licitación del IPEEM la ubica en Calingasta; el dataset dice Iglesia.
 - **Adjudicación de la licitación IPEEM 2026** (9 áreas): sin resolver al 30/08/2026.
 - **Concesión de agua de Los Azules**: sin acto administrativo publicado.
+
+---
+
+## 13. SECCIÓN COMPARACIÓN — REDISEÑO v12 (agosto 2026)
+
+Motivo: los datos eran buenos pero el gráfico era ilegible (49 años comprimidos al 100% del ancho, tipografía de 7px, etiquetas cortadas, imposible en mobile).
+
+### Qué cambió
+- **Ancho fijo por año con scroll propio** (17px/año escritorio, 13px mobile) en vez de porcentajes. Las barras siempre tienen lugar para su etiqueta.
+- **Columna de proyecto fija (`position:sticky`)** con nombre en Bebas Neue 16px, metal y el stat **"N años a producción"**.
+- **Dos vistas conmutables:**
+  - `CRONOLÓGICO` — eje de año calendario, línea ámbar en HOY.
+  - `ALINEADO EN 1ª PRODUCCIÓN` — cada proyecto desplazado para que su primera producción caiga en x=0. Es la vista que responde "¿cuánto tarda un proyecto en producir?" de un vistazo. Un punto ámbar marca dónde está HOY en cada fila.
+- **Strip de ranking** arriba: tarjetas ordenadas por años hasta producción (Hualilán 7 → Lama 35).
+- **Tooltip** en hover y en tap (etapa, años, duración, y aviso si es proyección).
+- Filas de 66px, barras de 30px, separación de 2px entre barras contiguas (`box-shadow` del color de fondo).
+- **Proyecciones con rayado diagonal a 45°** en vez de sólo borde punteado.
+- Abre con scroll automático centrado en la línea de referencia (antes arrancaba en 1990, vacío).
+
+### Paleta del Gantt — REDUCIDA A 5 FAMILIAS + 1 ESTADO
+La paleta vieja tenía **10 colores categóricos** y fallaba la validación: `#534AB7` (construcción) y `#185FA5` (factibilidad) daban ΔE 8,3 en visión normal — indistinguibles incluso sin daltonismo. Diez categorías superan lo que cualquier paleta puede separar.
+
+| Familia | HEX | Qué agrupa |
+|---|---|---|
+| Exploración | `#D97E23` | exploración inicial y avanzada |
+| Estudios y permisos | `#2E8FE0` | PEA, PFS, FS, EIA/DIA, RIGI |
+| Construcción | `#7B35B8` | obra, incluida la planta POX del DCP |
+| Producción | `#1E7A45` | producción, expansión, 2ª fase, reactivación productiva |
+| Cierre / suspensión | `#C0392B` | cierre, suspensión, litigios |
+| Pausa / congelado *(estado)* | `#6E7684` | C&M, congelado — siempre con etiqueta |
+
+Las 5 familias categóricas **pasan la validación completa** (`scripts/validate_palette.js` del skill dataviz, `--pairs all`). El par producción↔cierre queda en ΔE 6,8 deutan, admisible sólo por el encoding secundario que ahora existe: etiqueta dentro de la barra, separación de 2px y tooltip.
+
+**El detalle no se perdió:** la etiqueta de cada barra sigue diciendo "Exploración inicial" vs "Exploración avanzada". El color agrupa, el texto distingue.
+
+### Campos nuevos en `gantt[]` de `data/proyectos.json`
+- `t0` — año de la primera producción comercial (el "12:00" del proyecto).
+- `t0_proyectado` — `true` si esa primera producción todavía no ocurrió.
+
+| Proyecto | t0 | Años hasta producción |
+|---|---|---|
+| Hualilán | 2026 | 7 |
+| Veladero | 2005 | 11 |
+| Casposo | 2011 | 13 |
+| Gualcamayo | 2009 | 15 |
+| Vicuña / Josemaría | 2030 * | 20 |
+| Los Azules | 2030 * | 22 |
+| Lama (Pascua-Lama) | 2029 * | 35 |
+
+\* proyectado.
+
+### Bug de layout corregido de paso
+`.gantt-inner` tenía `min-width:620px`, heredado del layout viejo: en mobile empujaba toda la sección y cortaba el texto de la nota y las tarjetas. El scroll ahora vive sólo en `.gx-scroll`, que es el único elemento que debe desbordar.

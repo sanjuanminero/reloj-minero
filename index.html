@@ -167,8 +167,8 @@ body{background:var(--bg);color:var(--text1);font-family:'DM Sans',sans-serif;fo
 /* ── GANTT / COMPARACIÓN ── */
 .comp-section-title{font-family:'Bebas Neue',sans-serif;font-size:20px;letter-spacing:4px;color:var(--amber);margin-bottom:4px}
 .comp-section-sub{font-family:'Share Tech Mono',monospace;font-size:9px;color:var(--text3);letter-spacing:1px;margin-bottom:18px}
-.gantt-wrap{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);overflow-x:auto;margin-bottom:28px}
-.gantt-inner{min-width:620px;padding:16px}
+.gantt-wrap{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);margin-bottom:28px}
+.gantt-inner{padding:16px;min-width:0;max-width:100%}
 .gantt-header{display:flex;margin-bottom:8px;padding-left:120px}
 .gantt-year{flex:1;text-align:center;font-family:'Share Tech Mono',monospace;font-size:8px;color:var(--text3);border-left:1px dashed var(--border)}
 .gantt-row{display:flex;align-items:center;margin-bottom:7px;min-height:28px}
@@ -242,30 +242,58 @@ body{background:var(--bg);color:var(--text1);font-family:'DM Sans',sans-serif;fo
 .gr-leg-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
 
 /* ── GANTT / PREDICCIONES ── */
-.gantt-wrap{padding:24px;max-width:1100px;margin:0 auto}
+.gantt-wrap{padding:24px;max-width:1100px;margin:0 auto;min-width:0}
+@media(max-width:560px){.gantt-wrap{padding:12px}.gantt-inner{padding:0}}
 .gantt-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(20px,4vw,28px);letter-spacing:4px;color:var(--amber);margin-bottom:4px}
 .gantt-sub{font-family:'Share Tech Mono',monospace;font-size:9px;color:var(--text3);letter-spacing:2px;margin-bottom:20px}
-.gantt-container{background:var(--bg2);border:1px solid var(--border);border-radius:12px;overflow:hidden;margin-bottom:24px}
-.gantt-header-row{display:flex;border-bottom:2px solid var(--border);background:var(--bg3)}
-.gantt-proj-col{width:130px;flex-shrink:0;padding:8px 12px;font-family:'Share Tech Mono',monospace;font-size:8px;letter-spacing:1px;color:var(--text3);text-transform:uppercase;border-right:1px solid var(--border)}
-.gantt-timeline{flex:1;position:relative;display:flex}
-.gantt-year-tick{flex:1;text-align:center;padding:8px 2px;font-family:'Share Tech Mono',monospace;font-size:8px;color:var(--text3);border-right:1px solid var(--border)}
-.gantt-year-tick:last-child{border-right:none}
-.gantt-year-tick.now{color:var(--amber);font-weight:700}
-.gantt-row{display:flex;border-bottom:1px solid var(--border);min-height:36px;align-items:center}
-.gantt-row:last-child{border-bottom:none}
-.gantt-row:hover{background:var(--bg3)}
-.gantt-proj-name{width:130px;flex-shrink:0;padding:6px 12px;border-right:1px solid var(--border);font-size:11px;font-weight:500;color:var(--text1)}
-.gantt-proj-metal{font-size:8px;color:var(--text3);font-family:'Share Tech Mono',monospace;display:block;margin-top:1px}
-.gantt-bars{flex:1;position:relative;height:36px}
-.gantt-bar{position:absolute;height:16px;top:10px;border-radius:3px;display:flex;align-items:center;padding:0 5px;font-family:'Share Tech Mono',monospace;font-size:7px;color:rgba(255,255,255,0.9);white-space:nowrap;overflow:hidden;font-weight:500;cursor:default}
-.gantt-bar.predicted{opacity:0.55;border:1px dashed rgba(255,255,255,0.4)}
-.gantt-now-line{position:absolute;top:0;bottom:0;width:2px;background:var(--amber);z-index:10;pointer-events:none}
-.gantt-now-line::before{content:'HOY';position:absolute;top:-18px;left:50%;transform:translateX(-50%);font-family:'Share Tech Mono',monospace;font-size:7px;color:var(--amber);white-space:nowrap}
-.gantt-legend{display:flex;flex-wrap:wrap;gap:10px;padding:12px 16px;border-top:1px solid var(--border);background:var(--bg3)}
-.gantt-leg{display:flex;align-items:center;gap:5px;font-size:9px;color:var(--text3);font-family:'Share Tech Mono',monospace}
-.gantt-leg-box{width:14px;height:8px;border-radius:2px;flex-shrink:0}
-.gantt-leg-box.pred{opacity:0.55;border:1px dashed rgba(0,0,0,0.3)}
+.gx-toolbar{display:flex;gap:6px;flex-wrap:wrap;align-items:center;margin-bottom:14px}
+.gx-vbtn{font-family:'Share Tech Mono',monospace;font-size:10px;letter-spacing:1px;padding:8px 13px;border:1px solid var(--border2);background:var(--bg2);color:var(--text2);border-radius:6px;cursor:pointer;transition:.15s all;-webkit-tap-highlight-color:transparent}
+.gx-vbtn:hover{border-color:var(--border3);color:var(--text1)}
+.gx-vbtn.on{background:var(--amber);color:#FFF8EC;border-color:var(--amber)}
+.gx-hint{font-family:'Share Tech Mono',monospace;font-size:9px;color:var(--text4);letter-spacing:.5px}
+.gx-panel{position:relative;background:var(--bg2);border:1px solid var(--border);border-radius:12px;margin-bottom:16px}
+.gx-scroll{overflow-x:auto;overflow-y:hidden;border-radius:12px 12px 0 0;-webkit-overflow-scrolling:touch}
+.gx-inner{width:max-content;min-width:100%}
+.gx-row{display:flex;align-items:stretch;border-bottom:1px solid var(--border)}
+.gx-row:last-child{border-bottom:none}
+.gx-axis{border-bottom:2px solid var(--border2)}
+.gx-lbl{position:sticky;left:0;z-index:3;flex:0 0 auto;background:var(--bg2);border-right:1px solid var(--border2);padding:9px 12px;display:flex;flex-direction:column;justify-content:center;gap:1px;overflow:hidden}
+.gx-axis .gx-lbl{background:var(--bg3)}
+.gx-axis .gx-track{background:var(--bg3)}
+.gx-name{font-family:'Bebas Neue',sans-serif;font-size:16px;letter-spacing:1.2px;color:var(--text1);line-height:1.1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.gx-meta{font-family:'Share Tech Mono',monospace;font-size:8px;letter-spacing:.5px;color:var(--text4);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.gx-stat{font-family:'Share Tech Mono',monospace;font-size:8px;letter-spacing:.5px;color:var(--amber);white-space:nowrap;margin-top:3px}
+.gx-stat b{font-size:13px;font-weight:400}
+.gx-stat.proy{color:var(--text3)}
+.gx-colhead{font-family:'Share Tech Mono',monospace;font-size:8px;letter-spacing:1.5px;color:var(--text3)}
+.gx-track{position:relative;flex:0 0 auto;height:66px}
+.gx-axis .gx-track{height:36px}
+.gx-tick{position:absolute;top:0;bottom:0;width:1px;background:var(--border);pointer-events:none}
+.gx-tick.major{background:var(--border2)}
+.gx-tlab{position:absolute;top:11px;transform:translateX(-50%);font-family:'Share Tech Mono',monospace;font-size:10px;color:var(--text3);white-space:nowrap}
+.gx-tlab.major{color:var(--text2)}
+.gx-tlab.zero{color:var(--amber);font-weight:700}
+.gx-bar{position:absolute;top:18px;height:30px;border-radius:4px;display:flex;align-items:center;padding:0 7px;font-family:'Share Tech Mono',monospace;font-size:10px;color:#FFFDF8;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;cursor:pointer;box-shadow:0 0 0 2px var(--bg2);-webkit-tap-highlight-color:transparent}
+.gx-bar.pred{background-image:repeating-linear-gradient(45deg,rgba(255,255,255,.32) 0 4px,transparent 4px 10px)}
+.gx-bar:hover,.gx-bar.sel{filter:brightness(1.14);box-shadow:0 0 0 2px var(--bg2),0 3px 10px rgba(0,0,0,.22)}
+.gx-zero{position:absolute;top:0;bottom:0;width:2px;background:var(--amber);z-index:2;pointer-events:none}
+.gx-zero.dash{width:0;border-left:2px dashed var(--amber-mid);opacity:.65}
+.gx-chip{position:absolute;top:6px;transform:translateX(-50%);background:var(--amber);color:#FFF8EC;font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:1px;padding:3px 8px;border-radius:4px;white-space:nowrap;z-index:4}
+.gx-hoy{position:absolute;top:11px;width:9px;height:9px;border-radius:50%;background:var(--amber);border:2px solid var(--bg2);transform:translateX(-50%);z-index:3;pointer-events:none}
+.gx-tip{position:absolute;z-index:30;pointer-events:none;background:var(--led-bg);color:#EDE7DC;border-radius:8px;padding:9px 12px;font-family:'Share Tech Mono',monospace;font-size:11px;line-height:1.65;box-shadow:0 10px 28px rgba(0,0,0,.30);opacity:0;transform:translate(-50%,-100%);transition:opacity .12s;max-width:250px;white-space:normal}
+.gx-tip.on{opacity:1}
+.gx-tip b{color:#FFC46B;font-size:12px;display:block;margin-bottom:3px;letter-spacing:.5px}
+.gx-tip .pj{color:#8FB4D8}
+.gx-legend{display:flex;flex-wrap:wrap;gap:9px 16px;padding:12px 14px;border-top:1px solid var(--border);background:var(--bg3);border-radius:0 0 12px 12px}
+.gx-leg{display:flex;align-items:center;gap:6px;font-family:'Share Tech Mono',monospace;font-size:10px;color:var(--text2)}
+.gx-swatch{width:17px;height:11px;border-radius:3px;flex-shrink:0}
+.gx-swatch.pred{background-image:repeating-linear-gradient(45deg,rgba(255,255,255,.32) 0 4px,transparent 4px 10px)}
+.gx-rank{display:grid;grid-template-columns:repeat(auto-fit,minmax(128px,1fr));gap:8px;margin-bottom:16px}
+.gx-rcard{background:var(--bg2);border:1px solid var(--border);border-left:3px solid var(--border3);border-radius:8px;padding:10px 12px;display:flex;flex-direction:column}
+.gx-rname{font-family:'Bebas Neue',sans-serif;font-size:15px;letter-spacing:1px;color:var(--text1);line-height:1.15;min-height:2.3em}
+.gx-rnum{font-family:'Share Tech Mono',monospace;font-size:26px;color:var(--amber);line-height:1.15;margin-top:3px;white-space:nowrap}
+.gx-rnum small{font-size:9px;color:var(--text3);letter-spacing:1px}
+.gx-rfoot{font-family:'Share Tech Mono',monospace;font-size:8px;color:var(--text4);letter-spacing:.5px;margin-top:4px;line-height:1.5}
 .gantt-note{background:var(--bg3);border:1px solid var(--border);border-left:2px solid var(--amber-mid);border-radius:var(--radius);padding:10px 14px;font-size:11px;color:var(--text2);line-height:1.6;margin-bottom:16px;font-family:'Share Tech Mono',monospace}
 </style>
 </head>
@@ -671,73 +699,212 @@ function renderGantt(){
   if(!predRendered){predRendered=true;_buildPred();}
 }
 
+// ── COMPARACIÓN DE CICLOS DE VIDA ─────────────────────────────────────────────
+const GX_FAM=[
+  {c:'#D97E23',l:'Exploración'},
+  {c:'#2E8FE0',l:'Estudios y permisos'},
+  {c:'#7B35B8',l:'Construcción'},
+  {c:'#1E7A45',l:'Producción'},
+  {c:'#C0392B',l:'Cierre / suspensión'},
+  {c:'#6E7684',l:'Pausa / congelado'}
+];
+const GX_HOY=2026;
+let gxView='crono';
+
+function _gxIni(p){return Math.min.apply(null,p.segmentos.map(function(s){return s.desde;}));}
+function _gxFin(p){return Math.max.apply(null,p.segmentos.map(function(s){return s.hasta;}));}
+function _gxEsc(t){const d=document.createElement('div');d.textContent=t==null?'':t;return d.innerHTML;}
+
 function _buildGantt(){
   const cont=document.getElementById('gantt-container');if(!cont)return;
-  const yearStart=1993,yearEnd=2042,span=yearEnd-yearStart;
+  if(!GANTT_PROJECTS||!GANTT_PROJECTS.length)return;
+  cont.innerHTML='';
 
   const note=document.createElement('div');note.className='gantt-note';
-  note.textContent='// Barras sólidas = hechos verificados. Barras con borde punteado = proyecciones basadas en datos públicos, cronogramas corporativos y tendencias. Fuentes: NI 43-101, JORC, reportes corporativos y resoluciones RIGI. Actualizado a agosto 2026.';
+  note.textContent='// Cada barra es una etapa del ciclo de vida. Las barras rayadas en diagonal son proyecciones, no hechos verificados. Tocá cualquier barra para ver el detalle. Fuentes: NI 43-101, JORC, reportes corporativos y resoluciones RIGI. Actualizado a agosto 2026.';
   cont.appendChild(note);
 
-  const wrap=document.createElement('div');wrap.className='gantt-container';
-
-  // Header
-  const hdr=document.createElement('div');hdr.className='gantt-header-row';
-  const pc=document.createElement('div');pc.className='gantt-proj-col';pc.textContent='PROYECTO';hdr.appendChild(pc);
-  const tl=document.createElement('div');tl.style.cssText='flex:1;position:relative;height:32px;overflow:hidden';
-  for(let y=yearStart;y<=yearEnd;y++){
-    if((y-yearStart)%3!==0)continue;
-    const tick=document.createElement('div');
-    tick.style.cssText=`position:absolute;left:${(y-yearStart)/span*100}%;transform:translateX(-50%);top:0;bottom:0;display:flex;align-items:center;justify-content:center;font-family:'Share Tech Mono',monospace;font-size:8px;color:${y===2026?'var(--amber)':'var(--text3)'};font-weight:${y===2026?700:400};white-space:nowrap;`;
-    tick.textContent=y;tl.appendChild(tick);
-  }
-  hdr.appendChild(tl);wrap.appendChild(hdr);
-
-  GANTT_PROJECTS.forEach(proj=>{
-    const row=document.createElement('div');row.className='gantt-row';
-    const nc=document.createElement('div');nc.className='gantt-proj-name';
-    nc.style.borderLeft=`3px solid ${proj.color}`;
-    nc.innerHTML=`${proj.nombre}<span class="gantt-proj-metal">${proj.metal}</span>`;
-    row.appendChild(nc);
-    const bars=document.createElement('div');bars.className='gantt-bars';
-    // Grid lines
-    for(let y=yearStart;y<=yearEnd;y++){
-      if((y-yearStart)%3!==0)continue;
-      const gl=document.createElement('div');
-      gl.style.cssText=`position:absolute;left:${(y-yearStart)/span*100}%;top:0;bottom:0;width:1px;background:var(--border);pointer-events:none`;
-      bars.appendChild(gl);
-    }
-    // Now line
-    const nl=document.createElement('div');
-    nl.style.cssText=`position:absolute;left:${(2026-yearStart)/span*100}%;top:-8px;bottom:0;width:2px;background:var(--amber-mid);z-index:5`;
-    nl.title='Hoy (2026)';bars.appendChild(nl);
-    // Segments
-    proj.segmentos.forEach(seg=>{
-      const left=(seg.desde-yearStart)/span*100;
-      const width=(seg.hasta-seg.desde)/span*100;
-      const b=document.createElement('div');b.className='gantt-bar'+(seg.pred?' predicted':'');
-      b.style.left=left+'%';b.style.width=width+'%';b.style.background=seg.c;
-      if(seg.pred)b.style.borderColor=seg.c;
-      const dur=seg.hasta-seg.desde;
-      if(dur>=3)b.textContent=seg.e;
-      b.title=`${seg.e}: ${seg.desde}–${seg.hasta} (${dur} años)`;
-      bars.appendChild(b);
-    });
-    row.appendChild(bars);wrap.appendChild(row);
+  const rank=document.createElement('div');rank.className='gx-rank';
+  GANTT_PROJECTS.slice().sort(function(a,b){return (a.t0-_gxIni(a))-(b.t0-_gxIni(b));}).forEach(function(p){
+    const anios=p.t0-_gxIni(p);
+    const c=document.createElement('div');c.className='gx-rcard';c.style.borderLeftColor=p.color;
+    c.innerHTML='<div class="gx-rname">'+_gxEsc(p.nombre)+'</div>'+
+      '<div class="gx-rnum">'+anios+' <small>AÑOS</small></div>'+
+      '<div class="gx-rfoot">hasta 1ª producción<br>'+_gxIni(p)+' → '+p.t0+(p.t0_proyectado?' · PROYECTADO':'')+'</div>';
+    rank.appendChild(c);
   });
+  cont.appendChild(rank);
 
-  // Legend
-  const leg=document.createElement('div');leg.className='gantt-legend';
-  [{c:'#EF9F27',l:'Exploración'},{c:'#D85A30',l:'Expl. avanzada'},{c:'#185FA5',l:'Factibilidad/EIA'},{c:'#534AB7',l:'Construcción'},{c:'#1E7A45',l:'Producción'},{c:'#5DCAA5',l:'Expansión'},{c:'#C0392B',l:'Cierre/Suspensión'},{c:'#BF5AF2',l:'Reactivación'},{c:'#888',l:'Congelado'}].forEach(it=>{
-    const item=document.createElement('div');item.className='gantt-leg';
-    item.innerHTML=`<div class="gantt-leg-box" style="background:${it.c}"></div>${it.l}`;
-    leg.appendChild(item);
+  const tb=document.createElement('div');tb.className='gx-toolbar';
+  [['crono','◈ CRONOLÓGICO'],['alin','⊹ ALINEADO EN 1ª PRODUCCIÓN']].forEach(function(v){
+    const b=document.createElement('button');b.type='button';
+    b.className='gx-vbtn'+(gxView===v[0]?' on':'');b.textContent=v[1];
+    b.onclick=function(){gxView=v[0];_buildGantt();};
+    tb.appendChild(b);
   });
-  const pi=document.createElement('div');pi.className='gantt-leg';
-  pi.innerHTML=`<div class="gantt-leg-box pred" style="background:#888"></div>Proyectado`;
-  leg.appendChild(pi);wrap.appendChild(leg);
-  cont.appendChild(wrap);
+  const hint=document.createElement('div');hint.className='gx-hint';
+  hint.textContent=gxView==='crono'?'// deslizá la línea de tiempo →':'// cada proyecto alineado en su 12:00';
+  tb.appendChild(hint);
+  cont.appendChild(tb);
+
+  cont.appendChild(_gxChart());
 }
+
+function _gxChart(){
+  const mob=window.innerWidth<560;
+  const PPY=mob?13:17;
+  const LBLW=mob?132:204;
+  const aligned=gxView==='alin';
+
+  let x0,x1;
+  if(aligned){
+    x0=-Math.max.apply(null,GANTT_PROJECTS.map(function(p){return p.t0-_gxIni(p);}));
+    x1= Math.max.apply(null,GANTT_PROJECTS.map(function(p){return _gxFin(p)-p.t0;}));
+  }else{
+    x0=Math.min.apply(null,GANTT_PROJECTS.map(_gxIni));
+    x1=Math.max.apply(null,GANTT_PROJECTS.map(_gxFin));
+  }
+  x0=Math.floor(x0/5)*5;x1=Math.ceil(x1/5)*5;
+  const W=(x1-x0)*PPY;
+  const px=function(v){return (v-x0)*PPY;};
+
+  const panel=document.createElement('div');panel.className='gx-panel';
+  const scroll=document.createElement('div');scroll.className='gx-scroll';
+  const inner=document.createElement('div');inner.className='gx-inner';
+
+  const tip=document.createElement('div');tip.className='gx-tip';panel.appendChild(tip);
+  let selBar=null;
+  function hideTip(){tip.classList.remove('on');if(selBar){selBar.classList.remove('sel');selBar=null;}}
+  function showTip(bar,html){
+    tip.innerHTML=html;tip.classList.add('on');
+    if(selBar)selBar.classList.remove('sel');
+    selBar=bar;bar.classList.add('sel');
+    const pr=panel.getBoundingClientRect(),br=bar.getBoundingClientRect();
+    let left=br.left-pr.left+br.width/2;
+    const half=Math.min(250,tip.offsetWidth)/2+8;
+    left=Math.max(half,Math.min(pr.width-half,left));
+    tip.style.left=left+'px';
+    tip.style.top=(br.top-pr.top-8)+'px';
+  }
+  scroll.addEventListener('scroll',hideTip,{passive:true});
+
+  // ── Eje ──
+  const axis=document.createElement('div');axis.className='gx-row gx-axis';
+  const al=document.createElement('div');al.className='gx-lbl';
+  al.style.width=LBLW+'px';al.style.flexBasis=LBLW+'px';
+  al.innerHTML='<div class="gx-colhead">PROYECTO</div><div class="gx-meta">'+
+    (aligned?'AÑOS ANTES / DESPUÉS':'AÑO CALENDARIO')+'</div>';
+  axis.appendChild(al);
+  const at=document.createElement('div');at.className='gx-track';at.style.width=W+'px';
+  for(let v=x0;v<=x1;v+=5){
+    const major=aligned?(v%10===0):(v%10===0);
+    const t=document.createElement('div');t.className='gx-tick'+(major?' major':'');
+    t.style.left=px(v)+'px';at.appendChild(t);
+    const lb=document.createElement('div');
+    lb.className='gx-tlab'+(major?' major':'')+(aligned&&v===0?' zero':'');
+    const lx=px(v);
+    lb.style.left=lx+'px';
+    if(lx<24)lb.style.transform='translateX(0)';
+    else if(lx>W-24)lb.style.transform='translateX(-100%)';
+    lb.textContent=aligned?(v===0?'1ª PROD.':(v>0?'+'+v:String(v))):String(v);
+    at.appendChild(lb);
+  }
+  const zx=aligned?px(0):px(GX_HOY);
+  const chip=document.createElement('div');chip.className='gx-chip';chip.style.left=zx+'px';
+  chip.textContent=aligned?'1ª PRODUCCIÓN':'HOY '+GX_HOY;
+  at.appendChild(chip);
+  axis.appendChild(at);inner.appendChild(axis);
+
+  // ── Filas ──
+  GANTT_PROJECTS.forEach(function(p){
+    const off=aligned?-p.t0:0;
+    const row=document.createElement('div');row.className='gx-row';
+    const lbl=document.createElement('div');lbl.className='gx-lbl';
+    lbl.style.width=LBLW+'px';lbl.style.flexBasis=LBLW+'px';
+    lbl.style.borderLeft='3px solid '+p.color;
+    const anios=p.t0-_gxIni(p);
+    lbl.innerHTML='<div class="gx-name">'+_gxEsc(p.nombre)+'</div>'+
+      '<div class="gx-meta">'+_gxEsc(p.metal)+'</div>'+
+      '<div class="gx-stat'+(p.t0_proyectado?' proy':'')+'"><b>'+anios+'</b> AÑOS A PRODUCCIÓN'+
+      (p.t0_proyectado?' *':'')+'</div>';
+    row.appendChild(lbl);
+
+    const tr=document.createElement('div');tr.className='gx-track';tr.style.width=W+'px';
+    for(let v=x0;v<=x1;v+=5){
+      const g=document.createElement('div');
+      g.className='gx-tick'+(v%10===0?' major':'');g.style.left=px(v)+'px';tr.appendChild(g);
+    }
+    const zl=document.createElement('div');
+    zl.className='gx-zero'+(aligned?'':'');zl.style.left=zx+'px';tr.appendChild(zl);
+
+    p.segmentos.forEach(function(s){
+      const a=px(s.desde+off),b=px(s.hasta+off);
+      const w=Math.max(4,b-a);
+      const el=document.createElement('div');
+      el.className='gx-bar'+(s.pred?' pred':'');
+      el.style.left=a+'px';el.style.width=w+'px';el.style.backgroundColor=s.c;
+      const dur=s.hasta-s.desde;
+      if(w>46)el.textContent=s.e;
+      const html='<span class="pj">'+_gxEsc(p.nombre)+'</span><b>'+_gxEsc(s.e)+'</b>'+
+        s.desde+' → '+s.hasta+' · '+dur+(dur===1?' año':' años')+
+        (s.pred?'<br><span class="pj">◇ proyección, no verificado</span>':'');
+      el.setAttribute('aria-label',p.nombre+': '+s.e+', '+s.desde+' a '+s.hasta);
+      el.addEventListener('mouseenter',function(){showTip(el,html);});
+      el.addEventListener('mouseleave',function(){if(!('ontouchstart' in window))hideTip();});
+      el.addEventListener('click',function(ev){ev.stopPropagation();
+        if(selBar===el)hideTip();else showTip(el,html);});
+      tr.appendChild(el);
+    });
+
+    if(aligned){
+      const hx=px(GX_HOY-p.t0);
+      if(hx>=0&&hx<=W){
+        const dot=document.createElement('div');dot.className='gx-hoy';
+        dot.style.left=hx+'px';dot.title='Hoy: '+GX_HOY;tr.appendChild(dot);
+      }
+    }
+    row.appendChild(tr);inner.appendChild(row);
+  });
+
+  scroll.appendChild(inner);panel.appendChild(scroll);
+  // Abrir centrado en la línea de referencia (HOY / 1ª producción), no en el vacío inicial
+  requestAnimationFrame(function(){
+    const vis=scroll.clientWidth-LBLW;
+    if(vis>0&&zx>vis*0.55)scroll.scrollLeft=zx-vis*0.55;
+  });
+  panel.addEventListener('click',function(e){if(!e.target.closest('.gx-bar'))hideTip();});
+
+  const leg=document.createElement('div');leg.className='gx-legend';
+  GX_FAM.forEach(function(f){
+    const i=document.createElement('div');i.className='gx-leg';
+    i.innerHTML='<span class="gx-swatch" style="background-color:'+f.c+'"></span>'+f.l;
+    leg.appendChild(i);
+  });
+  const pr=document.createElement('div');pr.className='gx-leg';
+  pr.innerHTML='<span class="gx-swatch pred" style="background-color:#A89878"></span>Proyectado';
+  leg.appendChild(pr);
+  if(aligned){
+    const hy=document.createElement('div');hy.className='gx-leg';
+    hy.innerHTML='<span class="gx-swatch" style="background-color:var(--amber);border-radius:50%;width:11px;height:11px"></span>Hoy ('+GX_HOY+')';
+    leg.appendChild(hy);
+  }
+  panel.appendChild(leg);
+
+  if(GANTT_PROJECTS.some(function(p){return p.t0_proyectado;})){
+    const fn=document.createElement('div');fn.className='gx-hint';
+    fn.style.cssText='padding:0 2px 4px';
+    fn.textContent='* La primera producción todavía no ocurrió: el año es el proyectado por la empresa.';
+    panel.appendChild(fn);
+  }
+  return panel;
+}
+
+let _gxRT=null;
+window.addEventListener('resize',function(){
+  if(!ganttRendered)return;
+  clearTimeout(_gxRT);
+  _gxRT=setTimeout(function(){_buildGantt();},250);
+});
 
 function _buildPred(){
   const cont=document.getElementById('pred-container');if(!cont)return;
