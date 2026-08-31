@@ -1,6 +1,6 @@
 {
   "meta": {
-    "version": "v11",
+    "version": "v12",
     "fuente": "Datos verificados NI 43-101 / JORC / reportes corporativos, resoluciones oficiales y prensa especializada hasta el 30/08/2026",
     "actualizado": "2026-08",
     "nota": "Fuente única de datos. La consumen el sitio (index.html), el kiosko (kiosk.html) y los generadores de Instagram (ig/)."
@@ -1002,25 +1002,25 @@
           "e": "Exploración",
           "desde": 1994,
           "hasta": 2002,
-          "c": "#EF9F27"
+          "c": "#D97E23"
         },
         {
           "e": "Pre-factibilidad",
           "desde": 2002,
           "hasta": 2006,
-          "c": "#D85A30"
+          "c": "#2E8FE0"
         },
         {
           "e": "Factibilidad+EIA",
           "desde": 2006,
           "hasta": 2009,
-          "c": "#185FA5"
+          "c": "#2E8FE0"
         },
         {
           "e": "Construcción",
           "desde": 2009,
           "hasta": 2013,
-          "c": "#534AB7"
+          "c": "#7B35B8"
         },
         {
           "e": "Suspensión/Litigios",
@@ -1032,23 +1032,25 @@
           "e": "Congelado",
           "desde": 2020,
           "hasta": 2026,
-          "c": "#888"
+          "c": "#6E7684"
         },
         {
           "e": "Reactivación? (El Alto)",
           "desde": 2026,
           "hasta": 2029,
-          "c": "#BF5AF2",
+          "c": "#2E8FE0",
           "pred": true
         },
         {
           "e": "Producción proyectada",
           "desde": 2029,
           "hasta": 2040,
-          "c": "#1A7A3A",
+          "c": "#1E7A45",
           "pred": true
         }
-      ]
+      ],
+      "t0": 2029,
+      "t0_proyectado": true
     },
     {
       "nombre": "Gualcamayo",
@@ -1059,25 +1061,25 @@
           "e": "Exploración inicial",
           "desde": 1994,
           "hasta": 2000,
-          "c": "#EF9F27"
+          "c": "#D97E23"
         },
         {
           "e": "Exploración avanzada",
           "desde": 2000,
           "hasta": 2005,
-          "c": "#D85A30"
+          "c": "#D97E23"
         },
         {
           "e": "Factibilidad+EIA",
           "desde": 2005,
           "hasta": 2007,
-          "c": "#185FA5"
+          "c": "#2E8FE0"
         },
         {
           "e": "Construcción",
           "desde": 2007,
           "hasta": 2009,
-          "c": "#534AB7"
+          "c": "#7B35B8"
         },
         {
           "e": "Producción comercial",
@@ -1095,7 +1097,7 @@
           "e": "DCP - Construcción POX",
           "desde": 2027,
           "hasta": 2029,
-          "c": "#1A50A0",
+          "c": "#7B35B8",
           "pred": true
         },
         {
@@ -1105,7 +1107,9 @@
           "c": "#1E7A45",
           "pred": true
         }
-      ]
+      ],
+      "t0": 2009,
+      "t0_proyectado": false
     },
     {
       "nombre": "Veladero",
@@ -1116,25 +1120,25 @@
           "e": "Exploración",
           "desde": 1994,
           "hasta": 1999,
-          "c": "#EF9F27"
+          "c": "#D97E23"
         },
         {
           "e": "Expl. avanzada",
           "desde": 1999,
           "hasta": 2002,
-          "c": "#D85A30"
+          "c": "#D97E23"
         },
         {
           "e": "Factibilidad+EIA",
           "desde": 2002,
           "hasta": 2004,
-          "c": "#185FA5"
+          "c": "#2E8FE0"
         },
         {
           "e": "Construcción",
           "desde": 2004,
           "hasta": 2005,
-          "c": "#534AB7"
+          "c": "#7B35B8"
         },
         {
           "e": "Producción (20 años)",
@@ -1146,7 +1150,7 @@
           "e": "Fases 8 y 9 + RIGI US$380M",
           "desde": 2026,
           "hasta": 2035,
-          "c": "#5DCAA5",
+          "c": "#1E7A45",
           "pred": true
         },
         {
@@ -1156,7 +1160,9 @@
           "c": "#C0392B",
           "pred": true
         }
-      ]
+      ],
+      "t0": 2005,
+      "t0_proyectado": false
     },
     {
       "nombre": "Hualilán",
@@ -1167,16 +1173,16 @@
           "e": "Exploración (Challenger)",
           "desde": 2019,
           "hasta": 2023,
-          "c": "#EF9F27"
+          "c": "#D97E23"
         },
         {
           "e": "PFS + EIA",
           "desde": 2023,
           "hasta": 2025,
-          "c": "#185FA5"
+          "c": "#2E8FE0"
         },
         {
-          "e": "Toll milling (Casposo)",
+          "e": "Puesta en marcha + toll milling",
           "desde": 2025,
           "hasta": 2026,
           "c": "#1E7A45"
@@ -1185,7 +1191,7 @@
           "e": "Pausa + planta propia Ullum",
           "desde": 2026,
           "hasta": 2029,
-          "c": "#8B5E3C",
+          "c": "#6E7684",
           "pred": true
         },
         {
@@ -1199,10 +1205,12 @@
           "e": "Madurez / expansión",
           "desde": 2043,
           "hasta": 2048,
-          "c": "#97C459",
+          "c": "#1E7A45",
           "pred": true
         }
-      ]
+      ],
+      "t0": 2026,
+      "t0_proyectado": false
     },
     {
       "nombre": "Los Azules",
@@ -1213,25 +1221,25 @@
           "e": "Exploración",
           "desde": 2008,
           "hasta": 2018,
-          "c": "#EF9F27"
+          "c": "#D97E23"
         },
         {
           "e": "PEA + PFS",
           "desde": 2018,
           "hasta": 2022,
-          "c": "#D85A30"
+          "c": "#2E8FE0"
         },
         {
           "e": "FS + EIA + RIGI + financiamiento",
           "desde": 2022,
           "hasta": 2027,
-          "c": "#185FA5"
+          "c": "#2E8FE0"
         },
         {
           "e": "Construcción (FID mediados 2027)",
           "desde": 2027,
           "hasta": 2030,
-          "c": "#534AB7",
+          "c": "#7B35B8",
           "pred": true
         },
         {
@@ -1241,7 +1249,9 @@
           "c": "#1E7A45",
           "pred": true
         }
-      ]
+      ],
+      "t0": 2030,
+      "t0_proyectado": true
     },
     {
       "nombre": "Vicuña / Josemaría",
@@ -1252,25 +1262,25 @@
           "e": "Exploración",
           "desde": 2010,
           "hasta": 2019,
-          "c": "#EF9F27"
+          "c": "#D97E23"
         },
         {
           "e": "PEA + estudios",
           "desde": 2019,
           "hasta": 2026,
-          "c": "#D85A30"
+          "c": "#2E8FE0"
         },
         {
           "e": "RIGI + 500 kV + obras tempranas",
           "desde": 2026,
           "hasta": 2027,
-          "c": "#185FA5"
+          "c": "#2E8FE0"
         },
         {
           "e": "Construcción etapa 1",
           "desde": 2027,
           "hasta": 2030,
-          "c": "#534AB7",
+          "c": "#7B35B8",
           "pred": true
         },
         {
@@ -1280,7 +1290,9 @@
           "c": "#1E7A45",
           "pred": true
         }
-      ]
+      ],
+      "t0": 2030,
+      "t0_proyectado": true
     },
     {
       "nombre": "Casposo",
@@ -1291,13 +1303,13 @@
           "e": "Exploración (Intrepid)",
           "desde": 1998,
           "hasta": 2009,
-          "c": "#EF9F27"
+          "c": "#D97E23"
         },
         {
           "e": "Construcción (Troy)",
           "desde": 2009,
           "hasta": 2011,
-          "c": "#534AB7"
+          "c": "#7B35B8"
         },
         {
           "e": "Producción 1ª fase",
@@ -1309,13 +1321,13 @@
           "e": "C&M / cuidado (Austral)",
           "desde": 2019,
           "hasta": 2025,
-          "c": "#8B5E3C"
+          "c": "#6E7684"
         },
         {
           "e": "Reactivación 2ª fase",
           "desde": 2025,
           "hasta": 2032,
-          "c": "#5DCAA5"
+          "c": "#1E7A45"
         },
         {
           "e": "Cierre proyectado",
@@ -1324,7 +1336,9 @@
           "c": "#C0392B",
           "pred": true
         }
-      ]
+      ],
+      "t0": 2011,
+      "t0_proyectado": false
     }
   ],
   "predicciones": [
