@@ -1,5 +1,5 @@
 # RELOJ MINERO SAN JUAN — CONTEXTO COMPLETO PARA CLAUDE CODE
-**Cuenta:** @sanjuanminero · **Versión actual:** v12 · **Última actualización del contexto:** agosto 2026
+**Cuenta:** @sanjuanminero · **Versión actual:** v13 · **Última actualización del contexto:** agosto 2026
 **Objetivo de esta sesión de Code:** automatizar (a) la publicación del sitio y (b) la generación de contenido para Instagram.
 
 > Este documento resume TODO lo trabajado en las sesiones previas (concepto, datos, diseño, generador de Instagram, publicación). Pegalo como `CONTEXTO.md` o `CLAUDE.md` en la raíz del repo para que Claude Code tenga el panorama completo desde el primer prompt.
@@ -68,7 +68,7 @@ Orden de render: `cierre → produccion → preproduccion → exploracion_avanza
 
 > **Fuente única de verdad: `data/proyectos.json`.** El `index.html` y el `kiosk.html` lo consumen por `fetch`; ya no hay array `DATA` hardcodeado. El JSON tiene cuatro bloques: `meta`, `proyectos[]`, `logos{}`, `gantt[]` y `predicciones[]`. Validar siempre con `npm run validate` (o `node scripts/validate.js`) antes de pushear.
 
-**Estado v11 — 24 proyectos, datos verificados al 30/08/2026.**
+**Estado v13 — 27 proyectos, datos verificados al 30/08/2026.**
 
 ### En producción
 | Proyecto | Empresa | Metal | Depto | Hora |
@@ -100,9 +100,12 @@ Orden de render: `cierre → produccion → preproduccion → exploracion_avanza
 |---|---|---|---|---|
 | Zorro | Sable Resources | Cu/Au | Iglesia | 02:45 |
 | TMT | Vantage Metals (ex Belararox) | Cu/Au | Iglesia | 03:00 |
-| Vanesa I y II | Fortescue Argentina | Cu/Mo | Calingasta | 03:30 |
+| Nacimiento | Argentina Fortescue S.A.U. | Cu | Iglesia | 03:00 |
+| Vanesa I y II | Argentina Fortescue S.A.U. | Cu/Mo | Calingasta | 03:30 |
+| San Francisco de los Andes | Aurora Mining (King Copper Discovery) | Cu/Bi/Au/Ag | Calingasta | 03:30 |
 | El Fierro | Sable Resources / Moxico Resources | Au/Ag | Iglesia | 03:45 |
 | Don Julio | Sable Resources / South32 | Cu/Au/Mo | Iglesia | 04:00 |
+| Filo Sur | Mogotes Metals / Rio Tinto (5%) | Cu/Au/Ag/Mo | Iglesia | 04:15 |
 | Lunahuasi | NGEx Minerals / Grupo Lundin | Cu/Au/Ag | Iglesia | 04:30 |
 | Piuquenes | Andina Copper (ex Pampa Metals) | Cu/Au | Calingasta | 04:45 |
 
@@ -111,7 +114,7 @@ Orden de render: `cierre → produccion → preproduccion → exploracion_avanza
 |---|---|---|---|---|
 | La Ortiga | IPEEM / a licitar | Au/Ag | Iglesia | 02:00 |
 | Jagüelito | Shandong Gold | Au/Ag | Iglesia | 02:30 |
-| Rincones de Araya | IPEEM (licitación 2026) | Cu/Au | Iglesia | 03:00 |
+| Rincones de Araya | IPEEM (licitación 2026) | Cu/Au | Calingasta | 03:00 |
 
 ### Latente / Congelado
 | Proyecto | Empresa | Metal | Depto | Hora |
@@ -124,6 +127,8 @@ Orden de render: `cierre → produccion → preproduccion → exploracion_avanza
 > - **San Jorge** (Cu/Mo) NO está en Calingasta: es *PSJ Cobre Mendocino*, en Las Heras, **Mendoza**. Entró al RIGI en may-2026 por US$891M. El esquema bi-provincial con San Juan fue abandonado en 2025.
 > - **Chinchillas** (Ag/Pb/Zn) es una mina de **Jujuy** (SSR Mining / Puna Operations), no de Iglesia.
 > - **Puyú Mahuida** y **Río Cenicero** no tienen novedades públicas verificables; quedan fuera hasta tener datos citables.
+> - **"Río Blanco" de Fortescue NO EXISTE.** Aparece en una sola nota de prensa (Tiempo de San Juan, 15/01/2026) y en ninguna otra fuente. El sitio oficial de Fortescue lista exactamente dos proyectos en Argentina: **Nacimiento** y **Susana** (Calingasta). Probable confusión con Susana o con Río Salinas. No cargarlo.
+> - **"Sayanca"** (Fortescue, Iglesia) aparece sólo en un agregador sin citas. Sin corroborar, no cargar.
 
 ### Estructura de cada objeto de `proyectos[]`
 `nombre, etapa, hora, empresa, metal, depto, frozen, desc, recursos, historial[], nota_hist, factores[]`
@@ -362,3 +367,30 @@ Las 5 familias categóricas **pasan la validación completa** (`scripts/validate
 
 ### Bug de layout corregido de paso
 `.gantt-inner` tenía `min-width:620px`, heredado del layout viejo: en mobile empujaba toda la sección y cortaba el texto de la nota y las tarjetas. El scroll ahora vive sólo en `.gx-scroll`, que es el único elemento que debe desbordar.
+
+---
+
+## 14. ALTAS v13 (agosto 2026) — 3 proyectos nuevos, total 27
+
+| Proyecto | Etapa | Hora | Empresa | Depto | Metal |
+|---|---|---|---|---|---|
+| **Filo Sur** | exploración | 04:15 | Mogotes Metals / Rio Tinto (5%) | Iglesia | Cu/Au/Ag/Mo |
+| **San Francisco de los Andes** | exploración | 03:30 | Aurora Mining (King Copper Discovery) | Calingasta | Cu/Bi/Au/Ag |
+| **Nacimiento** | exploración | 03:00 | Argentina Fortescue S.A.U. | Iglesia | Cu |
+
+### Por qué esas horas
+- **Filo Sur 04:15** — entre Don Julio (04:00) y Lunahuasi (04:30). Tiene dos descubrimientos en su primera temporada completa (Cruz del Sur en mayo, Albor en junio; FS_DDH_016: 180 m @ 0,98% CuEq incl. 58 m @ 1,77%) y a Rio Tinto como socio, pero sólo 6.207 m perforados contra los 27.318 m de Lunahuasi, y ningún recurso declarado.
+- **San Francisco de los Andes 03:30** — tiene más historia que Vanesa (mina de bismuto 1940-1980, ~7.600 m perforados 2019-2023, interceptos de 72,3 m @ 3,47% Cu), pero **no perfora desde 2023**: la matriz se renombró King Copper Discovery en mar-2025 y volcó el capital a Perú (Colquemayo). La hora refleja el promedio entre un activo bueno y un dueño ausente.
+- **Nacimiento 03:00** — exploración inicial con perforación en curso pero **cero resultados publicados**. Empatado con TMT, que tampoco reporta nada.
+
+### Hallazgos que corrigen el dataset
+- **Rincones de Araya pasa a Calingasta** (era Iglesia). Confirmado por IPEEM y Diario de Cuyo. Cierra el pendiente que quedaba de v11.
+- **Fortescue se está achicando en San Juan**, no ampliando: pasó de ~5-6 áreas a 2 declaradas (Nacimiento y Susana). Soltó Rincones de Araya y Calderón-Calderoncito, que volvieron a licitación del IPEEM, y no se presentó a ese concurso. En paralelo compró Cañariaco (Perú) por US$2.160M, así que no es una salida del cobre ni de Argentina.
+- **Vanesa I y II queda en duda**: el IPEEM sigue listando a Argentina Fortescue como tenedora, pero el área ya no figura en el sitio de la empresa. Se dejó en el dataset con la ambigüedad explicitada en la descripción. Nombre societario corregido a **Argentina Fortescue S.A.U.** (no "Fortescue Argentina").
+- **Rio Tinto entró al distrito Vicuña** por la puerta de Filo Sur: US$15M cerrados el 27/08/2026, alianza técnica, exclusividad 15 meses y derecho de top-up hasta 9,99%. Sumado a su opción de US$250M sobre Altar vía Nuton, Rio Tinto ya tiene dos apuestas en San Juan.
+- **Bismuto**: San Francisco de los Andes es el único proyecto de Bi del reloj. EE.UU. lo incluyó en su lista de minerales críticos (nov-2025) y el precio saltó de ~US$6 a ~US$35/lb tras las restricciones chinas de feb-2025. Ojo: es un rasgo geológico e histórico del yacimiento, **no una tesis de inversión declarada por el titular** — la empresa siempre lo comunicó como Cu-Au-Ag.
+
+### Pendientes que siguen abiertos
+- Departamento oficial de **Filo Sur**: se cargó Iglesia por contigüidad con Filo del Sol y porque Mogotes ofertó por Bordo Atravesado (Iglesia), pero no hay fuente que lo diga de forma explícita.
+- **Adjudicación de la licitación IPEEM 2026**: sin resolver al 30/08/2026.
+- **Susana** (Fortescue, Calingasta, +4.600 msnm) es un candidato a alta futura: está confirmado por fuente primaria pero sin datos de campaña.
