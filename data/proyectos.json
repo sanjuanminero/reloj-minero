@@ -1,6 +1,6 @@
 {
   "meta": {
-    "version": "v12",
+    "version": "v13",
     "fuente": "Datos verificados NI 43-101 / JORC / reportes corporativos, resoluciones oficiales y prensa especializada hasta el 30/08/2026",
     "actualizado": "2026-08",
     "nota": "Fuente única de datos. La consumen el sitio (index.html), el kiosko (kiosk.html) y los generadores de Instagram (ig/)."
@@ -796,11 +796,11 @@
       "nombre": "Vanesa I y II",
       "etapa": "exploracion",
       "hora": "03:30",
-      "empresa": "Fortescue Argentina",
+      "empresa": "Argentina Fortescue S.A.U.",
       "metal": "Cu/Mo",
       "depto": "Calingasta",
       "frozen": false,
-      "desc": "Área en cartera de Fortescue Argentina junto al IPEEM. Sin comunicados ni novedades verificables entre marzo y agosto de 2026.",
+      "desc": "Fortescue perforó 3.610 m en seis sondajes bajo convenio con el IPEEM. Sin comunicados ni novedades verificables entre marzo y agosto de 2026, y con una ambigüedad abierta: el IPEEM sigue listando a Argentina Fortescue como tenedora, pero el área ya no figura entre los proyectos que la empresa declara en su propio sitio, donde sólo quedan Nacimiento y Susana.",
       "recursos": "Dos cuerpos identificados. Sin recurso formal.",
       "factores": [
         {
@@ -856,9 +856,9 @@
       "hora": "03:00",
       "empresa": "IPEEM (licitación 2026)",
       "metal": "Cu/Au",
-      "depto": "Iglesia",
+      "depto": "Calingasta",
       "frozen": false,
-      "desc": "El área volvió a concurso público del IPEEM en febrero de 2026, dentro del paquete de 9 áreas y 23 derechos mineros de Iglesia y Calingasta. Las ofertas se abrieron el 23 de junio: Rincones de Araya recibió una única propuesta, de Compañía Minera Aguilar San Juan. Al 30 de agosto de 2026 la adjudicación seguía sin resolverse.",
+      "desc": "El área volvió a concurso público del IPEEM en febrero de 2026, dentro del paquete de 9 áreas y 23 derechos mineros de Iglesia y Calingasta. Fortescue, que la tenía desde 2019, la soltó y ni siquiera se presentó al concurso. Las ofertas se abrieron el 23 de junio: Rincones de Araya recibió una única propuesta, de Compañía Minera Aguilar San Juan. Al 30 de agosto de 2026 la adjudicación seguía sin resolverse.",
       "recursos": "Anomalías geoquímicas. Sin recurso estimado.",
       "factores": [
         {
@@ -965,6 +965,105 @@
           "v": 70
         }
       ]
+    },
+    {
+      "nombre": "Filo Sur",
+      "etapa": "exploracion",
+      "hora": "04:15",
+      "empresa": "Mogotes Metals / Rio Tinto (5%)",
+      "metal": "Cu/Au/Ag/Mo",
+      "depto": "Iglesia",
+      "frozen": false,
+      "desc": "El descubrimiento del año en el distrito Vicuña, pegado a Filo del Sol. En su primera temporada de perforación completa (6.207 m con cuatro equipos) encontró dos sistemas: Cruz del Sur en mayo y Albor en junio. El pozo FS_DDH_016 cortó 180 m a 0,98% CuEq desde 108 m, incluyendo 58 m a 1,77% CuEq. En octubre de 2025 compró a Golden Arrow el 100% del paquete argentino, y el 27 de agosto de 2026 cerró una inversión estratégica de US$15M de Rio Tinto, con alianza técnica, exclusividad por 15 meses y derecho a subir hasta el 9,99%. Su filial Kopano Cobre ofertó además por Bordo Atravesado en la licitación del IPEEM.",
+      "recursos": "Sin recurso NI 43-101 declarado. ~10.000 ha a caballo de la frontera con Chile, más 1.303 ha opcionadas a CMP del lado chileno. Sistema de Cruz del Sur de unos 4 km por 500 m. Tesorería de C$55M (marzo 2026) más los US$15M de Rio Tinto.",
+      "factores": [
+        {
+          "l": "Descubrimiento Albor (may 2026)",
+          "v": 75
+        },
+        {
+          "l": "Socio estratégico (Rio Tinto)",
+          "v": 80
+        },
+        {
+          "l": "Financiamiento (C$55M + US$15M)",
+          "v": 90
+        },
+        {
+          "l": "Recurso formal",
+          "v": 0
+        },
+        {
+          "l": "EIA e infraestructura",
+          "v": 15
+        }
+      ]
+    },
+    {
+      "nombre": "San Francisco de los Andes",
+      "etapa": "exploracion",
+      "hora": "03:30",
+      "empresa": "Aurora Mining (King Copper Discovery)",
+      "metal": "Cu/Bi/Au/Ag",
+      "depto": "Calingasta",
+      "frozen": false,
+      "desc": "Chimenea de brecha con cemento de turmalina y cuarzo, y mina histórica de bismuto: entre los años 40 y los 80 produjo 112 toneladas de concentrado. Turmalina Metals perforó entre 2019 y 2023 con interceptos excepcionales — 72,3 m a 3,47% Cu, 100 g/t Ag y 0,71 g/t Au; 4,2 m a 8,35% Cu y 743 g/t Ag. En junio de 2026 Aurora Mining presentó la mensura de la concesión Zona Franca 2 (expte. 1124-286-A-21). Pero la matriz pasó a llamarse King Copper Discovery en marzo de 2025 y volcó su capital a Perú: no hay perforación en Argentina desde 2023 y los compromisos locales fueron prorrogados. Es el único proyecto de bismuto del reloj, un metal que EE.UU. declaró crítico en 2025.",
+      "recursos": "Sin recurso NI 43-101. La única cifra disponible es una estimación histórica de Minera Aguilar (1990), no compliant: más de 0,16 Mt a 5,4 g/t Au, 77 g/t Ag, 0,9% Cu y 0,15% Bi, sólo en la zona de enriquecimiento supergénico. La brecha sigue abierta en profundidad.",
+      "factores": [
+        {
+          "l": "Mina histórica + leyes probadas",
+          "v": 70
+        },
+        {
+          "l": "Mensura de concesión (jun 2026)",
+          "v": 55
+        },
+        {
+          "l": "Actividad de campo (sin perforar desde 2023)",
+          "v": 15
+        },
+        {
+          "l": "Recurso formal",
+          "v": 0
+        },
+        {
+          "l": "Prioridad de la matriz (capital en Perú)",
+          "v": 15
+        }
+      ]
+    },
+    {
+      "nombre": "Nacimiento",
+      "etapa": "exploracion",
+      "hora": "03:00",
+      "empresa": "Argentina Fortescue S.A.U.",
+      "metal": "Cu",
+      "depto": "Iglesia",
+      "frozen": false,
+      "desc": "Exploración inicial a 40 km de Rodeo y más de 3.500 msnm, con campaña activa en la temporada 2025-26 y perforación en curso — aunque Fortescue no publica ni metros ni resultados. Su interés es lo que dice del resto: es uno de los dos únicos proyectos que la australiana declara hoy en San Juan, junto con Susana en Calingasta. Soltó Rincones de Araya y Calderón-Calderoncito, que volvieron a licitación del IPEEM en 2026, y no se presentó a ese concurso. Su cartera provincial pasó de unas cinco áreas a dos, mientras el grupo compraba Cañariaco en Perú por US$2.160M.",
+      "recursos": "Sin recurso NI 43-101 ni resultados de perforación publicados. Superficie no informada por la empresa.",
+      "factores": [
+        {
+          "l": "Campaña activa 2025-26",
+          "v": 45
+        },
+        {
+          "l": "Respaldo financiero (Fortescue)",
+          "v": 85
+        },
+        {
+          "l": "Resultados publicados",
+          "v": 5
+        },
+        {
+          "l": "Recurso formal",
+          "v": 0
+        },
+        {
+          "l": "EIA e infraestructura",
+          "v": 12
+        }
+      ]
     }
   ],
   "logos": {
@@ -990,7 +1089,10 @@
     "Rincones de Araya": "https://logo.clearbit.com/fortescue.com",
     "Jagüelito": "https://logo.clearbit.com/shandonggold.com.cn",
     "Lama (Pascua-Lama ARG)": "https://logo.clearbit.com/barrick.com",
-    "Zorro": "https://logo.clearbit.com/sableresources.com"
+    "Zorro": "https://logo.clearbit.com/sableresources.com",
+    "Filo Sur": "https://logo.clearbit.com/mogotesmetals.com",
+    "San Francisco de los Andes": "https://logo.clearbit.com/kingcopperdiscovery.com",
+    "Nacimiento": "https://logo.clearbit.com/fortescue.com"
   },
   "gantt": [
     {
