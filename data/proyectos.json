@@ -1,6 +1,6 @@
 {
   "meta": {
-    "version": "v13",
+    "version": "v14",
     "fuente": "Datos verificados NI 43-101 / JORC / reportes corporativos, resoluciones oficiales y prensa especializada hasta el 30/08/2026",
     "actualizado": "2026-08",
     "nota": "Fuente única de datos. La consumen el sitio (index.html), el kiosko (kiosk.html) y los generadores de Instagram (ig/)."
@@ -1098,7 +1098,7 @@
     {
       "nombre": "Lama (Pascua-Lama)",
       "metal": "Au/Ag/Cu",
-      "color": "#404858",
+      "color": "#6E7684",
       "segmentos": [
         {
           "e": "Exploración",
@@ -1152,12 +1152,17 @@
         }
       ],
       "t0": 2029,
-      "t0_proyectado": true
+      "t0_proyectado": true,
+      "pais": "AR",
+      "region": "San Juan",
+      "mineral": "Au",
+      "estado": "frenado",
+      "nota": "El lado argentino del mismo yacimiento que Chile clausuró en 2020. Sigue congelado desde entonces."
     },
     {
       "nombre": "Gualcamayo",
       "metal": "Au",
-      "color": "#C0392B",
+      "color": "#1E7A45",
       "segmentos": [
         {
           "e": "Exploración inicial",
@@ -1211,12 +1216,17 @@
         }
       ],
       "t0": 2009,
-      "t0_proyectado": false
+      "t0_proyectado": false,
+      "pais": "AR",
+      "region": "San Juan",
+      "mineral": "Au",
+      "estado": "produccion",
+      "nota": null
     },
     {
       "nombre": "Veladero",
       "metal": "Au/Ag",
-      "color": "#1A7A3A",
+      "color": "#1E7A45",
       "segmentos": [
         {
           "e": "Exploración",
@@ -1264,12 +1274,17 @@
         }
       ],
       "t0": 2005,
-      "t0_proyectado": false
+      "t0_proyectado": false,
+      "pais": "AR",
+      "region": "San Juan",
+      "mineral": "Au",
+      "estado": "produccion",
+      "nota": null
     },
     {
       "nombre": "Hualilán",
       "metal": "Au/Ag/Zn",
-      "color": "#1A7A3A",
+      "color": "#6E7684",
       "segmentos": [
         {
           "e": "Exploración (Challenger)",
@@ -1312,12 +1327,17 @@
         }
       ],
       "t0": 2026,
-      "t0_proyectado": false
+      "t0_proyectado": false,
+      "pais": "AR",
+      "region": "San Juan",
+      "mineral": "Au",
+      "estado": "frenado",
+      "nota": "Coló oro en junio de 2026 y frenó el procesamiento en agosto: el reinicio depende de su planta propia."
     },
     {
       "nombre": "Los Azules",
       "metal": "Cu",
-      "color": "#1A50A0",
+      "color": "#2E8FE0",
       "segmentos": [
         {
           "e": "Exploración",
@@ -1353,12 +1373,17 @@
         }
       ],
       "t0": 2030,
-      "t0_proyectado": true
+      "t0_proyectado": true,
+      "pais": "AR",
+      "region": "San Juan",
+      "mineral": "Cu",
+      "estado": "desarrollo",
+      "nota": null
     },
     {
       "nombre": "Vicuña / Josemaría",
       "metal": "Cu/Au/Ag",
-      "color": "#B86800",
+      "color": "#2E8FE0",
       "segmentos": [
         {
           "e": "Exploración",
@@ -1394,12 +1419,17 @@
         }
       ],
       "t0": 2030,
-      "t0_proyectado": true
+      "t0_proyectado": true,
+      "pais": "AR",
+      "region": "San Juan",
+      "mineral": "Cu",
+      "estado": "desarrollo",
+      "nota": null
     },
     {
       "nombre": "Casposo",
       "metal": "Au/Ag",
-      "color": "#1A7A3A",
+      "color": "#1E7A45",
       "segmentos": [
         {
           "e": "Exploración (Intrepid)",
@@ -1440,7 +1470,1329 @@
         }
       ],
       "t0": 2011,
-      "t0_proyectado": false
+      "t0_proyectado": false,
+      "pais": "AR",
+      "region": "San Juan",
+      "mineral": "Au",
+      "estado": "produccion",
+      "nota": null
+    },
+    {
+      "nombre": "El Pachón",
+      "pais": "AR",
+      "region": "San Juan",
+      "mineral": "Cu",
+      "estado": "desarrollo",
+      "metal": "Cu/Mo",
+      "color": "#2E8FE0",
+      "t0": 2034,
+      "t0_proyectado": true,
+      "nota": "Descubierto en 1964 por St. Joe Minerals y con su primer estudio de factibilidad terminado en 1977, que nunca se ejecutó. Setenta años hasta la producción proyectada: el ciclo más largo del comparador.",
+      "segmentos": [
+        {
+          "e": "Exploración (St. Joe Minerals)",
+          "desde": 1964,
+          "hasta": 1977,
+          "c": "#D97E23"
+        },
+        {
+          "e": "Primer estudio de factibilidad",
+          "desde": 1977,
+          "hasta": 1978,
+          "c": "#2E8FE0"
+        },
+        {
+          "e": "Congelado",
+          "desde": 1978,
+          "hasta": 1994,
+          "c": "#6E7684"
+        },
+        {
+          "e": "Exploración (Cambior)",
+          "desde": 1994,
+          "hasta": 1999,
+          "c": "#D97E23"
+        },
+        {
+          "e": "Congelado",
+          "desde": 1999,
+          "hasta": 2006,
+          "c": "#6E7684"
+        },
+        {
+          "e": "Exploración (Xstrata)",
+          "desde": 2006,
+          "hasta": 2013,
+          "c": "#D97E23"
+        },
+        {
+          "e": "Estudios y permisos (Glencore, RIGI)",
+          "desde": 2013,
+          "hasta": 2029,
+          "c": "#2E8FE0"
+        },
+        {
+          "e": "Construcción",
+          "desde": 2029,
+          "hasta": 2034,
+          "c": "#7B35B8",
+          "pred": true
+        },
+        {
+          "e": "Producción proyectada",
+          "desde": 2034,
+          "hasta": 2064,
+          "c": "#1E7A45",
+          "pred": true
+        }
+      ]
+    },
+    {
+      "nombre": "Bajo de la Alumbrera",
+      "pais": "AR",
+      "region": "Catamarca",
+      "mineral": "Cu",
+      "estado": "reactivacion",
+      "metal": "Cu/Au",
+      "color": "#1E7A45",
+      "t0": 1997,
+      "t0_proyectado": false,
+      "nota": "1936 es el descubrimiento del distrito Agua de Dionisio por Abel Peirano; el pórfido se definió como económico recién en 1992-93. Cerró en 2018 y Glencore la reactiva en 2027 para después alimentar a MARA.",
+      "segmentos": [
+        {
+          "e": "Exploración (YMAD, Musto)",
+          "desde": 1936,
+          "hasta": 1993,
+          "c": "#D97E23"
+        },
+        {
+          "e": "Estudios y permisos",
+          "desde": 1993,
+          "hasta": 1995,
+          "c": "#2E8FE0"
+        },
+        {
+          "e": "Construcción",
+          "desde": 1995,
+          "hasta": 1997,
+          "c": "#7B35B8"
+        },
+        {
+          "e": "Producción",
+          "desde": 1997,
+          "hasta": 2018,
+          "c": "#1E7A45"
+        },
+        {
+          "e": "Cierre y cuidado",
+          "desde": 2018,
+          "hasta": 2026,
+          "c": "#C0392B"
+        },
+        {
+          "e": "Reinicio de producción",
+          "desde": 2027,
+          "hasta": 2031,
+          "c": "#1E7A45",
+          "pred": true
+        }
+      ]
+    },
+    {
+      "nombre": "MARA (Agua Rica)",
+      "pais": "AR",
+      "region": "Catamarca",
+      "mineral": "Cu",
+      "estado": "desarrollo",
+      "metal": "Cu/Au/Mo",
+      "color": "#2E8FE0",
+      "t0": null,
+      "t0_proyectado": false,
+      "nota": "Sesenta y siete años desde las primeras labores en Mi Vida sin producir. Presentó el RIGI en 2025 y el informe ambiental de explotación en septiembre de 2026, pero Glencore no publicó año de construcción ni de primera producción.",
+      "segmentos": [
+        {
+          "e": "Exploración",
+          "desde": 1959,
+          "hasta": 1999,
+          "c": "#D97E23"
+        },
+        {
+          "e": "Congelado",
+          "desde": 1999,
+          "hasta": 2003,
+          "c": "#6E7684"
+        },
+        {
+          "e": "Estudios y permisos",
+          "desde": 2003,
+          "hasta": 2026,
+          "c": "#2E8FE0"
+        }
+      ]
+    },
+    {
+      "nombre": "Taca Taca",
+      "pais": "AR",
+      "region": "Salta",
+      "mineral": "Cu",
+      "estado": "desarrollo",
+      "metal": "Cu/Au/Mo",
+      "color": "#2E8FE0",
+      "t0": null,
+      "t0_proyectado": false,
+      "nota": "First Quantum lo compró en 2014 por US$470M y presentó su estudio de impacto ambiental en 2019. A septiembre de 2026 sigue sin aprobar y sin fecha oficial de construcción.",
+      "segmentos": [
+        {
+          "e": "Exploración (Fabricaciones Militares)",
+          "desde": 1967,
+          "hasta": 2008,
+          "c": "#D97E23"
+        },
+        {
+          "e": "Exploración (Lumina Copper)",
+          "desde": 2008,
+          "hasta": 2013,
+          "c": "#D97E23"
+        },
+        {
+          "e": "Estudios y permisos",
+          "desde": 2013,
+          "hasta": 2026,
+          "c": "#2E8FE0"
+        }
+      ]
+    },
+    {
+      "nombre": "Cerro Negro",
+      "pais": "AR",
+      "region": "Santa Cruz",
+      "mineral": "Au",
+      "estado": "produccion",
+      "metal": "Au/Ag",
+      "color": "#1E7A45",
+      "t0": 2014,
+      "t0_proyectado": false,
+      "nota": "Dieciocho años del inicio de la exploración a la producción. En 2026 Newmont y Santa Cruz acordaron US$800M para extender la mina más allá de 2035.",
+      "segmentos": [
+        {
+          "e": "Exploración",
+          "desde": 1996,
+          "hasta": 2010,
+          "c": "#D97E23"
+        },
+        {
+          "e": "Estudios y permisos",
+          "desde": 2010,
+          "hasta": 2011,
+          "c": "#2E8FE0"
+        },
+        {
+          "e": "Construcción",
+          "desde": 2011,
+          "hasta": 2014,
+          "c": "#7B35B8"
+        },
+        {
+          "e": "Producción",
+          "desde": 2014,
+          "hasta": 2026,
+          "c": "#1E7A45"
+        },
+        {
+          "e": "Extensión de vida útil (US$800M)",
+          "desde": 2026,
+          "hasta": 2035,
+          "c": "#1E7A45",
+          "pred": true
+        }
+      ]
+    },
+    {
+      "nombre": "Cerro Moro",
+      "pais": "AR",
+      "region": "Santa Cruz",
+      "mineral": "Au",
+      "estado": "produccion",
+      "metal": "Au/Ag",
+      "color": "#1E7A45",
+      "t0": 2018,
+      "t0_proyectado": false,
+      "nota": "Descubierto en 1993 con imágenes satelitales Landsat. La decisión de construir llegó en 2016, tras la eliminación de las retenciones mineras. Es de Pan American Silver desde 2023.",
+      "segmentos": [
+        {
+          "e": "Exploración",
+          "desde": 1993,
+          "hasta": 2014,
+          "c": "#D97E23"
+        },
+        {
+          "e": "Estudios y permisos",
+          "desde": 2014,
+          "hasta": 2016,
+          "c": "#2E8FE0"
+        },
+        {
+          "e": "Construcción",
+          "desde": 2016,
+          "hasta": 2018,
+          "c": "#7B35B8"
+        },
+        {
+          "e": "Producción",
+          "desde": 2018,
+          "hasta": 2026,
+          "c": "#1E7A45"
+        },
+        {
+          "e": "Vida útil remanente",
+          "desde": 2026,
+          "hasta": 2028,
+          "c": "#1E7A45",
+          "pred": true
+        }
+      ]
+    },
+    {
+      "nombre": "Cerro Vanguardia",
+      "pais": "AR",
+      "region": "Santa Cruz",
+      "mineral": "Au",
+      "estado": "produccion",
+      "metal": "Au/Ag",
+      "color": "#1E7A45",
+      "t0": 1998,
+      "t0_proyectado": false,
+      "nota": "Se toma 1990, el concurso público de Fomicruz, como inicio verificable: circula 1976 como año de descubrimiento pero sin fuente sólida. Ocho años del concurso a la producción.",
+      "segmentos": [
+        {
+          "e": "Exploración",
+          "desde": 1990,
+          "hasta": 1996,
+          "c": "#D97E23"
+        },
+        {
+          "e": "Estudios y permisos",
+          "desde": 1996,
+          "hasta": 1997,
+          "c": "#2E8FE0"
+        },
+        {
+          "e": "Construcción",
+          "desde": 1997,
+          "hasta": 1998,
+          "c": "#7B35B8"
+        },
+        {
+          "e": "Producción",
+          "desde": 1998,
+          "hasta": 2026,
+          "c": "#1E7A45"
+        },
+        {
+          "e": "Extensión (Proyecto Michelle)",
+          "desde": 2026,
+          "hasta": 2036,
+          "c": "#1E7A45",
+          "pred": true
+        }
+      ]
+    },
+    {
+      "nombre": "Escondida",
+      "pais": "CL",
+      "region": "Antofagasta",
+      "mineral": "Cu",
+      "estado": "produccion",
+      "metal": "Cu",
+      "color": "#1E7A45",
+      "t0": 1990,
+      "t0_proyectado": false,
+      "nota": "Doce años desde el inicio de la exploración geoquímica en 1978 —nueve desde el descubrimiento por perforación en 1981— hasta la producción en 1990. Es la mina de cobre más grande del mundo y uno de los ciclos más rápidos logrados a esa escala.",
+      "segmentos": [
+        {
+          "e": "Exploración",
+          "desde": 1978,
+          "hasta": 1985,
+          "c": "#D97E23"
+        },
+        {
+          "e": "Estudios y permisos",
+          "desde": 1985,
+          "hasta": 1988,
+          "c": "#2E8FE0"
+        },
+        {
+          "e": "Construcción",
+          "desde": 1988,
+          "hasta": 1990,
+          "c": "#7B35B8"
+        },
+        {
+          "e": "Producción",
+          "desde": 1990,
+          "hasta": 2026,
+          "c": "#1E7A45"
+        }
+      ]
+    },
+    {
+      "nombre": "Los Pelambres",
+      "pais": "CL",
+      "region": "Coquimbo",
+      "mineral": "Cu",
+      "estado": "produccion",
+      "metal": "Cu/Mo/Au",
+      "color": "#1E7A45",
+      "t0": 1999,
+      "t0_proyectado": false,
+      "nota": "El primer denuncio es de 1914; se usa 1969, la evaluación de ENAMI, como inicio de la exploración moderna. Está a sólo 5 km de El Pachón, del otro lado de la frontera, y produce desde 1999.",
+      "segmentos": [
+        {
+          "e": "Exploración",
+          "desde": 1969,
+          "hasta": 1985,
+          "c": "#D97E23"
+        },
+        {
+          "e": "Estudios y permisos",
+          "desde": 1985,
+          "hasta": 1992,
+          "c": "#2E8FE0"
+        },
+        {
+          "e": "Producción piloto subterránea",
+          "desde": 1992,
+          "hasta": 1997,
+          "c": "#1E7A45"
+        },
+        {
+          "e": "Construcción",
+          "desde": 1997,
+          "hasta": 1999,
+          "c": "#7B35B8"
+        },
+        {
+          "e": "Producción",
+          "desde": 1999,
+          "hasta": 2026,
+          "c": "#1E7A45"
+        },
+        {
+          "e": "Extensión de vida útil (en evaluación)",
+          "desde": 2026,
+          "hasta": 2051,
+          "c": "#1E7A45",
+          "pred": true
+        }
+      ]
+    },
+    {
+      "nombre": "Collahuasi",
+      "pais": "CL",
+      "region": "Tarapacá",
+      "mineral": "Cu",
+      "estado": "produccion",
+      "metal": "Cu",
+      "color": "#1E7A45",
+      "t0": 1999,
+      "t0_proyectado": false,
+      "nota": "En mayo de 2026 el Segundo Tribunal Ambiental anuló la resolución ambiental de su ampliación de US$3.200M — con la desaladora ya construida — por deficiencias en la línea de base del medio humano.",
+      "segmentos": [
+        {
+          "e": "Exploración",
+          "desde": 1978,
+          "hasta": 1995,
+          "c": "#D97E23"
+        },
+        {
+          "e": "Estudios y permisos",
+          "desde": 1995,
+          "hasta": 1996,
+          "c": "#2E8FE0"
+        },
+        {
+          "e": "Construcción",
+          "desde": 1996,
+          "hasta": 1999,
+          "c": "#7B35B8"
+        },
+        {
+          "e": "Producción",
+          "desde": 1999,
+          "hasta": 2026,
+          "c": "#1E7A45"
+        }
+      ]
+    },
+    {
+      "nombre": "Quebrada Blanca",
+      "pais": "CL",
+      "region": "Tarapacá",
+      "mineral": "Cu",
+      "estado": "produccion",
+      "metal": "Cu",
+      "color": "#1E7A45",
+      "t0": 1994,
+      "t0_proyectado": false,
+      "nota": "Dos ciclos en el mismo yacimiento: los óxidos de QB1 desde 1994 y el proyecto de sulfuros QB2, que arrancó en 2023 tras suspenderse la obra por la pandemia.",
+      "segmentos": [
+        {
+          "e": "Exploración",
+          "desde": 1957,
+          "hasta": 1989,
+          "c": "#D97E23"
+        },
+        {
+          "e": "Estudios y permisos",
+          "desde": 1989,
+          "hasta": 1992,
+          "c": "#2E8FE0"
+        },
+        {
+          "e": "Construcción",
+          "desde": 1992,
+          "hasta": 1994,
+          "c": "#7B35B8"
+        },
+        {
+          "e": "Producción (QB1, óxidos)",
+          "desde": 1994,
+          "hasta": 2018,
+          "c": "#1E7A45"
+        },
+        {
+          "e": "Construcción (QB2, sulfuros)",
+          "desde": 2019,
+          "hasta": 2023,
+          "c": "#7B35B8"
+        },
+        {
+          "e": "Producción (QB2)",
+          "desde": 2023,
+          "hasta": 2026,
+          "c": "#1E7A45"
+        }
+      ]
+    },
+    {
+      "nombre": "Caserones",
+      "pais": "CL",
+      "region": "Atacama",
+      "mineral": "Cu",
+      "estado": "produccion",
+      "metal": "Cu/Mo",
+      "color": "#1E7A45",
+      "t0": 2014,
+      "t0_proyectado": false,
+      "nota": "Treinta y un años de exploración con seis dueños distintos antes de producir. En 2025 obtuvo un estudio de impacto ambiental tras cinco años de tramitación.",
+      "segmentos": [
+        {
+          "e": "Exploración",
+          "desde": 1983,
+          "hasta": 2009,
+          "c": "#D97E23"
+        },
+        {
+          "e": "Estudios y permisos",
+          "desde": 2009,
+          "hasta": 2010,
+          "c": "#2E8FE0"
+        },
+        {
+          "e": "Construcción",
+          "desde": 2010,
+          "hasta": 2014,
+          "c": "#7B35B8"
+        },
+        {
+          "e": "Producción",
+          "desde": 2014,
+          "hasta": 2026,
+          "c": "#1E7A45"
+        },
+        {
+          "e": "Plan de vida útil vigente",
+          "desde": 2026,
+          "hasta": 2042,
+          "c": "#1E7A45",
+          "pred": true
+        }
+      ]
+    },
+    {
+      "nombre": "Chuquicamata",
+      "pais": "CL",
+      "region": "Antofagasta",
+      "mineral": "Cu",
+      "estado": "produccion",
+      "metal": "Cu",
+      "color": "#1E7A45",
+      "t0": 1915,
+      "t0_proyectado": false,
+      "nota": "Ciento diez años produciendo. Hubo minería prehispánica en el sitio. El paso a mina subterránea, decidido en 2002 y operativo en 2019, costó US$5.000M: la mayor inversión de la historia de Codelco.",
+      "segmentos": [
+        {
+          "e": "Exploración",
+          "desde": 1879,
+          "hasta": 1911,
+          "c": "#D97E23"
+        },
+        {
+          "e": "Estudios y permisos",
+          "desde": 1911,
+          "hasta": 1912,
+          "c": "#2E8FE0"
+        },
+        {
+          "e": "Construcción",
+          "desde": 1912,
+          "hasta": 1915,
+          "c": "#7B35B8"
+        },
+        {
+          "e": "Producción (rajo abierto)",
+          "desde": 1915,
+          "hasta": 2019,
+          "c": "#1E7A45"
+        },
+        {
+          "e": "Producción (subterránea)",
+          "desde": 2019,
+          "hasta": 2026,
+          "c": "#1E7A45"
+        }
+      ]
+    },
+    {
+      "nombre": "El Teniente",
+      "pais": "CL",
+      "region": "O'Higgins",
+      "mineral": "Cu",
+      "estado": "produccion",
+      "metal": "Cu",
+      "color": "#1E7A45",
+      "t0": 1906,
+      "t0_proyectado": false,
+      "nota": "La mina de cobre subterránea más grande del mundo, en producción desde 1906. Hubo explotación artesanal desde 1819, así que no tiene un período moderno de descubrimiento a producción comparable con el resto.",
+      "segmentos": [
+        {
+          "e": "Construcción (Braden Copper)",
+          "desde": 1904,
+          "hasta": 1906,
+          "c": "#7B35B8"
+        },
+        {
+          "e": "Producción",
+          "desde": 1906,
+          "hasta": 2026,
+          "c": "#1E7A45"
+        }
+      ]
+    },
+    {
+      "nombre": "Norte Abierto (Cerro Casale)",
+      "pais": "CL",
+      "region": "Atacama",
+      "mineral": "Au",
+      "estado": "frenado",
+      "metal": "Au/Cu",
+      "color": "#6E7684",
+      "t0": null,
+      "t0_proyectado": false,
+      "nota": "Cuatro estudios de factibilidad en 17 años y ninguna construcción. En 2021 el Tribunal Ambiental ordenó rehacer la evaluación completa porque el proyecto se había aprobado sin consulta a la comunidad Colla Río Jorquera.",
+      "segmentos": [
+        {
+          "e": "Exploración",
+          "desde": 1985,
+          "hasta": 1993,
+          "c": "#D97E23"
+        },
+        {
+          "e": "Estudios y permisos",
+          "desde": 1993,
+          "hasta": 2002,
+          "c": "#2E8FE0"
+        },
+        {
+          "e": "Congelado",
+          "desde": 2002,
+          "hasta": 2009,
+          "c": "#6E7684"
+        },
+        {
+          "e": "Estudios y permisos",
+          "desde": 2009,
+          "hasta": 2010,
+          "c": "#2E8FE0"
+        },
+        {
+          "e": "Congelado",
+          "desde": 2010,
+          "hasta": 2017,
+          "c": "#6E7684"
+        },
+        {
+          "e": "Estudios y permisos",
+          "desde": 2017,
+          "hasta": 2021,
+          "c": "#2E8FE0"
+        },
+        {
+          "e": "Congelado",
+          "desde": 2021,
+          "hasta": 2025,
+          "c": "#6E7684"
+        },
+        {
+          "e": "Exploración",
+          "desde": 2025,
+          "hasta": 2026,
+          "c": "#D97E23"
+        }
+      ]
+    },
+    {
+      "nombre": "Salares Norte",
+      "pais": "CL",
+      "region": "Atacama",
+      "mineral": "Au",
+      "estado": "produccion",
+      "metal": "Au/Ag",
+      "color": "#1E7A45",
+      "t0": 2024,
+      "t0_proyectado": false,
+      "nota": "Trece años del descubrimiento a la producción. Se corrió de 2023 a 2024, en parte por el plan de rescate de la chinchilla de cola corta, que la autoridad ambiental ordenó paralizar.",
+      "segmentos": [
+        {
+          "e": "Exploración",
+          "desde": 2011,
+          "hasta": 2018,
+          "c": "#D97E23"
+        },
+        {
+          "e": "Estudios y permisos",
+          "desde": 2018,
+          "hasta": 2021,
+          "c": "#2E8FE0"
+        },
+        {
+          "e": "Construcción",
+          "desde": 2021,
+          "hasta": 2024,
+          "c": "#7B35B8"
+        },
+        {
+          "e": "Producción",
+          "desde": 2024,
+          "hasta": 2026,
+          "c": "#1E7A45"
+        },
+        {
+          "e": "Vida útil proyectada",
+          "desde": 2026,
+          "hasta": 2035,
+          "c": "#1E7A45",
+          "pred": true
+        }
+      ]
+    },
+    {
+      "nombre": "Pascua (lado chileno)",
+      "pais": "CL",
+      "region": "Atacama",
+      "mineral": "Au",
+      "estado": "cerrada",
+      "metal": "Au/Ag/Cu",
+      "color": "#C0392B",
+      "t0": null,
+      "t0_proyectado": false,
+      "nota": "El único proyecto de gran escala clausurado de forma total y definitiva por un tribunal ambiental, en 2020, por fallas en el monitoreo de glaciares y descargas al río Estrecho. Barrick llevaba US$4.800M invertidos cuando lo frenaron en 2013.",
+      "segmentos": [
+        {
+          "e": "Estudios y permisos",
+          "desde": 1997,
+          "hasta": 2009,
+          "c": "#2E8FE0"
+        },
+        {
+          "e": "Construcción",
+          "desde": 2009,
+          "hasta": 2013,
+          "c": "#7B35B8"
+        },
+        {
+          "e": "Obras suspendidas",
+          "desde": 2013,
+          "hasta": 2020,
+          "c": "#C0392B"
+        },
+        {
+          "e": "Clausura definitiva",
+          "desde": 2020,
+          "hasta": 2026,
+          "c": "#C0392B"
+        }
+      ]
+    },
+    {
+      "nombre": "Antamina",
+      "pais": "PE",
+      "region": "Áncash",
+      "mineral": "Cu",
+      "estado": "produccion",
+      "metal": "Cu/Zn",
+      "color": "#1E7A45",
+      "t0": 2001,
+      "t0_proyectado": false,
+      "nota": "Antonio Raimondi lo describió en 1860; la exploración moderna arranca en 1952. Desde la privatización de 1996 tardó apenas cinco años en producir.",
+      "segmentos": [
+        {
+          "e": "Exploración",
+          "desde": 1952,
+          "hasta": 1996,
+          "c": "#D97E23"
+        },
+        {
+          "e": "Estudios y permisos",
+          "desde": 1996,
+          "hasta": 1998,
+          "c": "#2E8FE0"
+        },
+        {
+          "e": "Construcción",
+          "desde": 1998,
+          "hasta": 2001,
+          "c": "#7B35B8"
+        },
+        {
+          "e": "Producción",
+          "desde": 2001,
+          "hasta": 2026,
+          "c": "#1E7A45"
+        },
+        {
+          "e": "Reposición Antamina",
+          "desde": 2026,
+          "hasta": 2036,
+          "c": "#1E7A45",
+          "pred": true
+        }
+      ]
+    },
+    {
+      "nombre": "Cerro Verde",
+      "pais": "PE",
+      "region": "Arequipa",
+      "mineral": "Cu",
+      "estado": "produccion",
+      "metal": "Cu",
+      "color": "#1E7A45",
+      "t0": 1977,
+      "t0_proyectado": false,
+      "nota": "Hubo minería artesanal de óxidos desde fines del siglo XIX. Produce cátodos desde 1977; la concentradora arrancó en 2006 y su expansión en 2016.",
+      "segmentos": [
+        {
+          "e": "Exploración (Anaconda)",
+          "desde": 1917,
+          "hasta": 1970,
+          "c": "#D97E23"
+        },
+        {
+          "e": "Estudios y permisos",
+          "desde": 1970,
+          "hasta": 1974,
+          "c": "#2E8FE0"
+        },
+        {
+          "e": "Construcción",
+          "desde": 1974,
+          "hasta": 1977,
+          "c": "#7B35B8"
+        },
+        {
+          "e": "Producción",
+          "desde": 1977,
+          "hasta": 2026,
+          "c": "#1E7A45"
+        }
+      ]
+    },
+    {
+      "nombre": "Las Bambas",
+      "pais": "PE",
+      "region": "Apurímac",
+      "mineral": "Cu",
+      "estado": "produccion",
+      "metal": "Cu",
+      "color": "#1E7A45",
+      "t0": 2016,
+      "t0_proyectado": false,
+      "nota": "Opera desde 2016 pero acumula más de 400 días de transporte perdidos por bloqueos: en 2022 estuvo 51 días parada. El origen del conflicto es la decisión de 2014 de reemplazar el mineroducto por un corredor vial que atraviesa 37 comunidades.",
+      "segmentos": [
+        {
+          "e": "Exploración",
+          "desde": 2004,
+          "hasta": 2009,
+          "c": "#D97E23"
+        },
+        {
+          "e": "Estudios y permisos",
+          "desde": 2009,
+          "hasta": 2011,
+          "c": "#2E8FE0"
+        },
+        {
+          "e": "Construcción",
+          "desde": 2012,
+          "hasta": 2015,
+          "c": "#7B35B8"
+        },
+        {
+          "e": "Producción",
+          "desde": 2016,
+          "hasta": 2026,
+          "c": "#1E7A45"
+        }
+      ]
+    },
+    {
+      "nombre": "Toromocho",
+      "pais": "PE",
+      "region": "Junín",
+      "mineral": "Cu",
+      "estado": "produccion",
+      "metal": "Cu",
+      "color": "#1E7A45",
+      "t0": 2013,
+      "t0_proyectado": false,
+      "nota": "Ochenta y cinco años del descubrimiento a la producción. Estuvo congelado 22 años tras el estudio de factibilidad estatal de 1980, y su puesta en marcha exigió reasentar la ciudad de Morococha.",
+      "segmentos": [
+        {
+          "e": "Exploración",
+          "desde": 1928,
+          "hasta": 1981,
+          "c": "#D97E23"
+        },
+        {
+          "e": "Congelado",
+          "desde": 1981,
+          "hasta": 2003,
+          "c": "#6E7684"
+        },
+        {
+          "e": "Exploración (Peru Copper)",
+          "desde": 2003,
+          "hasta": 2006,
+          "c": "#D97E23"
+        },
+        {
+          "e": "Estudios y permisos (Chinalco)",
+          "desde": 2007,
+          "hasta": 2010,
+          "c": "#2E8FE0"
+        },
+        {
+          "e": "Construcción",
+          "desde": 2011,
+          "hasta": 2013,
+          "c": "#7B35B8"
+        },
+        {
+          "e": "Producción",
+          "desde": 2013,
+          "hasta": 2026,
+          "c": "#1E7A45"
+        },
+        {
+          "e": "Vida útil proyectada",
+          "desde": 2026,
+          "hasta": 2049,
+          "c": "#1E7A45",
+          "pred": true
+        }
+      ]
+    },
+    {
+      "nombre": "Constancia",
+      "pais": "PE",
+      "region": "Cusco",
+      "mineral": "Cu",
+      "estado": "produccion",
+      "metal": "Cu",
+      "color": "#1E7A45",
+      "t0": 2014,
+      "t0_proyectado": false,
+      "nota": "De los grandes cupríferos peruanos es el de menor conflictividad documentada: no registra paralizaciones mayores.",
+      "segmentos": [
+        {
+          "e": "Exploración (Mitsui)",
+          "desde": 1985,
+          "hasta": 1990,
+          "c": "#D97E23"
+        },
+        {
+          "e": "Congelado",
+          "desde": 1990,
+          "hasta": 2003,
+          "c": "#6E7684"
+        },
+        {
+          "e": "Exploración (Rio Tinto, Norsemont)",
+          "desde": 2003,
+          "hasta": 2011,
+          "c": "#D97E23"
+        },
+        {
+          "e": "Estudios y permisos",
+          "desde": 2011,
+          "hasta": 2013,
+          "c": "#2E8FE0"
+        },
+        {
+          "e": "Construcción",
+          "desde": 2013,
+          "hasta": 2014,
+          "c": "#7B35B8"
+        },
+        {
+          "e": "Producción",
+          "desde": 2014,
+          "hasta": 2026,
+          "c": "#1E7A45"
+        },
+        {
+          "e": "Vida útil proyectada",
+          "desde": 2026,
+          "hasta": 2040,
+          "c": "#1E7A45",
+          "pred": true
+        }
+      ]
+    },
+    {
+      "nombre": "Quellaveco",
+      "pais": "PE",
+      "region": "Moquegua",
+      "mineral": "Cu",
+      "estado": "produccion",
+      "metal": "Cu",
+      "color": "#1E7A45",
+      "t0": 2022,
+      "t0_proyectado": false,
+      "nota": "Ochenta y cuatro años entre el denuncio de 1938 y la producción. Su EIA se aprobó en 2000 y el proyecto quedó once años detenido: lo destrabó la Mesa de Diálogo de 2011-2012, hoy citada como el caso de éxito frente a Conga y Tía María.",
+      "segmentos": [
+        {
+          "e": "Exploración",
+          "desde": 1938,
+          "hasta": 1992,
+          "c": "#D97E23"
+        },
+        {
+          "e": "Estudios y permisos",
+          "desde": 1992,
+          "hasta": 2000,
+          "c": "#2E8FE0"
+        },
+        {
+          "e": "Detenido pese al EIA aprobado",
+          "desde": 2000,
+          "hasta": 2011,
+          "c": "#6E7684"
+        },
+        {
+          "e": "Mesa de Diálogo y permisos",
+          "desde": 2011,
+          "hasta": 2018,
+          "c": "#2E8FE0"
+        },
+        {
+          "e": "Construcción",
+          "desde": 2018,
+          "hasta": 2022,
+          "c": "#7B35B8"
+        },
+        {
+          "e": "Producción",
+          "desde": 2022,
+          "hasta": 2026,
+          "c": "#1E7A45"
+        },
+        {
+          "e": "Vida útil proyectada",
+          "desde": 2026,
+          "hasta": 2042,
+          "c": "#1E7A45",
+          "pred": true
+        }
+      ]
+    },
+    {
+      "nombre": "Tía María",
+      "pais": "PE",
+      "region": "Arequipa",
+      "mineral": "Cu",
+      "estado": "construccion",
+      "metal": "Cu",
+      "color": "#7B35B8",
+      "t0": 2027,
+      "t0_proyectado": true,
+      "nota": "Su estudio ambiental fue declarado inadmisible en 2011 y la licencia de construcción de 2019 quedó suspendida durante cinco años. El conflicto dejó siete muertos. Recién en octubre de 2025 el Estado autorizó el inicio de la explotación.",
+      "segmentos": [
+        {
+          "e": "Exploración",
+          "desde": 1994,
+          "hasta": 2008,
+          "c": "#D97E23"
+        },
+        {
+          "e": "Estudios y permisos",
+          "desde": 2008,
+          "hasta": 2011,
+          "c": "#2E8FE0"
+        },
+        {
+          "e": "EIA declarado inadmisible",
+          "desde": 2011,
+          "hasta": 2013,
+          "c": "#C0392B"
+        },
+        {
+          "e": "Estudios y permisos",
+          "desde": 2013,
+          "hasta": 2015,
+          "c": "#2E8FE0"
+        },
+        {
+          "e": "Frenado por conflicto social",
+          "desde": 2015,
+          "hasta": 2025,
+          "c": "#6E7684"
+        },
+        {
+          "e": "Construcción",
+          "desde": 2025,
+          "hasta": 2027,
+          "c": "#7B35B8"
+        },
+        {
+          "e": "Producción proyectada",
+          "desde": 2027,
+          "hasta": 2050,
+          "c": "#1E7A45",
+          "pred": true
+        }
+      ]
+    },
+    {
+      "nombre": "Conga",
+      "pais": "PE",
+      "region": "Cajamarca",
+      "mineral": "Cu",
+      "estado": "cerrada",
+      "metal": "Cu/Au",
+      "color": "#C0392B",
+      "t0": null,
+      "t0_proyectado": false,
+      "nota": "Su EIA se aprobó en 2010 en diez meses y sin estudios hidrogeológicos completos. El conflicto de 2011-2012 dejó cinco muertos y en 2025 el ministerio lo sacó de su cartera de proyectos. El caso emblemático de permiso obtenido sin licencia social.",
+      "segmentos": [
+        {
+          "e": "Estudios y permisos",
+          "desde": 2009,
+          "hasta": 2010,
+          "c": "#2E8FE0"
+        },
+        {
+          "e": "Obras iniciales",
+          "desde": 2011,
+          "hasta": 2012,
+          "c": "#7B35B8"
+        },
+        {
+          "e": "Suspendido",
+          "desde": 2012,
+          "hasta": 2026,
+          "c": "#C0392B"
+        }
+      ]
+    },
+    {
+      "nombre": "Michiquillay",
+      "pais": "PE",
+      "region": "Cajamarca",
+      "mineral": "Cu",
+      "estado": "desarrollo",
+      "metal": "Cu",
+      "color": "#2E8FE0",
+      "t0": 2029,
+      "t0_proyectado": true,
+      "nota": "ASARCO ya lo trabajaba a mediados del siglo XX, sin año verificable. Se toma 2007, cuando Anglo American lo ganó en licitación; la australiana se retiró en 2014 y el Estado volvió a licitarlo en 2018.",
+      "segmentos": [
+        {
+          "e": "Exploración (Anglo American)",
+          "desde": 2007,
+          "hasta": 2014,
+          "c": "#D97E23"
+        },
+        {
+          "e": "Congelado",
+          "desde": 2014,
+          "hasta": 2018,
+          "c": "#6E7684"
+        },
+        {
+          "e": "Exploración (Southern Copper)",
+          "desde": 2018,
+          "hasta": 2026,
+          "c": "#D97E23"
+        },
+        {
+          "e": "Estudios y permisos",
+          "desde": 2026,
+          "hasta": 2027,
+          "c": "#2E8FE0"
+        },
+        {
+          "e": "Construcción",
+          "desde": 2027,
+          "hasta": 2029,
+          "c": "#7B35B8",
+          "pred": true
+        },
+        {
+          "e": "Producción proyectada",
+          "desde": 2029,
+          "hasta": 2054,
+          "c": "#1E7A45",
+          "pred": true
+        }
+      ]
+    },
+    {
+      "nombre": "La Granja",
+      "pais": "PE",
+      "region": "Cajamarca",
+      "mineral": "Cu",
+      "estado": "desarrollo",
+      "metal": "Cu",
+      "color": "#2E8FE0",
+      "t0": null,
+      "t0_proyectado": false,
+      "nota": "Cincuenta y siete años en exploración con cuatro operadores sucesivos. Tiene 23 Mt de cobre contenido en recursos medidos e indicados y ningún estudio de factibilidad publicado.",
+      "segmentos": [
+        {
+          "e": "Exploración",
+          "desde": 1969,
+          "hasta": 1997,
+          "c": "#D97E23"
+        },
+        {
+          "e": "Congelado",
+          "desde": 1997,
+          "hasta": 2001,
+          "c": "#6E7684"
+        },
+        {
+          "e": "Exploración (BHP, Rio Tinto, First Quantum)",
+          "desde": 2001,
+          "hasta": 2026,
+          "c": "#D97E23"
+        }
+      ]
+    },
+    {
+      "nombre": "Yanacocha",
+      "pais": "PE",
+      "region": "Cajamarca",
+      "mineral": "Au",
+      "estado": "produccion",
+      "metal": "Au",
+      "color": "#1E7A45",
+      "t0": 1993,
+      "t0_proyectado": false,
+      "nota": "Doce años del descubrimiento del BRGM en 1981 a la producción en 1993. Llegó a ser la mayor aurífera de Sudamérica; hoy está en cierre progresivo y su proyecto de sulfuros lleva tres postergaciones.",
+      "segmentos": [
+        {
+          "e": "Exploración (BRGM)",
+          "desde": 1981,
+          "hasta": 1992,
+          "c": "#D97E23"
+        },
+        {
+          "e": "Estudios y construcción",
+          "desde": 1992,
+          "hasta": 1993,
+          "c": "#7B35B8"
+        },
+        {
+          "e": "Producción",
+          "desde": 1993,
+          "hasta": 2026,
+          "c": "#1E7A45"
+        },
+        {
+          "e": "Cierre progresivo",
+          "desde": 2026,
+          "hasta": 2031,
+          "c": "#C0392B",
+          "pred": true
+        }
+      ]
+    },
+    {
+      "nombre": "Lagunas Norte",
+      "pais": "PE",
+      "region": "La Libertad",
+      "mineral": "Au",
+      "estado": "produccion",
+      "metal": "Au/Ag",
+      "color": "#1E7A45",
+      "t0": 2005,
+      "t0_proyectado": false,
+      "nota": "El ciclo más corto del comparador: cuatro años del descubrimiento en 2001 a la producción en 2005. Barrick la suspendió en 2019 por agotamiento de óxidos y Boroo la reactivó en 2023.",
+      "segmentos": [
+        {
+          "e": "Exploración",
+          "desde": 2001,
+          "hasta": 2003,
+          "c": "#D97E23"
+        },
+        {
+          "e": "Estudios y permisos",
+          "desde": 2003,
+          "hasta": 2004,
+          "c": "#2E8FE0"
+        },
+        {
+          "e": "Construcción",
+          "desde": 2004,
+          "hasta": 2005,
+          "c": "#7B35B8"
+        },
+        {
+          "e": "Producción (Barrick)",
+          "desde": 2005,
+          "hasta": 2019,
+          "c": "#1E7A45"
+        },
+        {
+          "e": "Cuidado y mantenimiento",
+          "desde": 2019,
+          "hasta": 2021,
+          "c": "#C0392B"
+        },
+        {
+          "e": "Construcción (planta CMOP)",
+          "desde": 2021,
+          "hasta": 2023,
+          "c": "#7B35B8"
+        },
+        {
+          "e": "Producción (Boroo)",
+          "desde": 2023,
+          "hasta": 2026,
+          "c": "#1E7A45"
+        }
+      ]
     }
   ],
   "predicciones": [
