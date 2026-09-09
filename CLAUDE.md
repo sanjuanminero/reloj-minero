@@ -1,5 +1,5 @@
 # RELOJ MINERO SAN JUAN — CONTEXTO COMPLETO PARA CLAUDE CODE
-**Cuenta:** @sanjuanminero · **Versión actual:** v13 · **Última actualización del contexto:** agosto 2026
+**Cuenta:** @sanjuanminero · **Versión actual:** v14 · **Última actualización del contexto:** agosto 2026
 **Objetivo de esta sesión de Code:** automatizar (a) la publicación del sitio y (b) la generación de contenido para Instagram.
 
 > Este documento resume TODO lo trabajado en las sesiones previas (concepto, datos, diseño, generador de Instagram, publicación). Pegalo como `CONTEXTO.md` o `CLAUDE.md` en la raíz del repo para que Claude Code tenga el panorama completo desde el primer prompt.
@@ -173,7 +173,7 @@ Componente JS que renderiza la hora como dígitos segmentados (relojes digitales
 ```
 ⬡ PROYECTOS    → Grid de tarjetas filtrable por etapa (LED + nombre + empresa + depto)
 ◷ GRAN RELOJ   → Canvas infográfico: dos mitades (00→12 / 12→24), arcos por etapa + badges de proyectos
-◈ COMPARACIÓN  → Comparador de líneas de tiempo con dos vistas (ver §13)
+◈ COMPARACIÓN  → Comparador regional de ciclos de vida: 36 proyectos de AR/CL/PE (ver §15)
 ◎ PREDICCIONES → Cards con hitos proyectados 2026–2035 por proyecto
 ```
 
@@ -394,3 +394,59 @@ Las 5 familias categóricas **pasan la validación completa** (`scripts/validate
 - Departamento oficial de **Filo Sur**: se cargó Iglesia por contigüidad con Filo del Sol y porque Mogotes ofertó por Bordo Atravesado (Iglesia), pero no hay fuente que lo diga de forma explícita.
 - **Adjudicación de la licitación IPEEM 2026**: sin resolver al 30/08/2026.
 - **Susana** (Fortescue, Calingasta, +4.600 msnm) es un candidato a alta futura: está confirmado por fuente primaria pero sin datos de campaña.
+
+---
+
+## 15. COMPARADOR REGIONAL — v14 (septiembre 2026)
+
+La pestaña COMPARACIÓN dejó de ser un Gantt de San Juan y pasó a ser un **comparador regional de tiempos de desarrollo**: cuánto tarda un yacimiento en convertirse en mina, en Argentina, Chile y Perú.
+
+**Sólo cobre y oro. El litio queda explícitamente fuera** (decisión del usuario).
+
+### Campos nuevos en `gantt[]`
+| Campo | Valores | Para qué |
+|---|---|---|
+| `pais` | `AR` · `CL` · `PE` | filtro de país |
+| `region` | provincia o región | etiqueta de fila |
+| `mineral` | `Cu` · `Au` | filtro de mineral (uno solo, el dominante) |
+| `estado` | `produccion` · `construccion` · `desarrollo` · `frenado` · `cerrada` · `reactivacion` | color del borde de fila |
+| `nota` | texto | caveat que aparece en el tooltip |
+| `t0` | año o **`null`** | `null` = nunca produjo |
+
+**`t0: null` es un estado de primera clase**, no un dato faltante: son los proyectos que nunca produjeron (MARA, Taca Taca, Norte Abierto, Pascua Chile, Conga, La Granja). Se muestran con "N AÑOS SIN PRODUCIR" y quedan **fuera de la vista alineada**, con una nota al pie que lo explica.
+
+### Interfaz
+- **Filtros por chips:** país (multi-selección, arranca en Argentina) y mineral (Todos / Cobre / Oro). Nunca se pueden apagar los tres países a la vez.
+- **Cinco tarjetas de síntesis** calculadas sobre el conjunto filtrado: mediana cobre, mediana oro, el más rápido, el más lento y cuántos nunca produjeron.
+- Las filas se **ordenan por años a producción**, de ciclo más corto a más largo. Los `t0: null` van al final.
+- **Panel de jurisdicciones** al pie: una tarjeta por país filtrado con la mediana calculada del propio dataset más dominio del recurso, permiso ambiental, plazo legal vs. real, consulta indígena, restricciones, incentivos y puesto en el ranking Fraser 2025.
+- El eje ahora usa pasos de 10 años (20 si el rango supera 120 años), porque la serie va de 1879 a 2064.
+
+### EL HALLAZGO QUE ORDENA LA SECCIÓN
+| Filtro | Mediana Cu | Mediana Au |
+|---|---|---|
+| **Argentina** | **42 años** | **14 años** |
+| Los tres países | 31 años | 13 años |
+
+**El cobre tarda tres veces más que el oro en Argentina.** Confirma la intuición del usuario: Vicuña (20) y Los Azules (22) no son lentos por gestión, es lo que tarda un pórfido de cobre. Veladero (11), Casposo (13) y Gualcamayo (15) son oro y por eso fueron más rápidos.
+
+Medianas por país (todos los minerales): **Argentina 19 · Chile 26 · Perú 31**. Ojo al leerlo: la mediana argentina es baja porque su muestra está cargada de oro; filtrando sólo cobre, Argentina (42) queda **peor** que Chile (30) y Perú (41).
+
+### Casos ancla del comparador
+- **El Pachón — 70 años** (1964 → 2034 proy.). Descubierto por St. Joe Minerals, con su primer estudio de factibilidad terminado en **1977**. Es el caso que el usuario pidió destacar. Los Pelambres, a 5 km del otro lado de la frontera, produce desde 1999.
+- **Toromocho (Perú) — 85 años**, el más largo que sí llegó a producir. Congelado 22 años tras el estudio estatal de 1980.
+- **Quellaveco (Perú) — 84 años**, destrabado por la Mesa de Diálogo de 2011-2012 tras once años detenido **con el EIA ya aprobado**.
+- **Lagunas Norte (Perú) — 4 años**, el ciclo más corto.
+- **El Teniente — 2 años** de ciclo moderno: la explotación artesanal desde 1819 hace que no tenga período comparable. Está anotado en su `nota`.
+- **Bajo de la Alumbrera — 61 años**, y no está cerrada: Glencore reinicia producción en 2027 para después alimentar a MARA.
+- **Conga (Perú)** y **Pascua (Chile)**: permiso obtenido y proyecto muerto igual. Son el argumento de que la aprobación ambiental no es el final del camino.
+
+### Correcciones que trajo la investigación
+- **Cerro Moro es de Pan American Silver** desde 2023, no de AngloGold. AngloGold opera Cerro Vanguardia.
+- **Bajo de la Alumbrera no está cerrada**: reinicia en 2027.
+- El descubrimiento de Alumbrera es **1936-41** (distrito Agua de Dionisio, Abel Peirano); el pórfido se definió como económico recién en 1992-93. Las dos fechas que circulan son correctas según qué se cuente.
+
+### Años que se dejaron fuera por no ser verificables
+No se inventó ninguna fecha de construcción ni de producción. Quedaron sin proyectar: **MARA** y **Taca Taca** (Glencore y First Quantum no publicaron cronograma), **La Granja** (sin estudio de factibilidad tras 57 años) y **Norte Abierto**. Sus barras terminan en 2026, en la etapa donde realmente están.
+
+Cuando un yacimiento tenía explotación artesanal o colonial previa, la barra arranca en el **ciclo moderno verificable** y el dato histórico va en la `nota` — así el ranking de "años a producción" compara cosas comparables. Aplica a El Teniente, Chuquicamata, Los Pelambres, Antamina, Cerro Verde y Quebrada Blanca.

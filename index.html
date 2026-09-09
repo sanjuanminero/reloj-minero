@@ -288,12 +288,35 @@ body{background:var(--bg);color:var(--text1);font-family:'DM Sans',sans-serif;fo
 .gx-leg{display:flex;align-items:center;gap:6px;font-family:'Share Tech Mono',monospace;font-size:10px;color:var(--text2)}
 .gx-swatch{width:17px;height:11px;border-radius:3px;flex-shrink:0}
 .gx-swatch.pred{background-image:repeating-linear-gradient(45deg,rgba(255,255,255,.32) 0 4px,transparent 4px 10px)}
-.gx-rank{display:grid;grid-template-columns:repeat(auto-fit,minmax(128px,1fr));gap:8px;margin-bottom:16px}
-.gx-rcard{background:var(--bg2);border:1px solid var(--border);border-left:3px solid var(--border3);border-radius:8px;padding:10px 12px;display:flex;flex-direction:column}
-.gx-rname{font-family:'Bebas Neue',sans-serif;font-size:15px;letter-spacing:1px;color:var(--text1);line-height:1.15;min-height:2.3em}
-.gx-rnum{font-family:'Share Tech Mono',monospace;font-size:26px;color:var(--amber);line-height:1.15;margin-top:3px;white-space:nowrap}
-.gx-rnum small{font-size:9px;color:var(--text3);letter-spacing:1px}
-.gx-rfoot{font-family:'Share Tech Mono',monospace;font-size:8px;color:var(--text4);letter-spacing:.5px;margin-top:4px;line-height:1.5}
+.gx-filtros{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin-bottom:12px}
+.gx-flabel{font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:1.5px;color:var(--text3);margin-right:2px}
+.gx-chip-btn{font-family:'Share Tech Mono',monospace;font-size:10px;letter-spacing:.8px;padding:6px 11px;border:1px solid var(--border2);background:var(--bg2);color:var(--text2);border-radius:20px;cursor:pointer;transition:.15s all;-webkit-tap-highlight-color:transparent}
+.gx-chip-btn:hover{border-color:var(--border3);color:var(--text1)}
+.gx-chip-btn.on{background:var(--text1);color:var(--bg2);border-color:var(--text1)}
+.gx-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:8px;margin-bottom:16px}
+.gx-stile{background:var(--bg2);border:1px solid var(--border);border-top:3px solid var(--border3);border-radius:8px;padding:11px 13px;display:flex;flex-direction:column}
+.gx-stile.cu{border-top-color:#B5651D}.gx-stile.au{border-top-color:#C99700}
+.gx-stile.ok{border-top-color:#1E7A45}.gx-stile.slow{border-top-color:#C0392B}
+.gx-stile.none{border-top-color:#6E7684}
+.gx-stit{font-family:'Share Tech Mono',monospace;font-size:8px;letter-spacing:1.5px;color:var(--text3)}
+.gx-snum{font-family:'Share Tech Mono',monospace;font-size:30px;color:var(--amber);line-height:1.1;margin:3px 0 2px;white-space:nowrap}
+.gx-snum small{font-size:9px;color:var(--text3);letter-spacing:1px}
+.gx-ssub{font-family:'Share Tech Mono',monospace;font-size:9px;color:var(--text4);line-height:1.5}
+.gx-jur{margin-top:22px}
+.gx-jtit{font-family:'Bebas Neue',sans-serif;font-size:clamp(16px,3vw,21px);letter-spacing:3px;color:var(--amber);margin-bottom:2px}
+.gx-jgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:10px}
+.gx-jcard{background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:14px 16px}
+.gx-jname{font-family:'Bebas Neue',sans-serif;font-size:20px;letter-spacing:2px;color:var(--text1);line-height:1.1}
+.gx-jmed{font-family:'Share Tech Mono',monospace;font-size:26px;color:var(--amber);line-height:1.2;margin-top:2px}
+.gx-jmed small{font-size:9px;color:var(--text3);letter-spacing:1px}
+.gx-jsub{font-family:'Share Tech Mono',monospace;font-size:9px;color:var(--text4);margin-bottom:10px}
+.gx-jdl{margin:0;border-top:1px solid var(--border);padding-top:9px}
+.gx-jdl dt{font-family:'Share Tech Mono',monospace;font-size:8px;letter-spacing:1.2px;color:var(--text3);margin-top:8px}
+.gx-jdl dt:first-child{margin-top:0}
+.gx-jdl dd{margin:2px 0 0;font-size:11.5px;color:var(--text2);line-height:1.55}
+.gx-jdl dd.hi{color:var(--amber);font-family:'Share Tech Mono',monospace;font-size:11px}
+.gx-stat.none{color:var(--text3)}
+.gx-tip .nt{margin-top:6px;padding-top:6px;border-top:1px solid rgba(255,255,255,.14);color:#C9C0B2;font-size:10px;line-height:1.55}
 .gantt-note{background:var(--bg3);border:1px solid var(--border);border-left:2px solid var(--amber-mid);border-radius:var(--radius);padding:10px 14px;font-size:11px;color:var(--text2);line-height:1.6;margin-bottom:16px;font-family:'Share Tech Mono',monospace}
 </style>
 </head>
@@ -379,7 +402,7 @@ body{background:var(--bg);color:var(--text1);font-family:'DM Sans',sans-serif;fo
 
 <div id="tab-comparacion" class="page-section">
   <div class="comp-section-title">COMPARACIÓN DE CICLOS DE VIDA</div>
-  <div class="comp-section-sub">// LÍNEA DE TIEMPO REAL · PROYECTOS: PASCUA-LAMA, GUALCAMAYO, VELADERO, HUALILÁN + PRÓXIMOS</div>
+  <div class="comp-section-sub">// CUÁNTO TARDA UN YACIMIENTO EN SER MINA · 36 PROYECTOS DE COBRE Y ORO · ARGENTINA · CHILE · PERÚ</div>
   <div class="gantt-wrap"><div class="gantt-inner" id="gantt-container"></div></div>
   <div class="gantt-legend" id="gantt-legend"></div>
 </div>
@@ -709,11 +732,72 @@ const GX_FAM=[
   {c:'#6E7684',l:'Pausa / congelado'}
 ];
 const GX_HOY=2026;
+const GX_PAIS={AR:'Argentina',CL:'Chile',PE:'Perú'};
+const GX_JUR={
+  AR:{
+    n:'Argentina',
+    dominio:'Federal — el recurso es de las provincias (art. 124 CN)',
+    permiso:'DIA provincial. Cada provincia aprueba por su cuenta.',
+    legal:'60 días hábiles',
+    real:'Sin estadística pública que permita medirlo',
+    consulta:'Convenio 169 ratificado; se aplica de forma desigual según la provincia',
+    restric:'Ley de Glaciares 26.639, reformada en 2026 para exigir "función hidrológica relevante" y dar a las provincias voz en el inventario. Seis provincias prohíben el cielo abierto o el cianuro (Chubut, Mendoza, Córdoba, Tucumán, La Pampa, San Luis).',
+    incentivo:'RIGI (Ley 27.742, 2024): Ganancias al 25% en vez de 35%, sin retenciones desde el año 3 y estabilidad por 30 años. Desde agosto de 2025 las retenciones mineras metalíferas están en 0%.',
+    fraser:'San Juan 18° · Santa Cruz 21° · Mendoza 56° · Chubut 63° (de 68)'
+  },
+  CL:{
+    n:'Chile',
+    dominio:'Unitario — el recurso es del Estado nacional',
+    permiso:'RCA a través del SEIA, un único organismo nacional',
+    legal:'120 días + 60 de prórroga (EIA)',
+    real:'1.124 días promedio en 2025 — seis veces el plazo legal',
+    consulta:'Consulta indígena obligatoria dentro del SEIA (DS 66/2013)',
+    restric:'No tiene ley de glaciares pese a concentrar el 80% de los glaciares de la región: protege por vía indirecta. El Servicio de Biodiversidad creado en 2023 y sus "sitios prioritarios" son hoy la mayor fuente de incertidumbre.',
+    incentivo:'Royalty minero (Ley 21.591, 2024): 1% ad valorem más 8-26% sobre el margen, con un techo de carga total del 46,5%. Acota el máximo pero no congela el régimen.',
+    fraser:'32° en atractivo, 24° en percepción de política (de 68)'
+  },
+  PE:{
+    n:'Perú',
+    dominio:'Unitario — el recurso es del Estado nacional',
+    permiso:'Certificación ambiental (EIA detallado) ante SENACE, nacional',
+    legal:'120 días hábiles',
+    real:'~400 días hábiles. La meta oficial para 2026 es bajarlo a 150-160.',
+    consulta:'Ley de Consulta Previa 29785 (2011): proceso autónomo y formalizado, el más desarrollado de los tres.',
+    restric:'Cabeceras de cuenca (Ley 30640, 2017), áreas naturales protegidas y certificado de inexistencia de restos arqueológicos. Un proyecto requiere entre 200 y 400 permisos ante unas 30 autoridades.',
+    incentivo:'Contratos de estabilidad tributaria e Impuesto Especial a la Minería.',
+    fraser:'41° en atractivo, 42° en percepción de política (de 68)'
+  }
+};
 let gxView='crono';
+let gxPais={AR:true,CL:false,PE:false};
+let gxMin='todos';
 
 function _gxIni(p){return Math.min.apply(null,p.segmentos.map(function(s){return s.desde;}));}
 function _gxFin(p){return Math.max.apply(null,p.segmentos.map(function(s){return s.hasta;}));}
+function _gxAnios(p){return p.t0?p.t0-_gxIni(p):null;}
 function _gxEsc(t){const d=document.createElement('div');d.textContent=t==null?'':t;return d.innerHTML;}
+function _gxMed(a){if(!a.length)return null;const s=a.slice().sort(function(x,y){return x-y;});
+  const m=Math.floor(s.length/2);return s.length%2?s[m]:Math.round((s[m-1]+s[m])/2);}
+
+function _gxData(){
+  return GANTT_PROJECTS.filter(function(p){
+    if(!gxPais[p.pais])return false;
+    if(gxMin!=='todos'&&p.mineral!==gxMin)return false;
+    return true;
+  }).sort(function(a,b){
+    const x=_gxAnios(a),y=_gxAnios(b);
+    if(x===null&&y===null)return _gxIni(a)-_gxIni(b);
+    if(x===null)return 1;
+    if(y===null)return -1;
+    return x-y;
+  });
+}
+
+function _gxChip(txt,on,fn){
+  const b=document.createElement('button');b.type='button';
+  b.className='gx-chip-btn'+(on?' on':'');b.textContent=txt;b.onclick=fn;
+  return b;
+}
 
 function _buildGantt(){
   const cont=document.getElementById('gantt-container');if(!cont)return;
@@ -721,20 +805,57 @@ function _buildGantt(){
   cont.innerHTML='';
 
   const note=document.createElement('div');note.className='gantt-note';
-  note.textContent='// Cada barra es una etapa del ciclo de vida. Las barras rayadas en diagonal son proyecciones, no hechos verificados. Tocá cualquier barra para ver el detalle. Fuentes: NI 43-101, JORC, reportes corporativos y resoluciones RIGI. Actualizado a agosto 2026.';
+  note.textContent='// Cuánto tarda un yacimiento en convertirse en mina. Cada barra es una etapa; las rayadas en diagonal son proyecciones, no hechos. Tocá cualquier barra para ver el detalle. Sólo proyectos de cobre y oro. Fuentes: NI 43-101, JORC, reportes corporativos, SEIA, SENACE y prensa especializada. Actualizado a septiembre de 2026.';
   cont.appendChild(note);
 
-  const rank=document.createElement('div');rank.className='gx-rank';
-  GANTT_PROJECTS.slice().sort(function(a,b){return (a.t0-_gxIni(a))-(b.t0-_gxIni(b));}).forEach(function(p){
-    const anios=p.t0-_gxIni(p);
-    const c=document.createElement('div');c.className='gx-rcard';c.style.borderLeftColor=p.color;
-    c.innerHTML='<div class="gx-rname">'+_gxEsc(p.nombre)+'</div>'+
-      '<div class="gx-rnum">'+anios+' <small>AÑOS</small></div>'+
-      '<div class="gx-rfoot">hasta 1ª producción<br>'+_gxIni(p)+' → '+p.t0+(p.t0_proyectado?' · PROYECTADO':'')+'</div>';
-    rank.appendChild(c);
+  // ── Filtros ──
+  const f1=document.createElement('div');f1.className='gx-filtros';
+  const l1=document.createElement('span');l1.className='gx-flabel';l1.textContent='PAÍS';f1.appendChild(l1);
+  Object.keys(GX_PAIS).forEach(function(k){
+    f1.appendChild(_gxChip(GX_PAIS[k],gxPais[k],function(){
+      gxPais[k]=!gxPais[k];
+      if(!gxPais.AR&&!gxPais.CL&&!gxPais.PE)gxPais[k]=true;
+      _buildGantt();
+    }));
   });
-  cont.appendChild(rank);
+  const l2=document.createElement('span');l2.className='gx-flabel';l2.style.marginLeft='10px';l2.textContent='MINERAL';f1.appendChild(l2);
+  [['todos','Todos'],['Cu','Cobre'],['Au','Oro']].forEach(function(m){
+    f1.appendChild(_gxChip(m[1],gxMin===m[0],function(){gxMin=m[0];_buildGantt();}));
+  });
+  cont.appendChild(f1);
 
+  const datos=_gxData();
+  if(!datos.length){
+    const v=document.createElement('div');v.className='gantt-note';
+    v.textContent='// No hay proyectos con esa combinación de filtros.';
+    cont.appendChild(v);return;
+  }
+
+  // ── Tarjetas de síntesis ──
+  const cu=datos.filter(function(p){return p.mineral==='Cu'&&_gxAnios(p)!==null;}).map(_gxAnios);
+  const au=datos.filter(function(p){return p.mineral==='Au'&&_gxAnios(p)!==null;}).map(_gxAnios);
+  const conT0=datos.filter(function(p){return _gxAnios(p)!==null;});
+  const sinT0=datos.filter(function(p){return _gxAnios(p)===null;});
+  const rap=conT0.length?conT0[0]:null;
+  const len=conT0.length?conT0[conT0.length-1]:null;
+
+  const st=document.createElement('div');st.className='gx-stats';
+  function tile(num,uni,tit,sub,cls){
+    const c=document.createElement('div');c.className='gx-stile'+(cls?' '+cls:'');
+    c.innerHTML='<div class="gx-stit">'+tit+'</div>'+
+      '<div class="gx-snum">'+num+' <small>'+uni+'</small></div>'+
+      '<div class="gx-ssub">'+sub+'</div>';
+    st.appendChild(c);
+  }
+  if(cu.length)tile(_gxMed(cu),'AÑOS','MEDIANA COBRE',cu.length+' proyecto'+(cu.length>1?'s':'')+' que llegaron a producir','cu');
+  if(au.length)tile(_gxMed(au),'AÑOS','MEDIANA ORO',au.length+' proyecto'+(au.length>1?'s':'')+' que llegaron a producir','au');
+  if(rap)tile(_gxAnios(rap),'AÑOS','EL MÁS RÁPIDO',_gxEsc(rap.nombre)+' · '+_gxIni(rap)+'→'+rap.t0,'ok');
+  if(len)tile(_gxAnios(len),'AÑOS','EL MÁS LENTO',_gxEsc(len.nombre)+' · '+_gxIni(len)+'→'+len.t0+(len.t0_proyectado?' (proy.)':''),'slow');
+  if(sinT0.length)tile(sinT0.length,sinT0.length>1?'PROYECTOS':'PROYECTO','SIN PRODUCIR NUNCA',
+    sinT0.map(function(p){return _gxEsc(p.nombre)+' ('+(GX_HOY-_gxIni(p))+'a)';}).join(' · '),'none');
+  cont.appendChild(st);
+
+  // ── Vistas ──
   const tb=document.createElement('div');tb.className='gx-toolbar';
   [['crono','◈ CRONOLÓGICO'],['alin','⊹ ALINEADO EN 1ª PRODUCCIÓN']].forEach(function(v){
     const b=document.createElement('button');b.type='button';
@@ -743,28 +864,32 @@ function _buildGantt(){
     tb.appendChild(b);
   });
   const hint=document.createElement('div');hint.className='gx-hint';
-  hint.textContent=gxView==='crono'?'// deslizá la línea de tiempo →':'// cada proyecto alineado en su 12:00';
+  hint.textContent=gxView==='crono'?'// ordenados de ciclo más corto a más largo · deslizá →':'// cada proyecto alineado en su 12:00';
   tb.appendChild(hint);
   cont.appendChild(tb);
 
-  cont.appendChild(_gxChart());
+  cont.appendChild(_gxChart(datos));
+  cont.appendChild(_gxJuris(datos));
 }
 
-function _gxChart(){
+function _gxChart(todos){
   const mob=window.innerWidth<560;
-  const PPY=mob?13:17;
-  const LBLW=mob?132:204;
+  const PPY=mob?11:15;
+  const LBLW=mob?142:212;
   const aligned=gxView==='alin';
+  const datos=aligned?todos.filter(function(p){return p.t0;}):todos;
+  const fuera=todos.length-datos.length;
 
   let x0,x1;
   if(aligned){
-    x0=-Math.max.apply(null,GANTT_PROJECTS.map(function(p){return p.t0-_gxIni(p);}));
-    x1= Math.max.apply(null,GANTT_PROJECTS.map(function(p){return _gxFin(p)-p.t0;}));
+    x0=-Math.max.apply(null,datos.map(function(p){return p.t0-_gxIni(p);}));
+    x1= Math.max.apply(null,datos.map(function(p){return _gxFin(p)-p.t0;}));
   }else{
-    x0=Math.min.apply(null,GANTT_PROJECTS.map(_gxIni));
-    x1=Math.max.apply(null,GANTT_PROJECTS.map(_gxFin));
+    x0=Math.min.apply(null,datos.map(_gxIni));
+    x1=Math.max.apply(null,datos.map(_gxFin));
   }
-  x0=Math.floor(x0/5)*5;x1=Math.ceil(x1/5)*5;
+  x0=Math.floor(x0/10)*10;x1=Math.ceil(x1/10)*10;
+  const paso=(x1-x0)>120?20:10;
   const W=(x1-x0)*PPY;
   const px=function(v){return (v-x0)*PPY;};
 
@@ -781,7 +906,7 @@ function _gxChart(){
     selBar=bar;bar.classList.add('sel');
     const pr=panel.getBoundingClientRect(),br=bar.getBoundingClientRect();
     let left=br.left-pr.left+br.width/2;
-    const half=Math.min(250,tip.offsetWidth)/2+8;
+    const half=Math.min(280,tip.offsetWidth)/2+8;
     left=Math.max(half,Math.min(pr.width-half,left));
     tip.style.left=left+'px';
     tip.style.top=(br.top-pr.top-8)+'px';
@@ -796,16 +921,16 @@ function _gxChart(){
     (aligned?'AÑOS ANTES / DESPUÉS':'AÑO CALENDARIO')+'</div>';
   axis.appendChild(al);
   const at=document.createElement('div');at.className='gx-track';at.style.width=W+'px';
-  for(let v=x0;v<=x1;v+=5){
-    const major=aligned?(v%10===0):(v%10===0);
+  for(let v=x0;v<=x1;v+=paso){
+    const major=(v%(paso*2)===0);
     const t=document.createElement('div');t.className='gx-tick'+(major?' major':'');
     t.style.left=px(v)+'px';at.appendChild(t);
     const lb=document.createElement('div');
     lb.className='gx-tlab'+(major?' major':'')+(aligned&&v===0?' zero':'');
     const lx=px(v);
     lb.style.left=lx+'px';
-    if(lx<24)lb.style.transform='translateX(0)';
-    else if(lx>W-24)lb.style.transform='translateX(-100%)';
+    if(lx<26)lb.style.transform='translateX(0)';
+    else if(lx>W-26)lb.style.transform='translateX(-100%)';
     lb.textContent=aligned?(v===0?'1ª PROD.':(v>0?'+'+v:String(v))):String(v);
     at.appendChild(lb);
   }
@@ -816,26 +941,26 @@ function _gxChart(){
   axis.appendChild(at);inner.appendChild(axis);
 
   // ── Filas ──
-  GANTT_PROJECTS.forEach(function(p){
+  datos.forEach(function(p){
     const off=aligned?-p.t0:0;
+    const anios=_gxAnios(p);
     const row=document.createElement('div');row.className='gx-row';
     const lbl=document.createElement('div');lbl.className='gx-lbl';
     lbl.style.width=LBLW+'px';lbl.style.flexBasis=LBLW+'px';
     lbl.style.borderLeft='3px solid '+p.color;
-    const anios=p.t0-_gxIni(p);
+    const stat=anios!==null
+      ? '<div class="gx-stat'+(p.t0_proyectado?' proy':'')+'"><b>'+anios+'</b> AÑOS A PRODUCCIÓN'+(p.t0_proyectado?' *':'')+'</div>'
+      : '<div class="gx-stat none"><b>'+(GX_HOY-_gxIni(p))+'</b> AÑOS SIN PRODUCIR</div>';
     lbl.innerHTML='<div class="gx-name">'+_gxEsc(p.nombre)+'</div>'+
-      '<div class="gx-meta">'+_gxEsc(p.metal)+'</div>'+
-      '<div class="gx-stat'+(p.t0_proyectado?' proy':'')+'"><b>'+anios+'</b> AÑOS A PRODUCCIÓN'+
-      (p.t0_proyectado?' *':'')+'</div>';
+      '<div class="gx-meta">'+_gxEsc(p.region)+' · '+_gxEsc(p.metal)+'</div>'+stat;
     row.appendChild(lbl);
 
     const tr=document.createElement('div');tr.className='gx-track';tr.style.width=W+'px';
-    for(let v=x0;v<=x1;v+=5){
+    for(let v=x0;v<=x1;v+=paso){
       const g=document.createElement('div');
-      g.className='gx-tick'+(v%10===0?' major':'');g.style.left=px(v)+'px';tr.appendChild(g);
+      g.className='gx-tick'+(v%(paso*2)===0?' major':'');g.style.left=px(v)+'px';tr.appendChild(g);
     }
-    const zl=document.createElement('div');
-    zl.className='gx-zero'+(aligned?'':'');zl.style.left=zx+'px';tr.appendChild(zl);
+    const zl=document.createElement('div');zl.className='gx-zero';zl.style.left=zx+'px';tr.appendChild(zl);
 
     p.segmentos.forEach(function(s){
       const a=px(s.desde+off),b=px(s.hasta+off);
@@ -845,9 +970,10 @@ function _gxChart(){
       el.style.left=a+'px';el.style.width=w+'px';el.style.backgroundColor=s.c;
       const dur=s.hasta-s.desde;
       if(w>46)el.textContent=s.e;
-      const html='<span class="pj">'+_gxEsc(p.nombre)+'</span><b>'+_gxEsc(s.e)+'</b>'+
-        s.desde+' → '+s.hasta+' · '+dur+(dur===1?' año':' años')+
-        (s.pred?'<br><span class="pj">◇ proyección, no verificado</span>':'');
+      const html='<span class="pj">'+_gxEsc(p.nombre)+' · '+_gxEsc(p.region)+', '+GX_PAIS[p.pais]+'</span>'+
+        '<b>'+_gxEsc(s.e)+'</b>'+s.desde+' → '+s.hasta+' · '+dur+(dur===1?' año':' años')+
+        (s.pred?'<br><span class="pj">◇ proyección, no verificado</span>':'')+
+        (p.nota?'<div class="nt">'+_gxEsc(p.nota)+'</div>':'');
       el.setAttribute('aria-label',p.nombre+': '+s.e+', '+s.desde+' a '+s.hasta);
       el.addEventListener('mouseenter',function(){showTip(el,html);});
       el.addEventListener('mouseleave',function(){if(!('ontouchstart' in window))hideTip();});
@@ -867,12 +993,11 @@ function _gxChart(){
   });
 
   scroll.appendChild(inner);panel.appendChild(scroll);
-  // Abrir centrado en la línea de referencia (HOY / 1ª producción), no en el vacío inicial
+  panel.addEventListener('click',function(e){if(!e.target.closest('.gx-bar'))hideTip();});
   requestAnimationFrame(function(){
     const vis=scroll.clientWidth-LBLW;
     if(vis>0&&zx>vis*0.55)scroll.scrollLeft=zx-vis*0.55;
   });
-  panel.addEventListener('click',function(e){if(!e.target.closest('.gx-bar'))hideTip();});
 
   const leg=document.createElement('div');leg.className='gx-legend';
   GX_FAM.forEach(function(f){
@@ -883,20 +1008,63 @@ function _gxChart(){
   const pr=document.createElement('div');pr.className='gx-leg';
   pr.innerHTML='<span class="gx-swatch pred" style="background-color:#A89878"></span>Proyectado';
   leg.appendChild(pr);
-  if(aligned){
-    const hy=document.createElement('div');hy.className='gx-leg';
-    hy.innerHTML='<span class="gx-swatch" style="background-color:var(--amber);border-radius:50%;width:11px;height:11px"></span>Hoy ('+GX_HOY+')';
-    leg.appendChild(hy);
-  }
   panel.appendChild(leg);
 
-  if(GANTT_PROJECTS.some(function(p){return p.t0_proyectado;})){
+  const pies=[];
+  if(datos.some(function(p){return p.t0_proyectado;}))
+    pies.push('* La primera producción todavía no ocurrió: el año es el proyectado por la empresa.');
+  if(aligned&&fuera>0)
+    pies.push('Esta vista deja fuera '+fuera+' proyecto'+(fuera>1?'s que nunca produjeron':' que nunca produjo')+', porque no hay un punto en el que alinearlo'+(fuera>1?'s':'')+'. Se ven en la vista cronológica.');
+  if(pies.length){
     const fn=document.createElement('div');fn.className='gx-hint';
-    fn.style.cssText='padding:0 2px 4px';
-    fn.textContent='* La primera producción todavía no ocurrió: el año es el proyectado por la empresa.';
+    fn.style.cssText='padding:8px 14px 10px;line-height:1.6';
+    fn.textContent=pies.join(' · ');
     panel.appendChild(fn);
   }
   return panel;
+}
+
+function _gxJuris(datos){
+  const wrap=document.createElement('div');wrap.className='gx-jur';
+  const h=document.createElement('div');h.className='gx-jtit';
+  h.textContent='POR QUÉ TARDAN DISTINTO — LAS REGLAS DE CADA PAÍS';
+  wrap.appendChild(h);
+  const sub=document.createElement('div');sub.className='gx-hint';
+  sub.style.cssText='padding:0 0 12px';
+  sub.textContent='// La mediana se calcula sobre los proyectos filtrados que efectivamente llegaron a producir.';
+  wrap.appendChild(sub);
+
+  const grid=document.createElement('div');grid.className='gx-jgrid';
+  Object.keys(GX_PAIS).forEach(function(k){
+    if(!gxPais[k])return;
+    const j=GX_JUR[k];
+    const ps=datos.filter(function(p){return p.pais===k&&_gxAnios(p)!==null;}).map(_gxAnios);
+    const sin=datos.filter(function(p){return p.pais===k&&_gxAnios(p)===null;}).length;
+    const med=_gxMed(ps);
+    const c=document.createElement('div');c.className='gx-jcard';
+    c.innerHTML=
+      '<div class="gx-jname">'+j.n+'</div>'+
+      '<div class="gx-jmed">'+(med!==null?med+' <small>AÑOS (MEDIANA)</small>':'<small>SIN DATOS EN EL FILTRO</small>')+'</div>'+
+      '<div class="gx-jsub">'+ps.length+' proyecto'+(ps.length===1?'':'s')+' en producción'+(sin?' · '+sin+' sin producir':'')+'</div>'+
+      '<dl class="gx-jdl">'+
+      '<dt>Dominio del recurso</dt><dd>'+_gxEsc(j.dominio)+'</dd>'+
+      '<dt>Permiso ambiental</dt><dd>'+_gxEsc(j.permiso)+'</dd>'+
+      '<dt>Plazo legal</dt><dd>'+_gxEsc(j.legal)+'</dd>'+
+      '<dt>Plazo real</dt><dd class="hi">'+_gxEsc(j.real)+'</dd>'+
+      '<dt>Consulta indígena</dt><dd>'+_gxEsc(j.consulta)+'</dd>'+
+      '<dt>Restricciones</dt><dd>'+_gxEsc(j.restric)+'</dd>'+
+      '<dt>Incentivos</dt><dd>'+_gxEsc(j.incentivo)+'</dd>'+
+      '<dt>Ranking Fraser 2025</dt><dd>'+_gxEsc(j.fraser)+'</dd>'+
+      '</dl>';
+    grid.appendChild(c);
+  });
+  wrap.appendChild(grid);
+
+  const pie=document.createElement('div');pie.className='gantt-note';
+  pie.style.marginTop='14px';
+  pie.textContent='// La diferencia de fondo es institucional: en Argentina el dueño del recurso es cada provincia, así que hay tantos regímenes como provincias — San Juan puede estar 18ª en el ranking Fraser mientras Chubut está 63ª y prohíbe el cielo abierto. Chile y Perú tienen una sola ventanilla nacional, pero sus plazos reales se estiraron a 1.124 y ~400 días. Y el permiso no alcanza: Conga tenía su EIA aprobado y nunca se construyó; a Collahuasi le anularon la resolución ambiental en 2026 con la desaladora ya hecha.';
+  wrap.appendChild(pie);
+  return wrap;
 }
 
 let _gxRT=null;
